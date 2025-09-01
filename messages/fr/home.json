@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "LAGREE, MAIS FAIS-LE COMME UNE STARLETTE.",
+    "p1_line1": "EST LE PREMIER STUDIO MICROLAGREE EN ISRAËL —",
+    "p1_line2": "UN ESPACE RÉSERVÉ AUX FEMMES AU CŒUR DE TEL-AVIV",
+    "p2_line1": "LAGREE EST LA MÉTHODE ULTIME POUR UN CORPS SCULPTÉ",
+    "p2_line2": "CONTRÔLE, FLUIDITÉ, FORCE, PROFONDEUR.",
+    "p2_highlight": "DES RÉSULTATS RÉELS. UNE TRANSFORMATION DURABLE.",
+    "more": "PLUS QU’UN ENTRAÎNEMENT. UN VÉRITABLE UNIVERS.",
+    "italic": "POUR LES FEMMES QUI S’ENTRAÎNENT COMME DES ÉTOILES — ET BRILLENT COMME ELLES.",
+    "ready": "PRÊTE À TE SENTIR COMME UNE STAR ?",
+    "cta": "DÉCOUVRIR STARLETTE"
+  },
+  "experience": {
+    "title": "L’EXPÉRIENCE STARLETTE",
+    "p1_bold": "RÉVÈLE LA MEILLEURE VERSION DE TOI-MÊME.",
+    "p1_mid": "EST UN ESPACE DE",
+    "p1_wellness": "BIEN-ÊTRE",
+    "p1_and": "ET",
+    "p1_power": "PUISSANCE",
+    "p1_end": "CRÉÉ PAR UNE FEMME, POUR LES FEMMES.",
+    "p2_intro": "LA MÉTHODE LAGREE EST ENFIN ARRIVÉE EN ISRAËL.",
+    "p2_details": "CHEZ STARLETTE, CHAQUE DÉTAIL COMPTE : SÉANCES SEMI-PRIVÉES (MAX. 6 FEMMES) POUR UN COACHING VRAIMENT PERSONNALISÉ, DANS UN ENVIRONNEMENT INTIME ET INSPIRANT.",
+    "p3": "ICI, LA TRANSFORMATION VA AU-DELÀ DU PHYSIQUE — ELLE EST AUSSI ÉMOTIONNELLE, MENTALE ET ÉNERGÉTIQUE.",
+    "p4": "RAYONNANTE. PUISSANTE. INARRÊTABLE.",
+    "p4_second": "BIENVENUE CHEZ STARLETTE"
+  },
+  "newway": {
+    "title": "UNE NOUVELLE FAÇON DE BOUGER",
+    "p1_part1": "DÉCOUVRE",
+    "p1_part2": "UNE MÉTHODE INNOVANTE QUI POUSSE LES LIMITES DU PILATES TRADITIONNEL",
+    "p1_extra": "",
+    "short": "COURTE",
+    "intense": "INTENSE",
+    "lowimpact": "À FAIBLE IMPACT",
+    "p2_end": "SÉANCES. SUR LE MICRO DELUXE, TU VAS VIVRE UNE TOUTE NOUVELLE FAÇON DE T’ENTRAÎNER.",
+    "p3": "MOUVEMENTS LENTS, CONTRÔLÉS ET CIBLÉS. FORCE ET CARDIO COMBINÉS — UN ENTRAÎNEMENT COMPLET AVEC DES RÉSULTATS PROUVÉS.",
+    "p4": "POUR CELLES QUI AIMENT SE DÉFIER — AVEC ÉLÉGANCE, FORCE ET PUISSANCE."
+  },
+  "buttons": {
+    "theStudio": "LE STUDIO",
+    "theMethod": "LA MÉTHODE",
+    "memberships": "ABONNEMENTS & FORFAITS"
+  },
+  "pricing": {
+    "oneClassPrice": "110₪",
+    "threeClassPrice": "300₪",
+    "oneClassText": "1 cours",
+    "threeClassText": "3 cours",
+    "gift": "+ CADEAU : PAIRE DE CHAUSSETTES ANTIDÉRAPANTES",
+    "book": "RÉSERVER"
+  },
+  "bullets": {
+    "one": "Notre offre de bienvenue est valable une seule fois, vous pouvez choisir l’une des deux options disponibles.",
+    "two": "Achetez l’offre spéciale jusqu’à 24 heures avant le début du cours pour pouvoir l’annuler sans frais (aucun pass de cours).",
+    "three": "Tous les abonnements d’essai expirent après un mois et ne peuvent pas être prolongés, gelés ou réclamés."
+  }
+}

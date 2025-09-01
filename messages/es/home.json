@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "LAGREE, PERO HAZLO COMO UNA STARLETTE.",
+    "p1_line1": "ES EL PRIMER ESTUDIO MICROLAGREE EN ISRAEL —",
+    "p1_line2": "UN ESPACIO SOLO PARA MUJERES EN EL CORAZÓN DE TEL AVIV",
+    "p2_line1": "LAGREE ES EL MÉTODO DEFINITIVO PARA UN CUERPO ESCULPIDO",
+    "p2_line2": "CONTROL, FLUIDEZ, FUERZA, PROFUNDIDAD.",
+    "p2_highlight": "RESULTADOS REALES. TRANSFORMACIÓN DURADERA.",
+    "more": "MÁS QUE UN ENTRENAMIENTO. UN UNIVERSO ENTERO.",
+    "italic": "PARA MUJERES QUE ENTRENAN COMO ESTRELLAS — Y BRILLAN COMO ELLAS.",
+    "ready": "¿LISTA PARA SENTIRTE COMO UNA ESTRELLA?",
+    "cta": "DESCUBRE STARLETTE"
+  },
+  "experience": {
+    "title": "LA EXPERIENCIA STARLETTE",
+    "p1_bold": "REVELA LA MEJOR VERSIÓN DE TI MISMA.",
+    "p1_mid": "ES UN ESPACIO DE",
+    "p1_wellness": "BIENESTAR",
+    "p1_and": "Y",
+    "p1_power": "PODER",
+    "p1_end": "CREADO POR UNA MUJER, PARA MUJERES.",
+    "p2_intro": "EL MÉTODO LAGREE FINALMENTE LLEGÓ A ISRAEL.",
+    "p2_details": "EN STARLETTE, CADA DETALLE IMPORTA: SESIONES SEMIPRIVADAS (MÁX. 6 MUJERES) PARA UN ENTRENAMIENTO VERDADERAMENTE PERSONALIZADO, EN UN AMBIENTE ÍNTIMO E INSPIRADOR.",
+    "p3": "AQUÍ, LA TRANSFORMACIÓN VA MÁS ALLÁ DE LO FÍSICO — TAMBIÉN ES EMOCIONAL, MENTAL Y ENERGÉTICA.",
+    "p4": "RADIANTE. PODEROSA. IMPARABLE.",
+    "p4_second": "BIENVENIDA A STARLETTE"
+  },
+  "newway": {
+    "title": "UNA NUEVA MANERA DE MOVERSE",
+    "p1_part1": "DESCUBRE",
+    "p1_part2": "UN MÉTODO INNOVADOR QUE SUPERA LOS LÍMITES DEL PILATES TRADICIONAL",
+    "p1_extra": "",
+    "short": "CORTO",
+    "intense": "INTENSO",
+    "lowimpact": "DE BAJO IMPACTO",
+    "p2_end": "SESIONES. EN EL MICRO DELUXE VIVIRÁS UNA FORMA TOTALMENTE NUEVA DE ENTRENAR.",
+    "p3": "MOVIMIENTOS LENTOS, CONTROLADOS Y DIRIGIDOS. FUERZA Y CARDIO COMBINADOS — UN ENTRENAMIENTO COMPLETO CON RESULTADOS COMPROBADOS.",
+    "p4": "PARA QUIENES AMAN DESAFIARSE A SÍ MISMAS — CON ELEGANCIA, FUERZA Y PODER."
+  },
+  "buttons": {
+    "theStudio": "EL ESTUDIO",
+    "theMethod": "EL MÉTODO",
+    "memberships": "MEMBRESÍAS & PAQUETES"
+  },
+  "pricing": {
+    "oneClassPrice": "110₪",
+    "threeClassPrice": "300₪",
+    "oneClassText": "1 clase",
+    "threeClassText": "3 clases",
+    "gift": "+ REGALO: PAR DE CALCETINES ANTIDESLIZANTES",
+    "book": "RESERVAR"
+  },
+  "bullets": {
+    "one": "Nuestra oferta de bienvenida es válida solo una vez, puedes elegir una de las dos opciones disponibles.",
+    "two": "Compra la oferta especial hasta 24 horas antes del inicio de la clase para poder cancelarla sin cargo (sin pase de clase).",
+    "three": "Todas las membresías de prueba expiran después de un mes y no se pueden extender, congelar o reclamar."
+  }
+}

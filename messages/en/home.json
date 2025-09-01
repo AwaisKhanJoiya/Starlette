@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "LAGREE, BUT MAKE IT LIKE A STARLETTE.",
+    "p1_line1": "IS THE FIRST MICROLAGREE STUDIO IN ISRAEL —",
+    "p1_line2": "A WOMEN-ONLY SPACE IN THE HEART OF TEL AVIV",
+    "p2_line1": "LAGREE IS THE ULTIMATE METHOD FOR A SCULPTED BODY",
+    "p2_line2": "CONTROL FLUIDITY, STRENGTH, DEPTH.",
+    "p2_highlight": "REAL RESULTS. LASTING TRANSFORMATION.",
+    "more": "MORE THAN JUST A WORKOUT. A WHOLE UNIVERSE.",
+    "italic": "FOR WOMEN WHO TRAIN LIKE STARS — AND SHINE LIKE THEM.",
+    "ready": "READY TO FEEL LIKE A STAR?",
+    "cta": "DISCOVER STARLETTE"
+  },
+  "experience": {
+    "title": "THE STARLETTE EXPERIENCE",
+    "p1_bold": "REVEAL THE BEST VERSION OF YOURSELF.",
+    "p1_mid": "IS A SPACE OF",
+    "p1_wellness": "WELLNESS",
+    "p1_and": "AND",
+    "p1_power": "POWER",
+    "p1_end": "CREATED BY A WOMAN, FOR WOMEN.",
+    "p2_intro": "THE LAGREE METHOD HAS FINALLY ARRIVED IN ISRAEL.",
+    "p2_details": "AT STARLETTE, EVERY DETAIL MATTERS: SEMI-PRIVATE SESSIONS (MAX. 6 WOMEN) FOR A TRULY PERSONALIZED COACHING, IN AN INTIMATE AND INSPIRING ENVIRONMENT.",
+    "p3": "HERE, TRANSFORMATION GOES BEYOND THE PHYSICAL— IT'S EMOTIONAL, MENTAL, AND ENERGETIC TOO.",
+    "p4": "RADIANT. POWERFUL. UNSTOPPABLE.",
+    "p4_second": "WELCOME TO STARLETTE"
+  },
+  "newway": {
+    "title": "A NEW WAY TO MOVE",
+    "p1_part1": "DISCOVER",
+    "p1_part2": "AN INNOVATIVE METHOD THAT PUSHES THE LIMITS OF TRADITIONAL PILATES",
+    "p1_extra": "",
+    "short": "SHORT",
+    "intense": "INTENSE",
+    "lowimpact": "LOW-IMPACT",
+    "p2_end": "SESSIONS. ON THE MICRO DELUXE YOU'LL EXPERIENCE A WHOLE NEW WAY TO TRAIN.",
+    "p3": "SLOW, CONTROLLED, AND TARGETED MOVEMENTS. STRENGTH AND CARDIO COMBINED - A COMPLETE WORKOUT WITH PROVEN RESULTS.",
+    "p4": "FOR THOSE WHO LOVE TO CHALLENGE THEMSELVES — WITH ELEGANCE, STRENGTH, AND POWER."
+  },
+  "buttons": {
+    "theStudio": "THE STUDIO",
+    "theMethod": "THE METHOD",
+    "memberships": "MEMBERSHIPS & PACKS"
+  },
+  "pricing": {
+    "oneClassPrice": "110₪",
+    "threeClassPrice": "300₪",
+    "oneClassText": "1 class",
+    "threeClassText": "3 class",
+    "gift": "+ GIFT: PAIR OF GRIP SOCKS",
+    "book": "BOOK"
+  },
+  "bullets": {
+    "one": "Our welcome offer is valid step once, you may choose one of the two available options.",
+    "two": "Buy the special deal combo up to 24 hours before the class start to be can cancel with 100 obstacle (no class pass).",
+    "three": "All trial memberships expire after one month and cannot be extended, frozen, or reclaimed."
+  }
+}
