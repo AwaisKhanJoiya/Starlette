@@ -13,7 +13,7 @@ export default function StarlightStudio() {
   const t = useTranslations("home");
 
   return (
-    <div className="min-h-screen  mx-auto text-white relative overflow-hidden">
+    <div className="min-h-screen container mx-auto text-white relative overflow-hidden">
       <Navbar />
       <main className="flex items-center justify-center  relative">
         <div className="text-center w-full ">
@@ -22,7 +22,7 @@ export default function StarlightStudio() {
           </div>
         </div>
       </main>
-      <main className=" bg-white  font-arial text-black container mx-auto">
+      <main className=" bg-white  font-arial text-black ">
         <section>
           <AnnoucementBar />
 
