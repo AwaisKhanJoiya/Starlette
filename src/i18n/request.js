@@ -14,6 +14,14 @@ export default getRequestConfig(async ({ requestLocale }) => {
   // try to load selected locale namespaces
   let localeHome = {};
   let localeNav = {};
+  let localeFitness = {};
+  let localeDownloadApp = {};
+  let localeFooter = {};
+  let localeAnnouncement = {};
+  let localeStudio = {};
+  let localeMethod = {};
+  let localeBenefits = {};
+
   try {
     localeHome = await import(`../../messages/${locale}/home.json`).then(
       (m) => m.default
@@ -29,12 +37,70 @@ export default getRequestConfig(async ({ requestLocale }) => {
   } catch (e) {
     /* missing -> fallback to en */
   }
+  try {
+    localeFitness = await import(`../../messages/${locale}/fitness.json`).then(
+      (m) => m.default
+    );
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+  try {
+    localeDownloadApp = await import(
+      `../../messages/${locale}/downloadApp.json`
+    ).then((m) => m.default);
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+
+  try {
+    localeFooter = await import(`../../messages/${locale}/footer.json`).then(
+      (m) => m.default
+    );
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+  try {
+    localeAnnouncement = await import(
+      `../../messages/${locale}/announcement.json`
+    ).then((m) => m.default);
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+  try {
+    localeStudio = await import(`../../messages/${locale}/studio.json`).then(
+      (m) => m.default
+    );
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+
+  try {
+    localeMethod = await import(`../../messages/${locale}/method.json`).then(
+      (m) => m.default
+    );
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+  try {
+    localeBenefits = await import(
+      `../../messages/${locale}/benefits.json`
+    ).then((m) => m.default);
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
 
   return {
     locale,
     messages: {
       home: localeHome,
       nav: localeNav,
+      fitness: localeFitness,
+      downloadApp: localeDownloadApp,
+      footer: localeFooter,
+      announcement: localeAnnouncement,
+      studio: localeStudio,
+      method: localeMethod,
+      benefits: localeBenefits,
     },
   };
 });

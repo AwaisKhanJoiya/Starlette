@@ -1,0 +1,13 @@
+{
+  "links": {
+    "home": "HOME",
+    "studio": "THE STUDIO",
+    "method": "THE METHOD",
+    "pricing": "PRICING",
+    "schedule": "SCHEDULE",
+    "account": "ACCOUNT"
+  },
+  "contact": "CONTACT",
+  "email": "STARLETTE.TLV@GMAIL.COM",
+  "rights": "© Starlette. All Rights Reserved. Licensing."
+}

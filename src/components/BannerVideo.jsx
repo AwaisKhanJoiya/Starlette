@@ -22,53 +22,57 @@ const BannerVideo = () => {
       setHasStarted(true);
     }
   };
+
   return (
-    <div className="aspect-video  overflow-hidden bg-black relative">
-      <video
-        ref={videoRef}
-        src={VIDEO_URL}
-        poster={POSTER}
-        className="w-full h-full object-cover"
-        controls
-        playsInline
-        preload="metadata"
-        style={{ position: "relative", zIndex: 10 }}
-      />
+    <div className="relative w-full max-w-7xl mx-auto">
+      <div className="relative w-full aspect-video overflow-hidden  bg-black">
+        <video
+          ref={videoRef}
+          src={VIDEO_URL}
+          poster={POSTER}
+          className="w-full h-full object-cover"
+          controls
+          playsInline
+          preload="metadata"
+        />
 
-      {!hasStarted && (
-        <div
-          className="absolute inset-0 z-20 flex items-center justify-center cursor-pointer"
-          onClick={(e) => {
-            e.preventDefault();
-            startPlayback();
-          }}
-          role="button"
-          aria-label="Play video"
-        >
-          <Image
-            src={POSTER}
-            alt="video poster"
-            className="absolute inset-0 w-full h-full object-cover"
-            draggable={false}
-            style={{ userSelect: "none" }}
-            width={100}
-            height={100}
-          />
-
-          <div className="absolute inset-0 bg-black/30" />
-
-          <button
-            onClick={(ev) => {
-              ev.stopPropagation();
+        {!hasStarted && (
+          <div
+            className="absolute inset-0 z-20 flex items-center justify-center cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
               startPlayback();
             }}
-            className="relative z-30 flex items-center justify-center w-20 h-20 rounded-full bg-white/20 backdrop-blur transition hover:bg-white/30"
-            aria-label="Play"
+            role="button"
+            aria-label="Play video"
           >
-            <Play size={36} className="ml-1" />
-          </button>
-        </div>
-      )}
+            {/* Poster Image */}
+            <Image
+              src={POSTER}
+              alt="video poster"
+              fill
+              className="object-cover"
+              draggable={false}
+              style={{ userSelect: "none" }}
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/40" />
+
+            {/* Play button */}
+            <button
+              onClick={(ev) => {
+                ev.stopPropagation();
+                startPlayback();
+              }}
+              className="relative z-30 flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-[#000000] opacity-70 backdrop-blur transition "
+              aria-label="Play"
+            >
+              <Play size={32} className="ml-1 text-white" />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

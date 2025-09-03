@@ -1,0 +1,22 @@
+{
+  "today": "Aujourd'hui",
+  "days": {
+    "sun": "Dim.",
+    "mon": "Lun.",
+    "tue": "Mar.",
+    "wed": "Mer.",
+    "thu": "Jeu.",
+    "fri": "Ven.",
+    "sat": "Sam."
+  },
+  "status": {
+    "available": "RÉSERVER",
+    "full": "COMPLET",
+    "booked": "RÉSERVÉ"
+  },
+  "join_waiting_list": "REJOINDRE LA LISTE D'ATTENTE",
+  "show_details": "VOIR LES DÉTAILS ▼",
+  "no_classes": "Aucun cours prévu pour ce jour",
+  "try_another_date": "Essayez de sélectionner une autre date",
+  "only_spots_left": "IL RESTE {count, plural, one {# PLACE} other {# PLACES}}"
+}

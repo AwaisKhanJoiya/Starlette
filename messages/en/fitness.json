@@ -1,0 +1,22 @@
+{
+  "today": "Today",
+  "days": {
+    "sun": "Sun.",
+    "mon": "Mon.",
+    "tue": "Tue.",
+    "wed": "Wed.",
+    "thu": "Thu.",
+    "fri": "Fri.",
+    "sat": "Sat."
+  },
+  "status": {
+    "available": "BOOK",
+    "full": "FULL",
+    "booked": "BOOKED"
+  },
+  "join_waiting_list": "JOIN THE WAITING LIST",
+  "show_details": "SHOW DETAILS ▼",
+  "no_classes": "No classes scheduled for this day",
+  "try_another_date": "Try selecting a different date",
+  "only_spots_left": "ONLY {count, plural, one {# SPOT LEFT} other {# SPOTS LEFT}}"
+}
