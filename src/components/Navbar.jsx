@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { AlignLeft } from "lucide-react";
 import { usePathname, useRouter, Link } from "../i18n/navigation";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 export default function Navbar() {
+  const locale = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = useTranslations("nav");
   const pathname = usePathname();
@@ -29,9 +31,10 @@ export default function Navbar() {
 
           <div className="relative">
             <select
-              defaultValue={router.locale || "en"}
+              defaultValue={locale || "en"}
               onChange={async (e) => {
                 const newLocale = e.target.value;
+                // Instead of manually constructing the path, use the router's locale switching
                 await router.replace(pathname, { locale: newLocale });
                 document.cookie = `locale=${newLocale};path=/;max-age=${
                   60 * 60 * 24 * 365
