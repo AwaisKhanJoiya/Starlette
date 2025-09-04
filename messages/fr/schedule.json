@@ -1,0 +1,28 @@
+{
+  "title": "CALENDRIER",
+  "form": {
+    "heading": "Créez votre compte",
+    "step1": {
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "login": "Connexion",
+      "createAccount": "Créer un compte"
+    },
+    "step2": {
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmez votre mot de passe",
+      "continue": "Continuer"
+    },
+    "step3": {
+      "lastName": "Nom de famille",
+      "firstName": "Prénom",
+      "dateOfBirth": "Date de naissance",
+      "phoneNumber": "Numéro de téléphone",
+      "address": "Adresse",
+      "agreeTerms1": "J'ai lu et j'accepte les ",
+      "agreeTerms2": "conditions d'utilisation",
+      "submit": "Créer mon compte"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "home": {
+    "cards": {
+      "one": {
+        "price": "110₪",
+        "headline": "1 clase",
+        "gift": "+ REGALO: CALCETINES",
+        "button": "RESERVAR"
+      },
+      "three": {
+        "price": "300₪",
+        "headline": "3 clases",
+        "gift": "+ REGALO: CALCETINES",
+        "button": "RESERVAR"
+      }
+    },
+    "bullets": { "one": "Viñeta 1", "two": "Viñeta 2", "three": "Viñeta 3" }
+  },
+
+  "pricingPage": {
+    "section1": {
+      "cards": {
+        "a": {
+          "price": "110₪",
+          "headline": "1 clase",
+          "gift": "+ REGALO: PAR DE CALCETINES ANTIDESLIZANTES",
+          "button": "RESERVAR"
+        },
+        "b": {
+          "price": "300₪",
+          "headline": "3 clases",
+          "gift": "+ REGALO: PAR DE CALCETINES ANTIDESLIZANTES",
+          "button": "RESERVAR"
+        }
+      },
+      "bullets": {
+        "one": "Nuestra oferta de bienvenida es válida solo una vez, puedes elegir una de las dos opciones disponibles.",
+        "two": "Puedes cancelar tu reserva hasta 24 horas antes del inicio de la clase. Después de eso, los créditos serán descontados (para paquetes de clases).",
+        "three": "Para tu comodidad y seguridad, se requieren calcetines antideslizantes durante todas las sesiones."
+      }
+    },
+
+    "section2": {
+      "cards": {
+        "a": {
+          "price": "160₪",
+          "headline": "1 clase",
+          "gift": "",
+          "button": "RESERVAR"
+        },
+        "b": {
+          "price": "700₪",
+          "headline": "5 clases",
+          "gift": "",
+          "button": "RESERVAR"
+        }
+      },
+      "bullets": {
+        "one": "Los paquetes de clases son válidos por tiempo limitado. Asegúrate de usar tus sesiones antes de la fecha de vencimiento.",
+        "two": "Puedes cancelar tu reserva hasta 24 horas antes del inicio de la clase. Después de eso, los créditos serán descontados (para paquetes de clases).",
+        "three": "Para tu comodidad y seguridad, se requieren calcetines antideslizantes durante todas las sesiones."
+      }
+    },
+
+    "section3": {
+      "cards": {
+        "c1": {
+          "slug": "NACE UNA ESTRELLITA",
+          "price": "500₪",
+          "headline": "1 clase por semana",
+          "gift": "",
+          "button": "RESERVAR"
+        },
+        "c2": {
+          "slug": "UNA ESTRELLA AFORTUNADA",
+          "price": "920₪",
+          "headline": "2 clases por semana",
+          "gift": "",
+          "button": "RESERVAR"
+        },
+        "c3": {
+          "slug": "UNA SUPER ESTRELLITA",
+          "price": "1200₪",
+          "headline": "3 clases por semana",
+          "gift": "",
+          "button": "RESERVAR"
+        },
+        "c4": {
+          "slug": "UNA ADICTA A LAS ESTRELLITAS",
+          "price": "1600₪",
+          "headline": "clases ilimitadas",
+          "gift": "",
+          "button": "RESERVAR"
+        }
+      },
+      "bullets": {
+        "one": "Los paquetes de clases son válidos por tiempo limitado. Asegúrate de usar tus sesiones antes de la fecha de vencimiento.",
+        "two": "Puedes cancelar tu reserva hasta 24 horas antes del inicio de la clase. Después de eso, los créditos serán descontados (para paquetes de clases).",
+        "three": "Para tu comodidad y seguridad, se requieren calcetines antideslizantes durante todas las sesiones."
+      }
+    }
+  }
+}

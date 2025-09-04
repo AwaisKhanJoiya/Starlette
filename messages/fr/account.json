@@ -1,0 +1,42 @@
+{
+  "title": "BIENVENUE DANA",
+  "subtitle": "Votre profil & réservations",
+  "sections": {
+    "myInformation": "MES INFORMATIONS",
+    "myBookings": "MES RÉSERVATIONS",
+    "myClassPack": "MON PACK DE COURS",
+    "classHistory": "HISTORIQUE DES COURS",
+    "mySubscription": "MON ABONNEMENT"
+  },
+  "buttons": {
+    "modify": "MODIFIER",
+    "cancellation": "ANNULATION"
+  },
+  "details": {
+    "subscriptionInfo": "4 COURS PAR SEMAINE - (17 restants)",
+    "classesPerWeek": "4 COURS / SEMAINE",
+    "subscriptionModification": "MODIFICATION D'ABONNEMENT",
+    "subscriptionText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "upcomingClasses": "COURS À VENIR",
+    "pastClasses": "COURS PASSÉS",
+    "welcomePack": "PACK DE BIENVENUE",
+    "happyJune": "BON MOIS DE JUIN!",
+    "classPackNote": "Les packs de cours sont valables pendant 3 mois. Les jours de grâce deviennent votre passe d'annulation."
+  },
+  "table": {
+    "pack": "PACK",
+    "purchaseDate": "DATE D'ACHAT",
+    "validUntil": "VALABLE JUSQU'À",
+    "remaining": "COURS RESTANTS",
+    "status": "STATUT",
+    "classes": "COURS"
+  },
+  "status": {
+    "present": "PRÉSENT",
+    "missed": "MANQUÉ",
+    "active": "ACTIF",
+    "expired": "EXPIRÉ",
+    "waitingList": "LISTE D'ATTENTE"
+  },
+  "lastUpdated": "Mis à jour récemment"
+}

@@ -53,6 +53,22 @@ export default async function LocaleLayout({ children, params }) {
       await import(`../../../messages/${locale}/benefits.json`)
     ).default;
 
+    const packagesMessages = (
+      await import(`../../../messages/${locale}/packages.json`)
+    ).default;
+
+    const scheduleMessages = (
+      await import(`../../../messages/${locale}/schedule.json`)
+    ).default;
+
+    const termsMessages = (
+      await import(`../../../messages/${locale}/terms.json`)
+    ).default;
+
+    const accountMessages = (
+      await import(`../../../messages/${locale}/account.json`)
+    ).default;
+
     messages = {
       home: homeMessages,
       nav: navMessages,
@@ -63,6 +79,10 @@ export default async function LocaleLayout({ children, params }) {
       studio: studioMessages,
       method: methodMessages,
       benefits: benefitsMessages,
+      packages: packagesMessages,
+      schedule: scheduleMessages,
+      terms: termsMessages,
+      account: accountMessages,
     };
   } catch (error) {
     notFound();

@@ -1,0 +1,28 @@
+{
+  "title": "SCHEDULE",
+  "form": {
+    "heading": "Create Your Account",
+    "step1": {
+      "email": "Email",
+      "password": "Password",
+      "login": "Login",
+      "createAccount": "Create Account"
+    },
+    "step2": {
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm your password",
+      "continue": "Continue"
+    },
+    "step3": {
+      "lastName": "Last name",
+      "firstName": "First name",
+      "dateOfBirth": "Date of birth",
+      "phoneNumber": "Phone number",
+      "address": "Address",
+      "agreeTerms1": "I have read and accept the ",
+      "agreeTerms2": " terms of use",
+      "submit": "Create my account"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "home": {
+    "cards": {
+      "one": {
+        "price": "110₪",
+        "headline": "1 cours",
+        "gift": "+ CADEAU : CHAUSSETTES",
+        "button": "RÉSERVER"
+      },
+      "three": {
+        "price": "300₪",
+        "headline": "3 cours",
+        "gift": "+ CADEAU : CHAUSSETTES",
+        "button": "RÉSERVER"
+      }
+    },
+    "bullets": {
+      "one": "Puces exemple 1",
+      "two": "Puces exemple 2",
+      "three": "Puces exemple 3"
+    }
+  },
+
+  "pricingPage": {
+    "section1": {
+      "cards": {
+        "a": {
+          "price": "110₪",
+          "headline": "1 cours",
+          "gift": "+ CADEAU : PAIRE DE CHAUSSETTES ANTIDÉRAPANTES",
+          "button": "RÉSERVER"
+        },
+        "b": {
+          "price": "300₪",
+          "headline": "3 cours",
+          "gift": "+ CADEAU : PAIRE DE CHAUSSETTES ANTIDÉRAPANTES",
+          "button": "RÉSERVER"
+        }
+      },
+      "bullets": {
+        "one": "Notre offre de bienvenue est valable une seule fois, vous pouvez choisir l'une des deux options disponibles.",
+        "two": "Vous pouvez annuler votre réservation jusqu'à 24 heures avant le début du cours. Après cela, les crédits seront déduits (pour les packs de cours).",
+        "three": "Pour votre confort et votre sécurité, des chaussettes antidérapantes sont obligatoires pendant toutes les séances."
+      }
+    },
+
+    "section2": {
+      "cards": {
+        "a": {
+          "price": "160₪",
+          "headline": "1 cours",
+          "gift": "",
+          "button": "RÉSERVER"
+        },
+        "b": {
+          "price": "700₪",
+          "headline": "5 cours",
+          "gift": "",
+          "button": "RÉSERVER"
+        }
+      },
+      "bullets": {
+        "one": "Les packs de cours sont valables pour une durée limitée. Assurez-vous d'utiliser vos séances avant la date d'expiration.",
+        "two": "Vous pouvez annuler votre réservation jusqu'à 24 heures avant le début du cours. Après cela, les crédits seront déduits (pour les packs de cours).",
+        "three": "Pour votre confort et votre sécurité, des chaussettes antidérapantes sont obligatoires pendant toutes les séances."
+      }
+    },
+
+    "section3": {
+      "cards": {
+        "c1": {
+          "slug": "UNE STARLETTE EST NÉE",
+          "price": "500₪",
+          "headline": "1 cours par semaine",
+          "gift": "",
+          "button": "RÉSERVER"
+        },
+        "c2": {
+          "slug": "UNE ÉTOILE CHANCEUSE",
+          "price": "920₪",
+          "headline": "2 cours par semaine",
+          "gift": "",
+          "button": "RÉSERVER"
+        },
+        "c3": {
+          "slug": "UNE SUPER STARLETTE",
+          "price": "1200₪",
+          "headline": "3 cours par semaine",
+          "gift": "",
+          "button": "RÉSERVER"
+        },
+        "c4": {
+          "slug": "UNE STARLETTE ACCRO",
+          "price": "1600₪",
+          "headline": "cours illimités",
+          "gift": "",
+          "button": "RÉSERVER"
+        }
+      },
+      "bullets": {
+        "one": "Les packs de cours sont valables pour une durée limitée. Assurez-vous d'utiliser vos séances avant la date d'expiration.",
+        "two": "Vous pouvez annuler votre réservation jusqu'à 24 heures avant le début du cours. Après cela, les crédits seront déduits (pour les packs de cours).",
+        "three": "Pour votre confort et votre sécurité, des chaussettes antidérapantes sont obligatoires pendant toutes les séances."
+      }
+    }
+  }
+}

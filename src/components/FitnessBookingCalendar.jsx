@@ -283,7 +283,7 @@ const FitnessBookingCalendar = () => {
   return (
     <div>
       <div className="flex items-center justify-between py-3 sm:py-4 border-gray-100 text-black">
-        <h1 className="text-lg sm:text-2xl font-medium tracking-wide truncate">
+        <h1 className="text-lg sm:text-xl font-medium tracking-wide truncate">
           {currentMonth}
         </h1>
 

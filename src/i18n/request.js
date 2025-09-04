@@ -21,6 +21,10 @@ export default getRequestConfig(async ({ requestLocale }) => {
   let localeStudio = {};
   let localeMethod = {};
   let localeBenefits = {};
+  let localePackages = {};
+  let localeSchedule = {};
+  let localeTerms = {};
+  let localeAccount = {};
 
   try {
     localeHome = await import(`../../messages/${locale}/home.json`).then(
@@ -89,6 +93,37 @@ export default getRequestConfig(async ({ requestLocale }) => {
     /* missing -> fallback to en */
   }
 
+  try {
+    localePackages = await import(
+      `../../messages/${locale}/packages.json`
+    ).then((m) => m.default);
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+
+  try {
+    localeSchedule = await import(
+      `../../messages/${locale}/schedule.json`
+    ).then((m) => m.default);
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+
+  try {
+    localeTerms = await import(`../../messages/${locale}/terms.json`).then(
+      (m) => m.default
+    );
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+  try {
+    localeAccount = await import(`../../messages/${locale}/account.json`).then(
+      (m) => m.default
+    );
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+
   return {
     locale,
     messages: {
@@ -101,6 +136,10 @@ export default getRequestConfig(async ({ requestLocale }) => {
       studio: localeStudio,
       method: localeMethod,
       benefits: localeBenefits,
+      packages: localePackages,
+      schedule: localeSchedule,
+      terms: localeTerms,
+      account: localeAccount,
     },
   };
 });

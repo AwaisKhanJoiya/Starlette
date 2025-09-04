@@ -1,0 +1,28 @@
+{
+  "title": "HORARIO",
+  "form": {
+    "heading": "Crea tu cuenta",
+    "step1": {
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "login": "Iniciar sesión",
+      "createAccount": "Crear cuenta"
+    },
+    "step2": {
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirma tu contraseña",
+      "continue": "Continuar"
+    },
+    "step3": {
+      "lastName": "Apellido",
+      "firstName": "Nombre",
+      "dateOfBirth": "Fecha de nacimiento",
+      "phoneNumber": "Número de teléfono",
+      "address": "Dirección",
+      "agreeTerms1": "He leído y acepto los ",
+      "agreeTerms2": "términos de uso",
+      "submit": "Crear mi cuenta"
+    }
+  }
+}

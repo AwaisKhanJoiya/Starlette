@@ -1,0 +1,41 @@
+{
+  "title": "CONDITIONS D'UTILISATION",
+  "intro": "En créant un compte sur le site Starlette, vous acceptez ce qui suit :",
+  "personalUse": {
+    "title": "UTILISATION PERSONNELLE UNIQUEMENT",
+    "text": "Le compte est strictement réservé à un usage personnel. Il ne peut pas être partagé."
+  },
+  "accurateInfo": {
+    "title": "INFORMATIONS EXACTES",
+    "text": "Vous acceptez de fournir des informations exactes, complètes et à jour lors de l'inscription."
+  },
+  "accountSecurity": {
+    "title": "SÉCURITÉ DU COMPTE",
+    "text": "Vous êtes responsable de la sécurité de vos identifiants de connexion."
+  },
+  "booking": {
+    "title": "POLITIQUE DE RÉSERVATION ET D'ANNULATION",
+    "text": "Les réservations peuvent être annulées jusqu'à 24 heures avant le début du cours, et jusqu'à 12 heures avant pour les membres. Passé ce délai, le crédit sera automatiquement déduit."
+  },
+  "classPack": {
+    "title": "VALIDITÉ DES CRÉDITS",
+    "text": "Les crédits achetés ont une date d'expiration indiquée au moment de l'achat. Aucune prolongation ne sera accordée, sauf cas exceptionnels."
+  },
+  "subscriptions": {
+    "title": "ABONNEMENTS & ENGAGEMENT",
+    "text": "Tous les abonnements nécessitent un engagement minimum de 3 mois. Un préavis d'un mois est requis pour annuler."
+  },
+  "conduct": {
+    "title": "CONDUITE EN STUDIO",
+    "text": "Le respect du personnel, des autres clients et du matériel est essentiel. Tout comportement inapproprié peut entraîner une suspension d'accès."
+  },
+  "safety": {
+    "title": "SÉCURITÉ & ÉQUIPEMENT OBLIGATOIRE",
+    "text": "Pour votre sécurité, les chaussettes antidérapantes sont obligatoires pendant toutes les séances. Elles sont disponibles à l'achat en studio."
+  },
+  "privacy": {
+    "title": "PROTECTION DES DONNÉES",
+    "text": "Vos données personnelles sont traitées de manière strictement confidentielle, conformément à notre politique de confidentialité."
+  },
+  "footer": "Avec amour, "
+}

@@ -1,0 +1,42 @@
+{
+  "title": "WELCOME DANA",
+  "subtitle": "Your profile & bookings",
+  "sections": {
+    "myInformation": "MY INFORMATION",
+    "myBookings": "MY BOOKINGS",
+    "myClassPack": "MY CLASS PACK",
+    "classHistory": "CLASS HISTORY",
+    "mySubscription": "MY SUBSCRIPTION"
+  },
+  "buttons": {
+    "modify": "MODIFY",
+    "cancellation": "CANCELLATION"
+  },
+  "details": {
+    "subscriptionInfo": "4 CLASSES PER WEEK - (17 remaining)",
+    "classesPerWeek": "4 CLASSES / WEEK",
+    "subscriptionModification": "SUBSCRIPTION MODIFICATION",
+    "subscriptionText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "upcomingClasses": "UPCOMING CLASSES",
+    "pastClasses": "PAST CLASSES",
+    "welcomePack": "WELCOME PACK",
+    "happyJune": "HAPPY JUNE!",
+    "classPackNote": "Class packs are valid for 3 months. The grace days on your sessions become your cancellation pass."
+  },
+  "table": {
+    "pack": "PACK",
+    "purchaseDate": "PURCHASE DATE",
+    "validUntil": "VALID UNTIL",
+    "remaining": "REMAINING CLASSES",
+    "status": "STATUS",
+    "classes": "CLASSES"
+  },
+  "status": {
+    "present": "PRESENT",
+    "missed": "MISSED",
+    "active": "ACTIVE",
+    "expired": "EXPIRED",
+    "waitingList": "WAITING LIST"
+  },
+  "lastUpdated": "Updated recently"
+}

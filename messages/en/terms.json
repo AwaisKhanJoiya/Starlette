@@ -1,0 +1,41 @@
+{
+  "title": "TERMS OF USE",
+  "intro": "By creating an account on the Starlette website, you agree to the following:",
+  "personalUse": {
+    "title": "PERSONAL USE ONLY",
+    "text": "The account is strictly for personal use. It may not be shared."
+  },
+  "accurateInfo": {
+    "title": "ACCURATE INFORMATION",
+    "text": "You agree to provide accurate, complete, and up-to-date information when registering."
+  },
+  "accountSecurity": {
+    "title": "ACCOUNT SECURITY",
+    "text": "You are responsible for keeping your login details secure."
+  },
+  "booking": {
+    "title": "BOOKING & CANCELLATION POLICY",
+    "text": "Bookings can be cancelled up to 24 hours before the class starts, and up to 12 hours prior for members. After this window, the credit will automatically be deducted."
+  },
+  "classPack": {
+    "title": "CLASS PACK VALIDITY",
+    "text": "Purchased credits have an expiration date specified at the time of purchase. No extensions will be granted, except in exceptional cases."
+  },
+  "subscriptions": {
+    "title": "SUBSCRIPTIONS & COMMITMENT",
+    "text": "All subscriptions require a minimum commitment of 3 months. A one-month notice is required to cancel."
+  },
+  "conduct": {
+    "title": "STUDIO CONDUCT",
+    "text": "Respect for staff, fellow clients, and equipment is essential. Any inappropriate behavior may result in suspended access to the studio."
+  },
+  "safety": {
+    "title": "SAFETY & MANDATORY EQUIPMENT",
+    "text": "For your safety, grip socks are mandatory during all sessions. Socks are available for purchase in the studio."
+  },
+  "privacy": {
+    "title": "DATA PRIVACY",
+    "text": "Your personal data is handled with strict confidentiality, in accordance with our privacy policy."
+  },
+  "footer": "With love,"
+}

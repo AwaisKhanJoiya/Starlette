@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { AlignLeft } from "lucide-react";
+import { AlignLeft, User } from "lucide-react";
 import { usePathname, useRouter, Link } from "../i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -23,28 +23,23 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) setScrolled(true);
-      else setScrolled(false);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Landing page check
   const isLanding = pathname === "/";
-
-  // Icon color logic
+  const isAccount = pathname === "/account";
   const iconColorClass = isLanding && !scrolled ? "text-white" : "text-black";
 
   return (
-    <nav
-      className={`fixed top-0 z-50 w-full transition-colors duration-300 py-2 ${
-        scrolled || !isLanding ? "bg-white shadow-md" : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        {/* Side menu toggle */}
+    <nav className={`fixed top-0 z-50 w-full transition-colors duration-300`}>
+      <div
+        className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between ${
+          scrolled ? "bg-white shadow-md" : "bg-transparent"
+        }`}
+      >
+        {/* Left: Menu Icon */}
         <button
           onClick={() => setIsMenuOpen((s) => !s)}
           aria-label="Open menu"
@@ -53,42 +48,61 @@ export default function Navbar() {
           <AlignLeft size={30} />
         </button>
 
-        {/* Language dropdown */}
-        <div className="relative" ref={langRef}>
-          <Button
-            variant="outline"
-            size="sm"
-            className={`bg-transparent ${
-              isLanding && !scrolled
-                ? "text-white border-white hover:bg-white hover:text-black"
-                : "text-black border-black hover:bg-gray-100"
-            }`}
-            onClick={() => setIsLangOpen((s) => !s)}
-          >
-            {languages.find((l) => l.code === locale)?.label || "EN"}
-          </Button>
+        {/* Center: Logo (not on home page) */}
+        {!isLanding && (
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <Link href="/">
+              <img src="/logo.jpg" alt="Logo" className="h-10 w-auto" />
+            </Link>
+          </div>
+        )}
 
-          {isLangOpen && (
-            <div className="absolute right-0 top-full mt-2 z-50 w-24 bg-white text-black rounded-lg shadow-lg ring-1 ring-black/5 overflow-hidden">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={async () => {
-                    setIsLangOpen(false);
-                    await router.replace(pathname, { locale: lang.code });
-                    document.cookie = `locale=${lang.code};path=/;max-age=${
-                      60 * 60 * 24 * 365
-                    }`;
-                  }}
-                  className={`w-full text-left px-3 py-2 text-sm ${
-                    locale === lang.code
-                      ? "font-semibold bg-gray-100"
-                      : "hover:bg-gray-50"
-                  }`}
-                >
-                  {lang.label}
-                </button>
-              ))}
+        {/* Right: Language dropdown (home page) or user icon (account page) */}
+        <div className="relative">
+          {isLanding && (
+            <div ref={langRef}>
+              <Button
+                variant="outline"
+                size="sm"
+                className={`bg-transparent ${
+                  !scrolled
+                    ? "text-white border-white hover:bg-white hover:text-black"
+                    : "text-black border-black hover:bg-gray-100"
+                }`}
+                onClick={() => setIsLangOpen((s) => !s)}
+              >
+                {languages.find((l) => l.code === locale)?.label || "EN"}
+              </Button>
+
+              {isLangOpen && (
+                <div className="absolute right-0 top-full mt-2 z-50 w-24 bg-white text-black rounded-lg shadow-lg ring-1 ring-black/5 overflow-hidden">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={async () => {
+                        setIsLangOpen(false);
+                        await router.replace(pathname, { locale: lang.code });
+                        document.cookie = `locale=${lang.code};path=/;max-age=${
+                          60 * 60 * 24 * 365
+                        }`;
+                      }}
+                      className={`w-full text-left px-3 py-2 text-sm ${
+                        locale === lang.code
+                          ? "font-semibold bg-gray-100"
+                          : "hover:bg-gray-50"
+                      }`}
+                    >
+                      {lang.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {isAccount && (
+            <div className="flex items-center">
+              <User size={28} className={iconColorClass} />
             </div>
           )}
         </div>
@@ -96,7 +110,7 @@ export default function Navbar() {
 
       {/* Side menu */}
       <div
-        className={`fixed w-36 rounded-md top-11 bg-black border border-white p-1 backdrop-blur-lg z-40 transform transition-transform duration-300 ${
+        className={`fixed w-36 rounded-md top-16 bg-black border border-white p-1 backdrop-blur-lg z-40 transform transition-transform duration-300 ${
           isMenuOpen ? "translate-x-0 left-3" : "-translate-x-full left-0"
         }`}
       >
