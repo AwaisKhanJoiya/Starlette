@@ -25,6 +25,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   let localeSchedule = {};
   let localeTerms = {};
   let localeAccount = {};
+  let localeAuth = {};
 
   try {
     localeHome = await import(`../../messages/${locale}/home.json`).then(
@@ -124,6 +125,22 @@ export default getRequestConfig(async ({ requestLocale }) => {
     /* missing -> fallback to en */
   }
 
+  try {
+    localeAuth = await import(`../../messages/${locale}/auth.json`).then(
+      (m) => m.default
+    );
+  } catch (error) {
+    // If locale-specific auth file fails, fallback to English
+    try {
+      localeAuth = await import(`../../messages/en/auth.json`).then(
+        (m) => m.default
+      );
+    } catch (fallbackError) {
+      console.error("Failed to load auth messages:", error, fallbackError);
+      localeAuth = {}; // Provide empty object to prevent null reference
+    }
+  }
+
   return {
     locale,
     messages: {
@@ -140,6 +157,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       schedule: localeSchedule,
       terms: localeTerms,
       account: localeAccount,
+      auth: localeAuth,
     },
   };
 });

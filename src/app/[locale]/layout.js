@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import "../globals.css";
+import getRequestConfig from "@/i18n/request";
 import Navbar from "@/components/Navbar";
 
 export function generateStaticParams() {
@@ -11,6 +12,7 @@ export function generateStaticParams() {
 
 export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
+  const { messages } = await getRequestConfig({ requestLocale: locale });
 
   // Ensure that the incoming locale is valid
   if (!hasLocale(routing.locales, locale)) {
@@ -20,78 +22,12 @@ export default async function LocaleLayout({ children, params }) {
   // Enable static rendering
   setRequestLocale(locale);
 
-  // Load messages
-  let messages;
-  try {
-    const homeMessages = (await import(`../../../messages/${locale}/home.json`))
-      .default;
-    const navMessages = (await import(`../../../messages/${locale}/nav.json`))
-      .default;
-    const fitnessMessages = (
-      await import(`../../../messages/${locale}/fitness.json`)
-    ).default;
-
-    const downloadAppMessages = (
-      await import(`../../../messages/${locale}/downloadApp.json`)
-    ).default;
-
-    const footerMessages = (
-      await import(`../../../messages/${locale}/footer.json`)
-    ).default;
-
-    const announcementMessages = (
-      await import(`../../../messages/${locale}/announcement.json`)
-    ).default;
-    const studioMessages = (
-      await import(`../../../messages/${locale}/studio.json`)
-    ).default;
-    const methodMessages = (
-      await import(`../../../messages/${locale}/method.json`)
-    ).default;
-
-    const benefitsMessages = (
-      await import(`../../../messages/${locale}/benefits.json`)
-    ).default;
-
-    const packagesMessages = (
-      await import(`../../../messages/${locale}/packages.json`)
-    ).default;
-
-    const scheduleMessages = (
-      await import(`../../../messages/${locale}/schedule.json`)
-    ).default;
-
-    const termsMessages = (
-      await import(`../../../messages/${locale}/terms.json`)
-    ).default;
-
-    const accountMessages = (
-      await import(`../../../messages/${locale}/account.json`)
-    ).default;
-
-    messages = {
-      home: homeMessages,
-      nav: navMessages,
-      fitness: fitnessMessages,
-      downloadApp: downloadAppMessages,
-      footer: footerMessages,
-      announcement: announcementMessages,
-      studio: studioMessages,
-      method: methodMessages,
-      benefits: benefitsMessages,
-      packages: packagesMessages,
-      schedule: scheduleMessages,
-      terms: termsMessages,
-      account: accountMessages,
-    };
-  } catch (error) {
-    notFound();
-  }
-
   return (
     <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <Navbar />
+
           {children}
         </NextIntlClientProvider>
       </body>

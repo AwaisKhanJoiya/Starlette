@@ -1,7 +1,6 @@
 "use client";
 
 import FitnessBenefits from "@/components/FitnessBenefits";
-import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
@@ -12,8 +11,7 @@ const MethodPage = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen text-black relative bg-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mt-16 y-12">
+      <div className="min-h-screen text-black relative bg-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto y-12">
         {/* Section 1 */}
         <section>
           <div className="flex flex-col-reverse md:flex-row items-center md:gap-10 gap-6 pt-12 pb-12">

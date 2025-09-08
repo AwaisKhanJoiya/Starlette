@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import PricingGrid from "@/components/PricingGrid";
-import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
 
 const PricingPage = () => {
   const tPackages = useTranslations("packages");
@@ -87,7 +86,6 @@ const PricingPage = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-stretch md:h-[640px] border-b border-dashed border-black">
         <div className="w-full md:w-1/2 bg-white relative z-10 flex flex-col justify-center p-6 md:p-12">
           <div className="mt-10 md:mt-0">
@@ -160,7 +158,7 @@ const PricingPage = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <PricingGrid
           cards={section1Cards}
           columns={2}
@@ -183,9 +181,6 @@ const PricingPage = () => {
           bullets={section1Bullets}
           packageName={"MEMBERSHIPS"}
         />
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FitnessBookingCalendar />
       </div>
     </div>
   );

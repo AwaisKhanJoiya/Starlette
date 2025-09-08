@@ -2,14 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import AnnoucementBar from "@/components/AnnoucementBar";
-import Navbar from "@/components/Navbar";
 import BannerVideo from "@/components/BannerVideo";
 import Image from "next/image";
-import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
-import DownloadApp from "@/components/DownloadApp";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import PricingCard from "@/components/PricingCard";
 import PricingGrid from "@/components/PricingGrid";
 
 export default function StarletteStudio({ params }) {
@@ -39,8 +35,6 @@ export default function StarletteStudio({ params }) {
   ];
   return (
     <div className="min-h-screen mx-auto text-white relative">
-      <Navbar />
-
       {/* Hero video area */}
       <main className="flex items-center justify-center relative">
         <div className="text-center w-full">

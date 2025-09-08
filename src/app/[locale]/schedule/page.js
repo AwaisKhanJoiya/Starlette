@@ -1,16 +1,15 @@
 import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
 import Navbar from "@/components/Navbar";
-import StarletteRegistration from "@/components/StarletteRegistration";
 import React from "react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 const SchedulePage = () => {
   const t = useTranslations("schedule");
 
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen bg-white text-black max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-16">
+      <div className="min-h-screen bg-white text-black max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-16">
           <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wider">
@@ -21,11 +20,6 @@ const SchedulePage = () => {
         {/* Calendar */}
         <div className="mb-8">
           <FitnessBookingCalendar />
-        </div>
-
-        {/* Registration form */}
-        <div>
-          <StarletteRegistration />
         </div>
       </div>
     </>
