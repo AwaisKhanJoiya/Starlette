@@ -44,7 +44,7 @@ export default function StarletteStudio({ params }) {
         </div>
       </main>
 
-      <main className="bg-white font-arial text-black max-w-7xl mx-auto ">
+      <main className="bg-white font-arial text-black">
         <section>
           <AnnoucementBar />
 
@@ -258,8 +258,6 @@ export default function StarletteStudio({ params }) {
           packageName={"WELCOME PACK"}
         />
       </main>
-
-      <Footer />
     </div>
   );
 }

@@ -8,7 +8,7 @@ const Footer = () => {
   const t = useTranslations("footer");
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8  py-4 font-arial mt-10">
+    <div className="px-4 sm:px-6 lg:px-8  py-4 font-arial mt-10">
       {/* Top section */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
         {/* Navigation Links */}

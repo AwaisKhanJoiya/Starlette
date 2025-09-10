@@ -15,6 +15,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
 
+  const menuItems = [
+    { label: t("HOME"), href: "/" },
+    { label: t("THE_STUDIO"), href: "/studio" },
+    { label: t("THE_METHOD"), href: "/method" },
+    { label: t("PRICING"), href: "/pricing" },
+    { label: t("SCHEDULE"), href: "/schedule" },
+    { label: t("ACCOUNT"), href: "/account" },
+  ];
+
   const languages = [
     { code: "en", label: "EN" },
     { code: "fr", label: "FR" },
@@ -35,10 +44,10 @@ export default function Navbar() {
     <nav
       className={`${
         isLanding ? "fixed" : "sticky"
-      } top-0 z-50 w-full transition-colors duration-300`}
+      } top-0 z-50 w-full transition-colors duration-300 container`}
     >
       <div
-        className={`relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex min-h-16 items-center justify-between ${
+        className={`relative px-4 sm:px-6 lg:px-8 flex min-h-16 items-center justify-between ${
           scrolled || !isLanding ? "bg-white shadow-md" : "bg-transparent"
         }`}
       >
@@ -117,42 +126,16 @@ export default function Navbar() {
             className={`absolute left-2 w-36 rounded-md top-16 bg-black border border-white p-1 backdrop-blur-lg z-40 transform transition-transform duration-300`}
           >
             <div className="px-1 space-y-2">
-              <Link
-                href="/"
-                className="block text-left text-white font-bold text-xs"
-              >
-                {t("HOME")}
-              </Link>
-              <Link
-                href="/studio"
-                className="block text-left text-white font-bold text-xs"
-              >
-                {t("THE_STUDIO")}
-              </Link>
-              <Link
-                href="/method"
-                className="block text-left text-white font-bold text-xs"
-              >
-                {t("THE_METHOD")}
-              </Link>
-              <Link
-                href="/pricing"
-                className="block text-left text-white font-bold text-xs"
-              >
-                {t("PRICING")}
-              </Link>
-              <Link
-                href="/schedule"
-                className="block text-left text-white font-bold text-xs"
-              >
-                {t("SCHEDULE")}
-              </Link>
-              <Link
-                href="/account"
-                className="block text-left text-white font-bold text-xs"
-              >
-                {t("ACCOUNT")}
-              </Link>
+              {menuItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block text-left text-white font-bold text-xs"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
         )}

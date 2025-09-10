@@ -5,6 +5,7 @@ import { setRequestLocale } from "next-intl/server";
 import "../globals.css";
 import getRequestConfig from "@/i18n/request";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -26,9 +27,12 @@ export default async function LocaleLayout({ children, params }) {
     <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Navbar />
+          <div className="container mx-auto">
+            <Navbar />
 
-          {children}
+            {children}
+            <Footer />
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>

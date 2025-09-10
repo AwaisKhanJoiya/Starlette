@@ -24,13 +24,13 @@ const BannerVideo = () => {
   };
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto">
-      <div className="relative w-full aspect-video overflow-hidden  bg-black">
+    <div className="relative w-full mx-auto">
+      <div className="relative w-full aspect-video overflow-hidden bg-black max-h-screen">
         <video
           ref={videoRef}
           src={VIDEO_URL}
           poster={POSTER}
-          className="w-full h-full object-cover"
+          className="object-cover"
           controls
           playsInline
           preload="metadata"

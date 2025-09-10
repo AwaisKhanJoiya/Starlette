@@ -86,7 +86,7 @@ const PricingPage = () => {
 
   return (
     <div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-stretch md:h-[640px] border-b border-dashed border-black">
+      <div className="px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-stretch md:h-[640px] border-b border-dashed border-black">
         <div className="w-full md:w-1/2 bg-white relative z-10 flex flex-col justify-center p-6 md:p-12">
           <div className="mt-10 md:mt-0">
             <h1 className="text-xl md:text-2xl font-bold mb-10 md:mb-20 tracking-wider text-center">
@@ -158,7 +158,7 @@ const PricingPage = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+      <div className="px-4 sm:px-6 lg:px-8 mb-8">
         <PricingGrid
           cards={section1Cards}
           columns={2}
