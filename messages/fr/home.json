@@ -1,14 +1,7 @@
 {
   "hero": {
     "title": "LAGREE, MAIS FAIS-LE COMME UNE STARLETTE.",
-    "p1_line1": "EST LE PREMIER STUDIO MICROLAGREE EN ISRAËL —",
-    "p1_line2": "UN ESPACE RÉSERVÉ AUX FEMMES AU CŒUR DE TEL-AVIV",
-    "p2_line1": "LAGREE EST LA MÉTHODE ULTIME POUR UN CORPS SCULPTÉ",
-    "p2_line2": "CONTRÔLE, FLUIDITÉ, FORCE, PROFONDEUR.",
-    "p2_highlight": "DES RÉSULTATS RÉELS. UNE TRANSFORMATION DURABLE.",
-    "more": "PLUS QU’UN ENTRAÎNEMENT. UN VÉRITABLE UNIVERS.",
-    "italic": "POUR LES FEMMES QUI S’ENTRAÎNENT COMME DES ÉTOILES — ET BRILLENT COMME ELLES.",
-    "ready": "PRÊTE À TE SENTIR COMME UNE STAR ?",
+    "body": "<b>Starlette</b> est le tout premier studio <b>MicroLagree</b> studio en Israël, <br></br> un espace réservé aux femmes en plein cœur de Tel Aviv. <br></br> <br></br> <b>Lagree</b> c’est la méthode ultime pour un <b>corps sculpté</b>. <br></br> <i> Contrôle. Fluidité. Force. Profondeur.</i> <b><br></br>Résultats concrets. Transformation durable. <br></br><br></br> Plus qu’un entraînement. Un univers.</b> <br></br><br></br> Pour celles qui s’entraînent comme des <i>stars</i> <br></br>  — et <i>brillent</i> comme elles. <br></br><br></br> <b>Ready to feel like a star?</b>",
     "cta": "DÉCOUVRIR STARLETTE"
   },
   "experience": {

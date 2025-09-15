@@ -61,13 +61,13 @@ export default function Navbar() {
         </button>
 
         {/* Center: Logo (not on home page) */}
-        {!isLanding && (
-          <div className="absolute left-1/2 transform -translate-x-1/2">
-            <Link href="/">
-              <img src="/logo.jpg" alt="Logo" className="h-16 w-auto" />
-            </Link>
-          </div>
-        )}
+        {/* {!isLanding && ( */}
+        <div className="absolute left-1/2 transform -translate-x-1/2">
+          <Link href="/">
+            <img src="/logo.png" alt="Logo" className="h-16 w-auto" />
+          </Link>
+        </div>
+        {/* )} */}
 
         {/* Right: Language dropdown (home page) or user icon (account page) */}
         <div className="relative flex items-center gap-4">
@@ -123,7 +123,7 @@ export default function Navbar() {
 
         {isMenuOpen && (
           <div
-            className={`absolute left-2 w-36 rounded-md top-16 bg-black border border-white p-1 backdrop-blur-lg z-40 transform transition-transform duration-300`}
+            className={`absolute left-2 w-36 rounded-md top-16 border border-white p-1 backdrop-blur-lg z-40 transform transition-transform duration-300`}
           >
             <div className="px-1 space-y-2">
               {menuItems.map((item) => (

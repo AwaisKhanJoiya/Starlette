@@ -1,10 +1,11 @@
 import { useState, useRef } from "react";
-import { Play } from "lucide-react";
+import { Play, Volume2, VolumeX } from "lucide-react";
 import Image from "next/image";
 
 const BannerVideo = () => {
   const videoRef = useRef(null);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   const POSTER = "/home.jpg";
   const VIDEO_URL = "/banner-video.mp4";
@@ -30,13 +31,33 @@ const BannerVideo = () => {
           ref={videoRef}
           src={VIDEO_URL}
           poster={POSTER}
-          className="object-cover"
-          controls
+          className="object-cover w-full"
+          controls={false}
+          autoPlay={true}
+          muted={isMuted}
+          loop
           playsInline
           preload="metadata"
         />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
+          <h1 className="font-shrikhand text-4xl md:text-5xl text-primary m-0">
+            <span className="outlined-text">A </span>
+            <span className="text-8xl">Starlette</span>{" "}
+            <span className="outlined-text">is Born</span>
+          </h1>
+          <p className="text-primary uppercase text-md letter-spacing-2 tracking-widest m-0">
+            Where elegance meets strength – the Lagree experience in Tel Aviv
+          </p>
+        </div>
 
-        {!hasStarted && (
+        <div
+          onClick={() => setIsMuted(!isMuted)}
+          className="absolute bg-slate-600 rounded-full p-2 bottom-5 right-5"
+        >
+          {isMuted ? <VolumeX /> : <Volume2 />}
+        </div>
+
+        {/* {!hasStarted && (
           <div
             className="absolute inset-0 z-20 flex items-center justify-center cursor-pointer"
             onClick={(e) => {
@@ -46,7 +67,6 @@ const BannerVideo = () => {
             role="button"
             aria-label="Play video"
           >
-            {/* Poster Image */}
             <Image
               src={POSTER}
               alt="video poster"
@@ -56,10 +76,8 @@ const BannerVideo = () => {
               style={{ userSelect: "none" }}
             />
 
-            {/* Overlay */}
             <div className="absolute inset-0 bg-black/40" />
 
-            {/* Play button */}
             <button
               onClick={(ev) => {
                 ev.stopPropagation();
@@ -71,7 +89,7 @@ const BannerVideo = () => {
               <Play size={32} className="ml-1 text-white" />
             </button>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

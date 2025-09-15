@@ -1,14 +1,7 @@
 {
   "hero": {
-    "title": "LAGREE, BUT MAKE IT LIKE A STARLETTE.",
-    "p1_line1": "IS THE FIRST MICROLAGREE STUDIO IN ISRAEL —",
-    "p1_line2": "A WOMEN-ONLY SPACE IN THE HEART OF TEL AVIV",
-    "p2_line1": "LAGREE IS THE ULTIMATE METHOD FOR A SCULPTED BODY",
-    "p2_line2": "CONTROL FLUIDITY, STRENGTH, DEPTH.",
-    "p2_highlight": "REAL RESULTS. LASTING TRANSFORMATION.",
-    "more": "MORE THAN JUST A WORKOUT. A WHOLE UNIVERSE.",
-    "italic": "FOR WOMEN WHO TRAIN LIKE STARS — AND SHINE LIKE THEM.",
-    "ready": "READY TO FEEL LIKE A STAR?",
+    "title": "Lagree, But make it like a Starlette.",
+    "body": "<b>Starlette</b> is the first <b>MicroLagree</b> studio in Israel — a women-only space in the heart of Tel Aviv. <br></br> <br></br> <b>Lagree</b> is the ultimate method for a <b>sculpted body</b>. <br></br> <i> Control. Fluidity. Strength. Depth.</i> <b><br></br>Real results. Lasting transformation. <br></br><br></br> More than just a workout. A whole universe.</b> <br></br><br></br> <i>For women who train like stars — and shine like them.</i> <br></br> <br></br> <b>Ready to feel like a star?</b>",
     "cta": "DISCOVER STARLETTE"
   },
   "experience": {
