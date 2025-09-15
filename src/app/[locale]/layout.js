@@ -27,7 +27,7 @@ export default async function LocaleLayout({ children, params }) {
     <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className="container mx-auto">
+          <div className="mx-auto bg-background">
             <Navbar />
 
             {children}

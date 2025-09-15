@@ -25,7 +25,7 @@ export default function AccountDashboard() {
     const base = `w-full flex items-center justify-between gap-4 px-4 py-2 text-left border-t border-[#000000] transition focus:outline-none focus:ring-2 focus:ring-pink-300`;
     const selected = isOpen
       ? "bg-primary text-white"
-      : "bg-transparent text-black";
+      : "bg-transparent text-dark-gray";
 
     // if it's the last header and not open, we still want its bottom border visible
     const lastBorder = isLast ? "border-b" : "";
@@ -102,27 +102,27 @@ export default function AccountDashboard() {
                     className="py-3 px-4 grid grid-cols-2 md:grid-cols-6 gap-3 items-center"
                   >
                     {/* Date */}
-                    <div className="text-xs md:text-sm text-[#000000] font-medium">
+                    <div className="text-xs md:text-sm text-dark-gray font-medium">
                       {row[0]}
                     </div>
 
                     {/* Time */}
-                    <div className="text-xs md:text-sm text-[#000000] font-medium">
+                    <div className="text-xs md:text-sm text-dark-gray font-medium">
                       {row[1]}
                     </div>
 
                     {/* Class name */}
-                    <div className="text-xs md:text-sm text-[#000000] font-medium">
+                    <div className="text-xs md:text-sm text-dark-gray font-medium">
                       {row[2]}
                     </div>
 
                     {/* Instructor */}
-                    <div className="text-xs md:text-sm text-[#000000] font-medium">
+                    <div className="text-xs md:text-sm text-dark-gray font-medium">
                       {row[3]}
                     </div>
 
                     {/* Slot / capacity */}
-                    <div className="text-xs md:text-sm text-black">
+                    <div className="text-xs md:text-sm text-dark-gray">
                       {row[4]}
                     </div>
 
@@ -172,7 +172,7 @@ export default function AccountDashboard() {
                       <td>10/06/2025</td>
                       <td>8</td>
                       <td>
-                        <span className=" px-2 py-1 text-[#000000]  text-xs">
+                        <span className=" px-2 py-1 text-dark-gray  text-xs">
                           {t("status.active")}
                         </span>
                       </td>
@@ -217,7 +217,7 @@ export default function AccountDashboard() {
                   const badgeClass =
                     statusKey === "missed"
                       ? " text-[#FABDCE]"
-                      : " text-[#000000]";
+                      : " text-dark-gray";
 
                   return (
                     <div
@@ -286,17 +286,17 @@ export default function AccountDashboard() {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="text-xs bg-primary text-black font-medium px-10 py-3 rounded-md">
+                  <button className="text-xs bg-primary text-dark-gray font-medium px-10 py-3 rounded-md">
                     {t("buttons.modify")}
                   </button>
-                  <button className="text-xs bg-primary text-black font-medium px-10 py-3 rounded-md">
+                  <button className="text-xs bg-primary text-dark-gray font-medium px-10 py-3 rounded-md">
                     {t("buttons.cancellation")}
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="text-sm text-black">
+            <div className="text-sm text-dark-gray">
               <p className="font-medium">
                 {t("details.subscriptionModification")}
               </p>
@@ -312,7 +312,7 @@ export default function AccountDashboard() {
 
   return (
     <div>
-      <h1 className="text-xl font-bold tracking-wider mb-4 text-black">
+      <h1 className="text-xl font-bold tracking-wider mb-4 text-dark-gray">
         {t("title")}
       </h1>
 

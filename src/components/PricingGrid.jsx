@@ -34,8 +34,8 @@ export default function PricingGrid({
         </div>
 
         <div>
-          <h2 className="text-sm md:text-lg font-bold text-black text-center uppercase">
-           {packageName} 
+          <h2 className="text-sm md:text-lg font-bold text-dark-gray text-center uppercase">
+            {packageName}
           </h2>
           <Image
             src={headerImage}
@@ -67,10 +67,10 @@ export default function PricingGrid({
       </div>
 
       {bullets && bullets.length > 0 && (
-        <div className="relative z-10 mt-6 text-xs md:text-sm text-black px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mt-6 text-xs md:text-sm text-dark-gray px-4 sm:px-6 lg:px-8">
           {bullets.map((b, i) => (
             <div key={i} className="mb-1 flex items-start">
-              <span className="text-black font-bold mr-2">★</span>
+              <span className="text-dark-gray font-bold mr-2">★</span>
               <span>{b}</span>
             </div>
           ))}

@@ -11,7 +11,7 @@ const MethodPage = () => {
 
   return (
     <>
-      <div className="min-h-screen text-black relative bg-white px-4 sm:px-6 lg:px-8 y-12">
+      <div className="min-h-screen text-dark-gray relative  px-4 sm:px-6 lg:px-8 y-12">
         {/* Section 1 */}
         <section>
           <div className="flex flex-col-reverse md:flex-row items-center md:gap-10 gap-6 pt-12 pb-12">

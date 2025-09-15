@@ -87,7 +87,7 @@ const PricingPage = () => {
   return (
     <div>
       <div className="px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-stretch md:h-[640px] border-b border-dashed border-black">
-        <div className="w-full md:w-1/2 bg-white relative z-10 flex flex-col justify-center p-6 md:p-12">
+        <div className="w-full md:w-1/2  relative z-10 flex flex-col justify-center p-6 md:p-12">
           <div className="mt-10 md:mt-0">
             <h1 className="text-xl md:text-2xl font-bold mb-10 md:mb-20 tracking-wider text-center">
               PACKS & MEMBERSHIPS
@@ -114,7 +114,7 @@ const PricingPage = () => {
               {/* Card 2 */}
               <div className="flex-shrink-0 w-[120px] sm:w-[140px] md:w-full">
                 <div className="relative">
-                  <h2 className="text-sm md:text-lg font-bold text-black text-center uppercase">
+                  <h2 className="text-sm md:text-lg font-bold text-dark-gray text-center uppercase">
                     CLASS PACKS
                   </h2>
                   <Image

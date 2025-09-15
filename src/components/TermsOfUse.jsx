@@ -7,22 +7,22 @@ const TermsOfUse = ({ onClose }) => {
   const t = useTranslations("terms");
 
   return (
-    <div className="mt-8 bg-white  border border-[#000000] p-4 max-w-3xl mx-auto relative">
+    <div className="mt-8   border border-[#000000] p-4 max-w-3xl mx-auto relative">
       {/* Header */}
       <div className="flex justify-between items-center  ">
-        <h2 className="text-base font-medium text-[#000000] tracking-wide underline">
+        <h2 className="text-base font-medium text-dark-gray tracking-wide underline">
           {t("title")}
         </h2>
         <button
           onClick={onClose}
-          className="text-[#000000] hover:text-gray-600 transition-colors"
+          className="text-dark-gray hover:text-gray-600 transition-colors"
         >
           <X size={20} />
         </button>
       </div>
 
       {/* Content */}
-      <div className="space-y-3 uppercase text-[#000000] text-xs  ">
+      <div className="space-y-3 uppercase text-dark-gray text-xs  ">
         <p className="uppercase tracking-wide  ">{t("intro")}</p>
 
         <div>

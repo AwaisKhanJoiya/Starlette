@@ -43,7 +43,7 @@ export default function StarletteStudio({ params }) {
         </div>
       </main>
 
-      <main className="bg-white font-arial text-dark-gray">
+      <main className="font-arial text-dark-gray">
         <section>
           <AnnoucementBar />
 
@@ -66,22 +66,24 @@ export default function StarletteStudio({ params }) {
             </div>
 
             <div className="w-full md:w-1/2 flex flex-col items-center md:items-end gap-4">
-              <div className="mb-0 hidden md:block">
-                <div className="w-40 h-40 md:w-56 md:h-56 flex items-center justify-center">
-                  <Image
-                    src="/logo.png"
-                    alt="starlette"
-                    width={1000}
-                    height={1000}
-                    className="object-contain "
-                  />
+              <div className="flex flex-col items-center">
+                <div className="mb-0 hidden md:block">
+                  <div className="w-40 h-40 md:w-56 md:h-56 flex items-center justify-center">
+                    <Image
+                      src="/logo.png"
+                      alt="starlette"
+                      width={1000}
+                      height={1000}
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* CTA - using shadcn Button to keep consistent UI */}
-              <Button className="rounded-full px-6 md:px-8 py-3 text-sm w-full md:w-auto">
-                {t("hero.cta")}
-              </Button>
+                {/* CTA - using shadcn Button to keep consistent UI */}
+                <Button className="rounded-full px-6 md:px-8 py-3 text-sm w-full md:w-auto">
+                  {t("hero.cta")}
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -97,7 +99,10 @@ export default function StarletteStudio({ params }) {
                 alt="starlette"
                 width={700}
                 height={500}
-                style={{ transform: "rotateY(180deg) rotateZ(-3deg)" }}
+                style={{
+                  transform: "rotateY(180deg) rotateZ(-3deg)",
+                  filter: "drop-shadow(-1px -1px 13px #545454)",
+                }}
                 className="w-full h-auto object-cover rounded"
               />
             </div>
@@ -172,13 +177,12 @@ export default function StarletteStudio({ params }) {
         </section>
 
         {/* New way to move section */}
-        <section className="px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end md:items-end justify-between py-12 gap-8">
+        <section className="px-4 sm:px-6 lg:px-8 ">
+          <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 mt-12">
+            {t("newway.title")}
+          </h1>
+          <div className="flex flex-col md:flex-row items-center justify-between pb-12 gap-8">
             <div className="w-full md:w-1/2">
-              <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8">
-                {t("newway.title")}
-              </h1>
-
               <div className="space-y-3 leading-relaxed font-arial">
                 <p className="text-sm md:text-base">
                   {t("newway.p1_part1")}{" "}
@@ -209,19 +213,19 @@ export default function StarletteStudio({ params }) {
 
             <div className="w-full md:w-1/2 flex flex-col items-center md:items-end space-y-8">
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className="md:w-[60%] w-full rounded-full px-6 py-3 text-sm">
+                <Button className="md:w-72 w-full rounded-full px-6 py-3 text-sm">
                   {t("buttons.theStudio")}
                 </Button>
               </div>
 
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className="md:w-[60%] w-full rounded-full px-6 py-3 text-sm">
+                <Button className="md:w-72 w-full rounded-full px-6 py-3 text-sm">
                   {t("buttons.theMethod")}
                 </Button>
               </div>
 
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className=" md:w-[60%] w-full rounded-full px-6 py-3 text-sm">
+                <Button className=" md:w-72 w-full rounded-full px-6 py-3 text-sm">
                   {t("buttons.memberships")}
                 </Button>
               </div>

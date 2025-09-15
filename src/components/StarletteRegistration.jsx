@@ -38,14 +38,14 @@ export default function StarletteRegistration() {
 
   const StepCard = ({ stepNumber, children }) => (
     <div
-      className={`bg-white border-y border-dashed border-black p-4 w-full max-w-sm mx-auto lg:mx-0 ${
+      className={` border-y border-dashed border-black p-4 w-full max-w-sm mx-auto lg:mx-0 ${
         stepNumber % 2 === 0
           ? "border-x border-black border-dashed"
           : "border-0"
       }`}
     >
       <div className="mb-8 flex flex-col items-center">
-        <h2 className="text-xs font-medium text-[#000000] mb-2">
+        <h2 className="text-xs font-medium text-dark-gray mb-2">
           STEP {stepNumber}
         </h2>
         <div className="flex items-center justify-center mb-2">
@@ -85,20 +85,20 @@ export default function StarletteRegistration() {
       <div className="mt-8 space-y-3">
         <button
           onClick={handleLogin}
-          className="w-full px-4 py-2.5 text-sm text-[#000000] italic font-semibold tracking-wider focus:outline-none"
+          className="w-full px-4 py-2.5 text-sm text-dark-gray italic font-semibold tracking-wider focus:outline-none"
         >
           {t("form.step1.login")}
         </button>
 
         <div className="flex items-center my-4">
           <div className="flex-grow h-px bg-[#000000]"></div>
-          <span className="px-3 text-sm text-[#000000]">or</span>
+          <span className="px-3 text-sm text-dark-gray">or</span>
           <div className="flex-grow h-px bg-[#000000]"></div>
         </div>
 
         <button
           onClick={() => setCurrentStep(2)}
-          className="w-full px-4 py-2.5 rounded-xl text-sm text-[#000000] bg-primary uppercase tracking-wider relative"
+          className="w-full px-4 py-2.5 rounded-xl text-sm text-dark-gray bg-primary uppercase tracking-wider relative"
         >
           {t("form.step1.createAccount")}
           <span className="absolute right-4 top-1/2 transform -translate-y-1/2">
@@ -139,7 +139,7 @@ export default function StarletteRegistration() {
       <div className="mt-8">
         <button
           onClick={handleContinue}
-          className="w-full px-4 py-2.5 rounded-xl text-sm text-[#000000] bg-primary uppercase tracking-wider relative"
+          className="w-full px-4 py-2.5 rounded-xl text-sm text-dark-gray bg-primary uppercase tracking-wider relative"
         >
           {t("form.step2.continue")}
           <span className="absolute right-4 top-1/2 transform -translate-y-1/2">
@@ -194,7 +194,7 @@ export default function StarletteRegistration() {
       />
 
       <div className="mt-6">
-        <label className="flex items-center text-sm text-[#000000] font-medium italic">
+        <label className="flex items-center text-sm text-dark-gray font-medium italic">
           <input
             type="checkbox"
             name="agreeTerms"
@@ -215,7 +215,7 @@ export default function StarletteRegistration() {
       <div className="mt-8">
         <button
           onClick={handleCreateAccount}
-          className="w-full px-4 py-2.5 rounded-xl text-sm text-[#000000] bg-primary uppercase tracking-wider relative"
+          className="w-full px-4 py-2.5 rounded-xl text-sm text-dark-gray bg-primary uppercase tracking-wider relative"
         >
           {t("form.step3.submit")}
           <span className="absolute right-4 top-1/2 transform -translate-y-1/2">

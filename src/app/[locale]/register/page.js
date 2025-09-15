@@ -53,10 +53,10 @@ export default function RegisterPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-white text-black flex flex-col items-center justify-center py-12 px-4">
-        <div className="w-full max-w-md bg-white p-6">
+      <div className="min-h-screen  text-dark-gray flex flex-col items-center justify-center py-12 px-4">
+        <div className="w-full max-w-md  p-6">
           <div className="mb-8 flex flex-col items-center">
-            <h2 className="text-xs font-medium text-[#000000] mb-2">
+            <h2 className="text-xs font-medium text-dark-gray mb-2">
               {t("registrationStep")} {step}/3
             </h2>
             <div className="flex items-center justify-center mb-2">
@@ -124,7 +124,7 @@ export default function RegisterPage() {
 
               <button
                 type="submit"
-                className="w-full px-4 py-2.5 text-sm text-[#000000] bg-primary rounded-xl uppercase tracking-wider focus:outline-none relative"
+                className="w-full px-4 py-2.5 text-sm text-dark-gray bg-primary rounded-xl uppercase tracking-wider focus:outline-none relative"
               >
                 {t("next")}
                 <span className="absolute right-4 top-1/2 transform -translate-y-1/2">
@@ -135,7 +135,7 @@ export default function RegisterPage() {
               <div className="text-center mt-4">
                 <Link
                   href="./login"
-                  className="text-sm underline text-[#000000]"
+                  className="text-sm underline text-dark-gray"
                 >
                   {t("alreadyHaveAccount")}
                 </Link>
@@ -199,7 +199,7 @@ export default function RegisterPage() {
                 <button
                   type="button"
                   onClick={handlePrevStep}
-                  className="w-1/2 px-4 py-2.5 text-sm text-[#000000] bg-gray-200 rounded-xl uppercase tracking-wider focus:outline-none relative"
+                  className="w-1/2 px-4 py-2.5 text-sm text-dark-gray bg-gray-200 rounded-xl uppercase tracking-wider focus:outline-none relative"
                 >
                   <span className="absolute left-4 top-1/2 transform -translate-y-1/2">
                     ←
@@ -209,7 +209,7 @@ export default function RegisterPage() {
 
                 <button
                   type="submit"
-                  className="w-1/2 px-4 py-2.5 text-sm text-[#000000] bg-primary rounded-xl uppercase tracking-wider focus:outline-none relative"
+                  className="w-1/2 px-4 py-2.5 text-sm text-dark-gray bg-primary rounded-xl uppercase tracking-wider focus:outline-none relative"
                 >
                   {t("next")}
                   <span className="absolute right-4 top-1/2 transform -translate-y-1/2">
@@ -247,7 +247,7 @@ export default function RegisterPage() {
                 <button
                   type="button"
                   onClick={handlePrevStep}
-                  className="w-1/2 px-4 py-2.5 text-sm text-[#000000] bg-gray-200 rounded-xl uppercase tracking-wider focus:outline-none relative"
+                  className="w-1/2 px-4 py-2.5 text-sm text-dark-gray bg-gray-200 rounded-xl uppercase tracking-wider focus:outline-none relative"
                 >
                   <span className="absolute left-4 top-1/2 transform -translate-y-1/2">
                     ←
@@ -258,7 +258,7 @@ export default function RegisterPage() {
                 <button
                   type="submit"
                   disabled={!formData.agreedToTerms}
-                  className={`w-1/2 px-4 py-2.5 text-sm text-[#000000] ${
+                  className={`w-1/2 px-4 py-2.5 text-sm text-dark-gray ${
                     formData.agreedToTerms ? "bg-primary" : "bg-gray-300"
                   } rounded-xl uppercase tracking-wider focus:outline-none relative`}
                 >

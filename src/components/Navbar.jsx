@@ -38,17 +38,18 @@ export default function Navbar() {
 
   const isLanding = pathname === "/";
   const isAccount = pathname === "/account";
-  const iconColorClass = isLanding && !scrolled ? "text-white" : "text-black";
+  const iconColorClass =
+    isLanding && !scrolled ? "text-white" : "text-dark-gray";
 
   return (
     <nav
       className={`${
         isLanding ? "fixed" : "sticky"
-      } top-0 z-50 w-full transition-colors duration-300 container`}
+      } top-0 z-50 w-full transition-colors duration-300`}
     >
       <div
         className={`relative px-4 sm:px-6 lg:px-8 flex min-h-16 items-center justify-between ${
-          scrolled || !isLanding ? "bg-white shadow-md" : "bg-transparent"
+          scrolled || !isLanding ? " shadow-md bg-background" : "bg-transparent"
         }`}
       >
         {/* Left: Menu Icon */}
@@ -77,8 +78,8 @@ export default function Navbar() {
               variant="outline"
               className={`bg-transparent ${
                 !scrolled && isLanding
-                  ? "text-white border-white hover:bg-white hover:text-black"
-                  : "text-black border-black hover:bg-gray-100"
+                  ? "text-white border-white hover: hover:text-dark-gray"
+                  : "text-dark-gray border-black hover:bg-gray-100"
               }`}
               onClick={() => setIsLangOpen((s) => !s)}
             >
@@ -86,7 +87,7 @@ export default function Navbar() {
             </Button>
 
             {isLangOpen && (
-              <div className="absolute right-0 top-full mt-2 z-50 w-24 bg-white text-black rounded-lg shadow-lg ring-1 ring-black/5 overflow-hidden">
+              <div className="absolute right-0 top-full mt-2 z-50 w-24  text-dark-gray rounded-lg shadow-lg ring-1 ring-black/5 overflow-hidden">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}

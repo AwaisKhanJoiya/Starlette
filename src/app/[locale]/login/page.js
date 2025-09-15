@@ -34,10 +34,10 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-white text-black flex flex-col items-center justify-center py-12 px-4">
-        <div className="w-full max-w-md bg-white p-6">
+      <div className="min-h-screen  text-dark-gray flex flex-col items-center justify-center py-12 px-4">
+        <div className="w-full max-w-md  p-6">
           <div className="mb-8 flex flex-col items-center">
-            <h2 className="text-xs font-medium text-[#000000] mb-2">
+            <h2 className="text-xs font-medium text-dark-gray mb-2">
               {t("loginStep")}
             </h2>
             <div className="flex items-center justify-center mb-2">
@@ -75,7 +75,7 @@ export default function LoginPage() {
             <div className="mt-8 space-y-4">
               <button
                 type="submit"
-                className="w-full px-4 py-2.5 text-sm text-[#000000] bg-primary rounded-xl uppercase tracking-wider focus:outline-none relative"
+                className="w-full px-4 py-2.5 text-sm text-dark-gray bg-primary rounded-xl uppercase tracking-wider focus:outline-none relative"
               >
                 {t("login")}
                 <span className="absolute right-4 top-1/2 transform -translate-y-1/2">
@@ -85,13 +85,13 @@ export default function LoginPage() {
 
               <div className="flex items-center my-4">
                 <div className="flex-grow h-px bg-[#000000]"></div>
-                <span className="px-3 text-sm text-[#000000]">{t("or")}</span>
+                <span className="px-3 text-sm text-dark-gray">{t("or")}</span>
                 <div className="flex-grow h-px bg-[#000000]"></div>
               </div>
 
               <Link
                 href="./register"
-                className="block w-full text-center px-4 py-2.5 text-sm text-[#000000] bg-primary rounded-xl uppercase tracking-wider relative"
+                className="block w-full text-center px-4 py-2.5 text-sm text-dark-gray bg-primary rounded-xl uppercase tracking-wider relative"
               >
                 {t("createAccount")}
                 <span className="absolute right-4 top-1/2 transform -translate-y-1/2">

@@ -30,7 +30,7 @@ const icons = [
 
 const FitnessBenefits = () => {
   const t = useTranslations("benefits");
-  const benefits = t.raw("benefits"); 
+  const benefits = t.raw("benefits");
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-6">
@@ -39,7 +39,7 @@ const FitnessBenefits = () => {
         return (
           <div
             key={index}
-            className="group relative bg-white py-1 px-2 text-black rounded-2xl border-2 border-dashed border-[#000] flex flex-col justify-center"
+            className="group relative  py-1 px-2 text-dark-gray rounded-2xl border-2 border-dashed border-[#000] flex flex-col justify-center"
           >
             <div className="flex items-center gap-1">
               <Icon className="w-4 h-4" />

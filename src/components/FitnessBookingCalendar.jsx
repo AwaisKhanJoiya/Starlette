@@ -282,7 +282,7 @@ const FitnessBookingCalendar = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between py-3 sm:py-4 border-gray-100 text-black">
+      <div className="flex items-center justify-between py-3 sm:py-4 border-gray-100 text-dark-gray">
         <h1 className="text-lg sm:text-xl font-medium tracking-wide truncate">
           {currentMonth}
         </h1>
@@ -296,7 +296,7 @@ const FitnessBookingCalendar = () => {
           />
 
           {showDatePicker && (
-            <div className="absolute z-10 top-10 inset-x-4 sm:inset-auto sm:right-0  sm:left-auto w-auto sm:w-44 max-w-xs sm:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-3 sm:p-4">
+            <div className="absolute z-10 top-10 inset-x-4 sm:inset-auto sm:right-0  sm:left-auto w-auto sm:w-44 max-w-xs sm:max-w-none  border border-gray-200 rounded-lg shadow-lg p-3 sm:p-4">
               <input
                 type="date"
                 value={selectedDate.toISOString().split("T")[0]}
@@ -312,7 +312,7 @@ const FitnessBookingCalendar = () => {
       <div className="py-4 sm:py-6 w-full">
         <div className="flex items-center gap-3 sm:gap-6 justify-center">
           <ChevronLeft
-            className="w-14 h-14 md:w-10 md:h-10 text-custome-gray cursor-pointer hover:text-black transition-colors p-1"
+            className="w-14 h-14 md:w-10 md:h-10 text-custome-gray cursor-pointer hover:text-dark-gray transition-colors p-1"
             onClick={() => navigateWeek(-1)}
             aria-label="Previous week"
           />
@@ -351,7 +351,7 @@ const FitnessBookingCalendar = () => {
           </div>
 
           <ChevronRight
-            className="w-14 h-14 md:w-10 md:h-10 text-custome-gray cursor-pointer hover:text-black transition-colors p-1"
+            className="w-14 h-14 md:w-10 md:h-10 text-custome-gray cursor-pointer hover:text-dark-gray transition-colors p-1"
             onClick={() => navigateWeek(1)}
             aria-label="Next week"
           />
@@ -407,7 +407,7 @@ const FitnessBookingCalendar = () => {
                   </div>
 
                   {/* Capacity + Spots Left */}
-                  <div className="flex items-center sm:justify-start justify-between space-x-3 text-black">
+                  <div className="flex items-center sm:justify-start justify-between space-x-3 text-dark-gray">
                     <span className="text-sm font-medium truncate">
                       {classItem.capacity}
                     </span>

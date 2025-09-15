@@ -29,7 +29,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
 
   return (
     <div className="relative">
-      <div className="bg-white border-2 text-black border-black rounded-xl py-8 px-4 w-56 md:w-60 text-center shadow-sm">
+      <div className=" border-2 text-dark-gray border-black rounded-xl py-8 px-4 w-56 md:w-60 text-center shadow-sm">
         {slug && (
           <div className="text-xs md:text-sm mb-2 font-bold text-primary">
             {slug}
@@ -49,7 +49,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
       <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2">
         <Button
           onClick={handleClick}
-          className="bg-secondary border border-black text-black py-2 px-6 rounded shadow-md"
+          className="bg-secondary border border-black text-dark-gray py-2 px-6 rounded shadow-md"
           aria-label={buttonLabel}
         >
           {buttonLabel}
@@ -106,7 +106,7 @@ export default PricingCard;
 
 //         <div className="relative z-10 flex flex-col md:flex-row justify-center items-center gap-8">
 //           <div className="relative">
-//             <div className="bg-white border-2 text-black border-black rounded-xl py-8 px-4 w-56 md:w-60 text-center shadow-sm">
+//             <div className=" border-2 text-dark-gray border-black rounded-xl py-8 px-4 w-56 md:w-60 text-center shadow-sm">
 //               <div className="text-4xl md:text-5xl font-bold mb-2">
 //                 {t("oneClassPrice")}
 //               </div>
@@ -117,14 +117,14 @@ export default PricingCard;
 //               <div className="text-xs md:text-sm mb-6">{t("gift")}</div>
 //             </div>
 //             <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2">
-//               <Button className="bg-secondary border border-black text-black py-2 px-6 rounded shadow-md">
+//               <Button className="bg-secondary border border-black text-dark-gray py-2 px-6 rounded shadow-md">
 //                 {t("book")}
 //               </Button>
 //             </div>
 //           </div>
 
 //           <div className="relative">
-//             <div className="bg-white border-2 text-black border-black rounded-xl py-8 px-4 w-56 md:w-60 text-center shadow-sm">
+//             <div className=" border-2 text-dark-gray border-black rounded-xl py-8 px-4 w-56 md:w-60 text-center shadow-sm">
 //               <div className="text-4xl md:text-5xl font-bold mb-2">
 //                 {t("threeClassPrice")}
 //               </div>
@@ -135,7 +135,7 @@ export default PricingCard;
 //               <div className="text-xs md:text-sm mb-6">{t("gift")}</div>
 //             </div>
 //             <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2">
-//               <Button className="bg-secondary border border-black text-black py-2 px-6 rounded shadow-md">
+//               <Button className="bg-secondary border border-black text-dark-gray py-2 px-6 rounded shadow-md">
 //                 {t("book")}
 //               </Button>
 //             </div>
@@ -143,17 +143,17 @@ export default PricingCard;
 //         </div>
 //       </div>
 
-//       <div className="relative z-10 mt-6 text-xs md:text-sm text-black px-4 sm:px-6 lg:px-8">
+//       <div className="relative z-10 mt-6 text-xs md:text-sm text-dark-gray px-4 sm:px-6 lg:px-8">
 //         <div className="mb-1 flex items-start">
-//           <span className="text-black font-bold mr-2">★</span>
+//           <span className="text-dark-gray font-bold mr-2">★</span>
 //           <span>{t("bullets.one")}</span>
 //         </div>
 //         <div className="mb-1 flex items-start">
-//           <span className="text-black font-bold mr-2">★</span>
+//           <span className="text-dark-gray font-bold mr-2">★</span>
 //           <span>{t("bullets.two")}</span>
 //         </div>
 //         <div className="flex items-start">
-//           <span className="text-black font-bold mr-2">★</span>
+//           <span className="text-dark-gray font-bold mr-2">★</span>
 //           <span>{t("bullets.three")}</span>
 //         </div>
 //       </div>
