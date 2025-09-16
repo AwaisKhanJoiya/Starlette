@@ -67,7 +67,7 @@ export default function PricingGrid({
       </div>
 
       {bullets && bullets.length > 0 && (
-        <div className="relative z-10 mt-6 text-xs md:text-sm text-dark-gray px-4 sm:px-6 lg:px-8">
+        <div className="rtl relative z-10 mt-6 text-xs md:text-sm text-dark-gray px-4 sm:px-6 lg:px-8">
           {bullets.map((b, i) => (
             <div key={i} className="mb-1 flex items-start">
               <span className="text-dark-gray font-bold mr-2">★</span>
@@ -76,18 +76,6 @@ export default function PricingGrid({
           ))}
         </div>
       )}
-
-      {/* {showCalendar && (
-        <div className="px-4 sm:px-6 lg:px-8 pt-12">
-          <FitnessBookingCalendar />
-        </div>
-      )}
-
-      {showDownload && (
-        <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-10">
-          <DownloadApp />
-        </div>
-      )} */}
     </section>
   );
 }

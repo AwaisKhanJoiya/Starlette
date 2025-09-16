@@ -1,28 +1,28 @@
 import { useState, useRef } from "react";
-import { Play, Volume2, VolumeX } from "lucide-react";
-import Image from "next/image";
+import { Volume2, VolumeX } from "lucide-react";
+// import Image from "next/image";
 
 const BannerVideo = () => {
   const videoRef = useRef(null);
-  const [hasStarted, setHasStarted] = useState(false);
+  // const [hasStarted, setHasStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
   const POSTER = "/home.jpg";
   const VIDEO_URL = "/banner-video.mp4";
 
-  const startPlayback = async () => {
-    if (!videoRef.current) return;
-    try {
-      const playPromise = videoRef.current.play();
-      if (playPromise instanceof Promise) {
-        await playPromise;
-      }
-    } catch (err) {
-      console.warn("video.play() rejected:", err);
-    } finally {
-      setHasStarted(true);
-    }
-  };
+  // const startPlayback = async () => {
+  //   if (!videoRef.current) return;
+  //   try {
+  //     const playPromise = videoRef.current.play();
+  //     if (playPromise instanceof Promise) {
+  //       await playPromise;
+  //     }
+  //   } catch (err) {
+  //     console.warn("video.play() rejected:", err);
+  //   } finally {
+  //     setHasStarted(true);
+  //   }
+  // };
 
   return (
     <div className="relative w-full mx-auto">

@@ -15,9 +15,9 @@
       }
     },
     "bullets": {
-      "one": "Puces exemple 1",
-      "two": "Puces exemple 2",
-      "three": "Puces exemple 3"
+      "one": "Notre offre de bienvenue est valable une seule fois, vous pouvez choisir l'une des deux options disponibles.",
+      "two": "Vous pouvez annuler votre réservation jusqu'à 24 heures avant le début du cours. Après cela, les crédits seront déduits (pour les packs de cours).",
+      "three": "Pour votre confort et votre sécurité, des chaussettes antidérapantes sont obligatoires pendant toutes les séances."
     }
   },
 

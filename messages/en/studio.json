@@ -1,17 +1,11 @@
 {
   "header": {
     "title": "THE STUDIO",
-    "p1": "A PRIVATE SPACE DESIGNED TO WELCOME YOU IN THE BEST POSSIBLE CONDITIONS.",
-    "p2": "AT <b>STARLETTE</b>, WE'VE CHOSEN THE <b>MICRO DELUXE</b> TO OFFER A MORE MODERN, CHIC, AND EFFECTIVE VERSION OF THE CLASSIC METHOD. CUTTING EDGE TECHNOLOGY IN THE SERVICE OF YOUR WELLNESS.",
-    "p3": "HIGH-QUALITY MATERIALS, COLORS DESIGNED BY DASSAULT SYSTEMES PAID ATTENTION TO EVERY DETAIL.",
-    "p4": "<b>GRIP SOCKS</b> ARE AVAILABLE FOR PURCHASE AT THE STUDIO.",
-    "p5": "ENJOY A <b>CHANGING ROOM</b> WITH <b>SHOWERS</b> AND FRESH <b>TOWELS</b>, FOLLOWED BY A MOMENT OF RELAXATION IN OUR COZY LOUNGE — OVER A COFFEE, TEA, OR MATCHA.",
-    "p6": "A WARM ATMOSPHERE, CURATED MUSIC, AND AN ENERGY THAT LIFTS YOU UP.",
-    "p7": "EVERYTHING IS DESIGNED TO HELP YOU FOCUS ON WHAT'S ESSENTIAL: <b>YOU</b>."
+    "body": "A PRIVATE SPACE DESIGNED TO WELCOME YOU IN THE BEST CONDITIONS. <br></br> Every corner of the studio was built by hand - each piece was imagined, created, and customized by us <br></br><br></br> AT <b>STARLETTE</b>, WE'VE CHOSEN THE <b>MICRO DELUXE</b> TO bring you the most MODERN, chic, AND EFFECTIVE VERSION OF THE <b>largee</b> METHOD - TECHNOLOGY serving your wellness. <br></br><br></br> <b>HIGH-QUALITY</b> classes, guided with care and attention to every detail. <br></br><br></br> <b>GRIP SOCKS</b> ARE AVAILABLE FOR PURCHASE AT THE STUDIO. <br></br><br></br> ENJOY A <b>CHANGING ROOM</b> WITH <b>SHOWERS</b> AND Fresh <b>TOWELS</b>, then relax in our cozy lounge - over a coffee, tea, or MATCHA. <br></br><br></br> A warm ATMOSPHERE, CURATED MUSIC, AND uplifting ENERGY. <br></br> All of this was built TO HELP YOU FOCUS ON WHAT's ESSENTIAL: <b>YOU</b>."
   },
   "location": {
     "title": "LOCATION",
-    "address1": "EZRA HA-SOFER STREET 9",
+    "address1": "9 EZRA HA-SOFER STREET",
     "address2": "TEL AVIV, ISRAEL"
   }
 }

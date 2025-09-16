@@ -8,7 +8,7 @@ const Footer = () => {
   const t = useTranslations("footer");
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8  py-4 font-arial mt-10">
+    <div className="rtl px-4 sm:px-6 lg:px-8  py-4 font-arial mt-10">
       {/* Top section */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
         {/* Navigation Links */}
@@ -29,7 +29,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="flex flex-col items-center sm:items-end gap-1 py-4 text-center sm:text-right">
+      <div className="flex flex-col items-center sm:items-end gap-1   text-center sm:text-right">
         <p className="text-dark-gray text-xs sm:text-sm">{t("email")}</p>
         <p className="text-dark-gray font-semibold italic text-xs sm:text-sm">
           {t("rights")}

@@ -6,6 +6,8 @@ import BannerVideo from "@/components/BannerVideo";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import PricingGrid from "@/components/PricingGrid";
+import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
+import DownloadApp from "@/components/DownloadApp";
 
 export default function StarletteStudio({ params }) {
   const t = useTranslations("home");
@@ -33,7 +35,7 @@ export default function StarletteStudio({ params }) {
     tPackages("home.bullets.three"),
   ];
   return (
-    <div className="min-h-screen mx-auto text-white relative">
+    <div className="min-h-screen mx-auto text-white relative bg-white">
       {/* Hero video area */}
       <main className="flex items-center justify-center relative">
         <div className="text-center w-full">
@@ -48,7 +50,7 @@ export default function StarletteStudio({ params }) {
           <AnnoucementBar />
 
           {/* HERO: keep design but make responsive */}
-          <div className="flex px-4 sm:px-6 lg:px-8 flex-col md:flex-row items-center md:items-end justify-between gap-8 py-12">
+          <div className="rtl flex px-4 sm:px-6 lg:px-8 flex-col md:flex-row items-center md:items-end justify-between gap-8 py-12">
             <div className="w-full md:w-1/2">
               <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
                 {t("hero.title")}
@@ -92,8 +94,8 @@ export default function StarletteStudio({ params }) {
 
         {/* Experience section - responsive */}
         <section className="px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col-reverse md:flex-row items-end md:items-end pt-12 border-b border-dashed border-black">
-            <div className="w-full md:w-1/2">
+          <div className="flex flex-col-reverse md:flex-row md:items-start items-center pt-12 border-b border-dashed border-black">
+            <div className="w-full md:w-1/2 pt-20">
               <Image
                 src="/starlette-exprience.png"
                 alt="starlette"
@@ -107,69 +109,18 @@ export default function StarletteStudio({ params }) {
               />
             </div>
 
-            <div className="w-full md:w-1/2 pb-24">
-              <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 md:text-right text-left">
+            <div className="w-full md:w-1/2  md:text-right text-left">
+              <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
                 {t("experience.title")}
               </h1>
 
-              <div className="space-y-3 leading-relaxed font-arial md:text-right text-left">
-                <p className="text-sm md:text-base">
-                  <span className="font-semibold">
-                    {t("experience.p1_bold")}
-                  </span>
-                  <br />
-                  <span className="font-semibold">STARLETTE </span>
-                  {t("experience.p1_mid")}{" "}
-                  <span className="font-semibold">
-                    {t("experience.p1_wellness")}
-                  </span>{" "}
-                  {t("experience.p1_and")}{" "}
-                  <span className="font-semibold">
-                    {t("experience.p1_power")}
-                  </span>
-                  —
-                  <br />
-                  {t("experience.p1_end")}
-                </p>
-
-                <p className="text-sm md:text-base">
-                  {t("experience.p2_intro")}
-                  <br />
-                  {t.rich("experience.p2_details1", {
-                    b: (chunks) => (
-                      <span className="font-semibold">{chunks}</span>
-                    ),
+              <div className="space-y-3 leading-relaxed font-arial">
+                <p className="text-sm uppercase">
+                  {t.rich("experience.body", {
+                    b: (chunks) => <span className="font-bold">{chunks}</span>,
+                    i: (chunks) => <span className="italic">{chunks}</span>,
+                    br: () => <br />,
                   })}
-                  <br />
-                  {t.rich("experience.p2_details2", {
-                    b: (chunks) => (
-                      <span className="font-semibold">{chunks}</span>
-                    ),
-                  })}
-                  <br />
-                  {t.rich("experience.p2_details3", {
-                    b: (chunks) => (
-                      <span className="font-semibold">{chunks}</span>
-                    ),
-                  })}
-                  <br />
-                  {t.rich("experience.p2_details4", {
-                    b: (chunks) => (
-                      <span className="font-semibold">{chunks}</span>
-                    ),
-                  })}
-                </p>
-
-                <p className="text-sm md:text-base">
-                  {t("experience.p3")}
-                  <br />
-                  {t("experience.p3_second")}
-                </p>
-
-                <p className="text-sm md:text-base font-semibold">
-                  {t("experience.p4")}
-                  <br />
-                  {t("experience.p4_second")}
                 </p>
               </div>
             </div>
@@ -177,40 +128,23 @@ export default function StarletteStudio({ params }) {
         </section>
 
         {/* New way to move section */}
-        <section className="px-4 sm:px-6 lg:px-8 ">
-          <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 mt-12">
-            {t("newway.title")}
-          </h1>
-          <div className="flex flex-col md:flex-row items-center justify-between pb-12 gap-8">
-            <div className="w-full md:w-1/2">
+        <section className="rtl px-4 sm:px-6 lg:px-8 ">
+          <div className="flex flex-col md:flex-row items-center justify-between  gap-8 pt-10">
+            <div className="w-full md:w-1/2  ">
+              <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
+                {t("hero.title")}
+              </h1>
+
               <div className="space-y-3 leading-relaxed font-arial">
-                <p className="text-sm md:text-base">
-                  {t("newway.p1_part1")}{" "}
-                  <span className="font-semibold">LAGREE</span> :{" "}
-                  {t("newway.p1_part2")}
-                  <br />
-                  {t("newway.p1_extra")}
-                </p>
-
-                <p className="text-sm md:text-base">
-                  {" "}
-                  <span className="font-semibold">
-                    {t("newway.short")}
-                  </span>,{" "}
-                  <span className="font-semibold">{t("newway.intense")}</span>,
-                  AND{" "}
-                  <span className="font-semibold">{t("newway.lowimpact")}</span>{" "}
-                  {t("newway.p2_end")}
-                </p>
-
-                <p className="text-sm md:text-base">{t("newway.p3")}</p>
-
-                <p className="text-sm md:text-base font-semibold">
-                  {t("newway.p4")}
+                <p className="text-sm uppercase">
+                  {t.rich("newway.body", {
+                    b: (chunks) => <span className="font-bold">{chunks}</span>,
+                    i: (chunks) => <span className="italic">{chunks}</span>,
+                    br: () => <br />,
+                  })}
                 </p>
               </div>
             </div>
-
             <div className="w-full md:w-1/2 flex flex-col items-center md:items-end space-y-8">
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
                 <Button className="md:w-72 w-full rounded-full px-6 py-3 text-sm">
@@ -240,6 +174,13 @@ export default function StarletteStudio({ params }) {
           bullets={bullets}
           packageName={"WELCOME PACK"}
         />
+        <div className="px-4 sm:px-6 lg:px-8 pt-12">
+          <FitnessBookingCalendar />
+        </div>
+
+        <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+          <DownloadApp />
+        </div>
       </main>
     </div>
   );

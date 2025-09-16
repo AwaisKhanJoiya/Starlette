@@ -27,7 +27,7 @@ export default function Navbar() {
   const languages = [
     { code: "en", label: "EN" },
     { code: "fr", label: "FR" },
-    { code: "es", label: "ES" },
+    { code: "he", label: "HE" },
   ];
 
   useEffect(() => {
@@ -38,18 +38,19 @@ export default function Navbar() {
 
   const isLanding = pathname === "/";
   const isAccount = pathname === "/account";
+  // Icon color: white on dark bg, gray on light bg
   const iconColorClass =
-    isLanding && !scrolled ? "text-white" : "text-dark-gray";
+    isLanding && !scrolled ? "text-white" : "text-gray-700";
 
   return (
     <nav
       className={`${
         isLanding ? "fixed" : "sticky"
-      } top-0 z-50 w-full transition-colors duration-300`}
+      } rtl top-0 z-50 w-full transition-colors duration-300`}
     >
       <div
         className={`relative px-4 sm:px-6 lg:px-8 flex min-h-16 items-center justify-between ${
-          scrolled || !isLanding ? " shadow-md bg-background" : "bg-transparent"
+          scrolled || !isLanding ? "  bg-white" : "bg-transparent"
         }`}
       >
         {/* Left: Menu Icon */}
@@ -87,7 +88,7 @@ export default function Navbar() {
             </Button>
 
             {isLangOpen && (
-              <div className="absolute right-0 top-full mt-2 z-50 w-24  text-dark-gray rounded-lg shadow-lg ring-1 ring-black/5 overflow-hidden">
+              <div className="absolute  right-0 top-full mt-2 z-50 w-24  text-dark-gray rounded-lg shadow-lg ring-1 ring-black/5 overflow-hidden">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -124,7 +125,14 @@ export default function Navbar() {
 
         {isMenuOpen && (
           <div
-            className={`absolute left-2 w-36 rounded-md top-16 border border-white p-1 backdrop-blur-lg z-40 transform transition-transform duration-300`}
+            className={`absolute ${
+              locale === "he" ? "right-2" : "left-2"
+            } w-36 rounded-md top-16 border p-1 backdrop-blur-lg z-40 transform transition-transform duration-300
+              ${
+                scrolled || !isLanding
+                  ? "border-gray-300 bg-white "
+                  : "border-white bg-transparent"
+              }`}
           >
             <div className="px-1 space-y-2">
               {menuItems.map((item) => (
@@ -132,7 +140,9 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block text-left text-white font-bold text-xs"
+                  className={`block text-left font-bold text-xs ${
+                    scrolled || !isLanding ? "text-gray-700" : "text-white"
+                  }`}
                 >
                   {item.label}
                 </Link>

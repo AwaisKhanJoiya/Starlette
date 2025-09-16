@@ -1,0 +1,22 @@
+{
+  "today": "היום",
+  "days": {
+    "sun": "יום א׳",
+    "mon": "יום ב׳",
+    "tue": "יום ג׳",
+    "wed": "יום ד׳",
+    "thu": "יום ה׳",
+    "fri": "יום ו׳",
+    "sat": "שבת"
+  },
+  "status": {
+    "available": "הזמן",
+    "full": "מלא",
+    "booked": "הוזמן"
+  },
+  "join_waiting_list": "הצטרפי לרשימת ההמתנה",
+  "show_details": "הצגת פרטים ▼",
+  "no_classes": "אין שיעורים מתוכננים ליום זה",
+  "try_another_date": "נסי לבחור תאריך אחר",
+  "only_spots_left": "נשארו {count, plural, one {מקום אחד} other {# מקומות}}"
+}

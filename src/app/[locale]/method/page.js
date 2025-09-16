@@ -11,43 +11,22 @@ const MethodPage = () => {
 
   return (
     <>
-      <div className="min-h-screen text-dark-gray relative  px-4 sm:px-6 lg:px-8 y-12">
+      <div className="bg-white min-h-screen text-dark-gray relative  px-4 sm:px-6 lg:px-8 y-12">
         {/* Section 1 */}
         <section>
           <div className="flex flex-col-reverse md:flex-row items-center md:gap-10 gap-6 pt-12 pb-12">
             <div className="flex-1">
-              <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wider">
+              <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
                 {t("section1.title")}
               </h1>
 
               <div className="space-y-3 leading-relaxed font-arial">
-                <p className="text-sm md:text-base tracking-wider font-semibold">
-                  {t("section1.line1")}
-                </p>
-                <p className="text-sm md:text-base tracking-wider font-medium">
-                  {t("section1.line2")}
-                </p>
-                <p className="text-sm md:text-base tracking-wider">
-                  {t.rich("section1.line3", {
-                    b: (chunks) => (
-                      <span className="font-semibold">{chunks}</span>
-                    ),
+                <p className="text-sm uppercase">
+                  {t.rich("section1.body", {
+                    b: (chunks) => <span className="font-bold">{chunks}</span>,
+                    i: (chunks) => <span className="italic">{chunks}</span>,
+                    br: () => <br />,
                   })}
-                </p>
-                <p className="text-sm md:text-base tracking-wider">
-                  <span className="font-semibold">
-                    {t("section1.line4.bold1")}
-                  </span>
-                  <br />
-                  {t("section1.line4.afterBold")}
-                  <span className="font-semibold">
-                    {t("section1.line4.bold2")}
-                  </span>{" "}
-                  {t("section1.line4.bold2after")}
-                </p>
-
-                <p className="text-sm md:text-base tracking-wider font-semibold">
-                  {t("section1.line5")}
                 </p>
               </div>
             </div>
@@ -87,41 +66,17 @@ const MethodPage = () => {
               />
             </div>
 
-            <div className="w-full md:w-1/2">
-              <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wider md:text-right text-left">
+            <div className="w-full md:w-1/2 md:text-right text-left uppercase">
+              <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 ">
                 {t("section2.title")}
               </h1>
 
-              <div className="space-y-3 leading-relaxed font-arial md:text-right text-left">
-                <p className="text-sm md:text-base tracking-wider font-semibold">
-                  {t("section2.line1")}
-                </p>
-                <p className="text-sm md:text-base tracking-wider">
-                  {t.rich("section2.line2", {
-                    b: (chunks) => (
-                      <span className="font-semibold">{chunks}</span>
-                    ),
-                  })}
-                </p>
-                <p className="text-sm md:text-base tracking-wider">
-                  {t.rich("section2.line3", {
-                    b: (chunks) => (
-                      <span className="font-semibold">{chunks}</span>
-                    ),
-                  })}
-                </p>
-                <p className="text-sm md:text-base tracking-wider">
-                  {t.rich("section2.line4", {
-                    b: (chunks) => (
-                      <span className="font-semibold">{chunks}</span>
-                    ),
-                  })}
-                </p>
-                <p className="text-sm md:text-base tracking-wider">
-                  {t.rich("section2.line5", {
-                    b: (chunks) => (
-                      <span className="font-semibold">{chunks}</span>
-                    ),
+              <div className="space-y-3 leading-relaxed font-arial ">
+                <p className="text-sm ">
+                  {t.rich("section2.body", {
+                    b: (chunks) => <span className="font-bold">{chunks}</span>,
+                    i: (chunks) => <span className="italic">{chunks}</span>,
+                    br: () => <br />,
                   })}
                 </p>
               </div>

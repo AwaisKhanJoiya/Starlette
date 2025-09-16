@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "@/components/Navbar";
 import React from "react";
 import { useTranslations } from "next-intl";
 
@@ -8,68 +7,20 @@ const StudioPage = () => {
 
   return (
     <>
-      <div className="min-h-screen  text-dark-gray px-4 sm:px-6 lg:px-8 py-12">
+      <div className="rtl min-h-screen bg-white text-dark-gray px-4 sm:px-6 lg:px-8 py-12">
         <div>
           {/* Header Section */}
           <div className="mb-16">
-            <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wider">
+            <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
               {t("header.title")}
             </h1>
 
-            <div className="space-y-3 leading-relaxed font-arial uppercase">
-              <p className="text-sm md:text-base tracking-wider">
-                {t.rich("header.p1", {
-                  b: (chunks) => (
-                    <span className="font-semibold">{chunks}</span>
-                  ),
-                })}
-              </p>
-
-              <p className="text-sm md:text-base tracking-wider">
-                {t.rich("header.p2", {
-                  b: (chunks) => (
-                    <span className="font-semibold">{chunks}</span>
-                  ),
-                })}
-              </p>
-
-              <p className="text-sm md:text-base tracking-wider">
-                {t.rich("header.p3", {
-                  b: (chunks) => (
-                    <span className="font-semibold">{chunks}</span>
-                  ),
-                })}
-              </p>
-
-              <p className="text-sm md:text-base tracking-wider">
-                {t.rich("header.p4", {
-                  b: (chunks) => (
-                    <span className="font-semibold">{chunks}</span>
-                  ),
-                })}
-              </p>
-
-              <p className="text-sm md:text-base tracking-wider">
-                {t.rich("header.p5", {
-                  b: (chunks) => (
-                    <span className="font-semibold">{chunks}</span>
-                  ),
-                })}
-              </p>
-
-              <p className="text-sm md:text-base tracking-wider">
-                {t.rich("header.p6", {
-                  b: (chunks) => (
-                    <span className="font-semibold">{chunks}</span>
-                  ),
-                })}
-              </p>
-
-              <p className="text-sm md:text-base tracking-wider">
-                {t.rich("header.p7", {
-                  b: (chunks) => (
-                    <span className="font-semibold">{chunks}</span>
-                  ),
+            <div className="space-y-3 leading-relaxed font-arial">
+              <p className="text-sm uppercase">
+                {t.rich("header.body", {
+                  b: (chunks) => <span className="font-bold">{chunks}</span>,
+                  i: (chunks) => <span className="italic">{chunks}</span>,
+                  br: () => <br />,
                 })}
               </p>
             </div>

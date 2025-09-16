@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import PricingGrid from "@/components/PricingGrid";
@@ -85,7 +84,7 @@ const PricingPage = () => {
   ];
 
   return (
-    <div>
+    <div className="bg-white">
       <div className="px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-stretch md:h-[640px] border-b border-dashed border-black">
         <div className="w-full md:w-1/2  relative z-10 flex flex-col justify-center p-6 md:p-12">
           <div className="mt-10 md:mt-0">
@@ -94,12 +93,12 @@ const PricingPage = () => {
             </h1>
 
             {/* Pricing cards: horizontally scroll on mobile, grid on md+ */}
-            <div className="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto md:overflow-visible pb-2">
+            <div className="flex md:grid md:grid-cols-3 gap-2 overflow-x-auto md:overflow-visible pb-2">
               {/* Card 1 */}
-              <div className="flex-shrink-0 w-[120px] sm:w-[140px] md:w-full">
+              <div className="flex-shrink-0 w-[120px] md:w-full ">
                 <div className="relative">
                   <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase">
-                    WELCOME PACK
+                    WELCOME 
                   </h2>
                   <Image
                     src="/welcome-pack.jpg"
@@ -112,7 +111,7 @@ const PricingPage = () => {
               </div>
 
               {/* Card 2 */}
-              <div className="flex-shrink-0 w-[120px] sm:w-[140px] md:w-full">
+              <div className="flex-shrink-0 w-[120px] md:w-full">
                 <div className="relative">
                   <h2 className="text-sm md:text-lg font-bold text-dark-gray text-center uppercase">
                     CLASS PACKS
@@ -128,7 +127,7 @@ const PricingPage = () => {
               </div>
 
               {/* Card 3 */}
-              <div className="flex-shrink-0 w-[120px] sm:w-[140px] md:w-full">
+              <div className="flex-shrink-0 w-[120px]  md:w-full">
                 <div className="relative">
                   <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase">
                     MEMBERSHIPS
@@ -147,7 +146,7 @@ const PricingPage = () => {
         </div>
 
         <div className="w-full md:w-1/2 relative flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 ">
             <Image
               src="/pricing.jpg"
               alt="pricing background"

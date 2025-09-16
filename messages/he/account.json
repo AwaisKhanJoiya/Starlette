@@ -1,0 +1,42 @@
+{
+  "title": "ברוכה הבאה דנה",
+  "subtitle": "הפרופיל וההזמנות שלך",
+  "sections": {
+    "myInformation": "המידע שלי",
+    "myBookings": "ההזמנות שלי",
+    "myClassPack": "חבילת השיעורים שלי",
+    "classHistory": "היסטוריית שיעורים",
+    "mySubscription": "המנוי שלי"
+  },
+  "buttons": {
+    "modify": "שינוי",
+    "cancellation": "ביטול"
+  },
+  "details": {
+    "subscriptionInfo": "4 שיעורים בשבוע - (נשארו 17)",
+    "classesPerWeek": "4 שיעורים / שבוע",
+    "subscriptionModification": "שינוי מנוי",
+    "subscriptionText": "טקסט דמה לורם איפסום – ניתן להחליף בתוכן מותאם אישית.",
+    "upcomingClasses": "שיעורים קרובים",
+    "pastClasses": "שיעורים קודמים",
+    "welcomePack": "חבילת קבלת פנים",
+    "happyJune": "יוני שמח!",
+    "classPackNote": "חבילות שיעורים תקפות ל־3 חודשים. ימי החסד על המפגשים שלך הופכים לכרטיס ביטול."
+  },
+  "table": {
+    "pack": "חבילה",
+    "purchaseDate": "תאריך רכישה",
+    "validUntil": "תקף עד",
+    "remaining": "שיעורים שנותרו",
+    "status": "סטטוס",
+    "classes": "שיעורים"
+  },
+  "status": {
+    "present": "נכח",
+    "missed": "הוחמץ",
+    "active": "פעיל",
+    "expired": "פג תוקף",
+    "waitingList": "רשימת המתנה"
+  },
+  "lastUpdated": "עודכן לאחרונה"
+}

@@ -1,0 +1,28 @@
+{
+  "title": "לוח זמנים",
+  "form": {
+    "heading": "צור חשבון",
+    "step1": {
+      "email": "אימייל",
+      "password": "סיסמה",
+      "login": "התחברות",
+      "createAccount": "צור חשבון"
+    },
+    "step2": {
+      "email": "אימייל",
+      "password": "סיסמה",
+      "confirmPassword": "אשר את הסיסמה שלך",
+      "continue": "המשך"
+    },
+    "step3": {
+      "lastName": "שם משפחה",
+      "firstName": "שם פרטי",
+      "dateOfBirth": "תאריך לידה",
+      "phoneNumber": "מספר טלפון",
+      "address": "כתובת",
+      "agreeTerms1": "קראתי ואני מקבל את ",
+      "agreeTerms2": " תנאי השימוש",
+      "submit": "צור את החשבון שלי"
+    }
+  }
+}
