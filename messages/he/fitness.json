@@ -1,22 +1,22 @@
 {
-  "today": "היום",
+  "today": "Today",
   "days": {
-    "sun": "יום א׳",
-    "mon": "יום ב׳",
-    "tue": "יום ג׳",
-    "wed": "יום ד׳",
-    "thu": "יום ה׳",
-    "fri": "יום ו׳",
-    "sat": "שבת"
+    "sun": "Sun.",
+    "mon": "Mon.",
+    "tue": "Tue.",
+    "wed": "Wed.",
+    "thu": "Thu.",
+    "fri": "Fri.",
+    "sat": "Sat."
   },
   "status": {
-    "available": "הזמן",
-    "full": "מלא",
-    "booked": "הוזמן"
+    "available": "BOOK",
+    "full": "FULL",
+    "booked": "BOOKED"
   },
-  "join_waiting_list": "הצטרפי לרשימת ההמתנה",
-  "show_details": "הצגת פרטים ▼",
-  "no_classes": "אין שיעורים מתוכננים ליום זה",
-  "try_another_date": "נסי לבחור תאריך אחר",
-  "only_spots_left": "נשארו {count, plural, one {מקום אחד} other {# מקומות}}"
+  "join_waiting_list": "JOIN THE WAITING LIST",
+  "show_details": "SHOW DETAILS ▼",
+  "no_classes": "No classes scheduled for this day",
+  "try_another_date": "Try selecting a different date",
+  "only_spots_left": "ONLY {count, plural, one {# SPOT LEFT} other {# SPOTS LEFT}}"
 }

@@ -4,19 +4,19 @@
       "one": {
         "price": "110₪",
         "headline": "1 cours",
-        "gift": "+ CADEAU : CHAUSSETTES",
+        "gift": "+1 PAIRE DE CHAUSSETTES OFFERTE",
         "button": "RÉSERVER"
       },
       "three": {
         "price": "300₪",
         "headline": "3 cours",
-        "gift": "+ CADEAU : CHAUSSETTES",
+        "gift": "+1 PAIRE DE CHAUSSETTES OFFERTE",
         "button": "RÉSERVER"
       }
     },
     "bullets": {
-      "one": "Notre offre de bienvenue est valable une seule fois, vous pouvez choisir l'une des deux options disponibles.",
-      "two": "Vous pouvez annuler votre réservation jusqu'à 24 heures avant le début du cours. Après cela, les crédits seront déduits (pour les packs de cours).",
+      "one": "Notre offre d'essai n'est valable qu'une seule fois ; vous pouvez sèlectionner l'une ou l'autre des deux formules.",
+      "two": "Vous pouvez annuler votre réservation jusqu'à 24h* avant le cours. Passè ce, le crédits sera décomptè. *pour les cours a la carte",
       "three": "Pour votre confort et votre sécurité, des chaussettes antidérapantes sont obligatoires pendant toutes les séances."
     }
   },
@@ -27,19 +27,19 @@
         "a": {
           "price": "110₪",
           "headline": "1 cours",
-          "gift": "+ CADEAU : PAIRE DE CHAUSSETTES ANTIDÉRAPANTES",
+          "gift": "+1 PAIRE DE CHAUSSETTES OFFERTE",
           "button": "RÉSERVER"
         },
         "b": {
           "price": "300₪",
           "headline": "3 cours",
-          "gift": "+ CADEAU : PAIRE DE CHAUSSETTES ANTIDÉRAPANTES",
+          "gift": "+1 PAIRE DE CHAUSSETTES OFFERTE",
           "button": "RÉSERVER"
         }
       },
       "bullets": {
-        "one": "Notre offre de bienvenue est valable une seule fois, vous pouvez choisir l'une des deux options disponibles.",
-        "two": "Vous pouvez annuler votre réservation jusqu'à 24 heures avant le début du cours. Après cela, les crédits seront déduits (pour les packs de cours).",
+        "one": "Notre offre d'essai n'est valable qu'une seule fois ; vous pouvez sèlectionner l'une ou l'autre des deux formules.",
+        "two": "Vous pouvez annuler votre réservation jusqu'à 24h* avant le cours. Passè ce, le crédits sera décomptè. *pour les cours a la carte",
         "three": "Pour votre confort et votre sécurité, des chaussettes antidérapantes sont obligatoires pendant toutes les séances."
       }
     },
@@ -61,7 +61,7 @@
       },
       "bullets": {
         "one": "Les packs de cours sont valables pour une durée limitée. Assurez-vous d'utiliser vos séances avant la date d'expiration.",
-        "two": "Vous pouvez annuler votre réservation jusqu'à 24 heures avant le début du cours. Après cela, les crédits seront déduits (pour les packs de cours).",
+        "two": "Vous pouvez annuler votre réservation jusqu'à 24h* avant le cours. Passè ce, le crédits sera décomptè. *pour les cours a la carte",
         "three": "Pour votre confort et votre sécurité, des chaussettes antidérapantes sont obligatoires pendant toutes les séances."
       }
     },
@@ -99,7 +99,7 @@
       },
       "bullets": {
         "one": "Les packs de cours sont valables pour une durée limitée. Assurez-vous d'utiliser vos séances avant la date d'expiration.",
-        "two": "Vous pouvez annuler votre réservation jusqu'à 24 heures avant le début du cours. Après cela, les crédits seront déduits (pour les packs de cours).",
+        "two": "Vous pouvez annuler votre réservation jusqu'à 24h* avant le cours. Passè ce, le crédits sera décomptè. *pour les cours a la carte",
         "three": "Pour votre confort et votre sécurité, des chaussettes antidérapantes sont obligatoires pendant toutes les séances."
       }
     }

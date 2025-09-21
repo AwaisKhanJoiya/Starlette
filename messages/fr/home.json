@@ -1,23 +1,23 @@
 {
   "hero": {
-    "title": "LAGREE, MAIS FAIS-LE COMME UNE STARLETTE.",
-    "body": "<b>Starlette</b> est le tout premier studio <b>MicroLagree</b> studio en Israël, <br></br> un espace réservé aux femmes en plein cœur de Tel Aviv. <br></br> <br></br> <b>Lagree</b> c’est la méthode ultime pour un <b>corps sculpté</b>. <br></br> <i> Contrôle. Fluidité. Force. Profondeur.</i> <b><br></br>Résultats concrets. Transformation durable. <br></br><br></br> Plus qu’un entraînement. Un univers.</b> <br></br><br></br> Pour celles qui s’entraînent comme des <i>stars</i> <br></br>  — et <i>brillent</i> comme elles. <br></br><br></br> <b>Ready to feel like a star?</b>",
+    "title": "Lagree, But make it like a Starlette.",
+    "body": "<b>Starlette</b> est le tout premier studio <b>MicroLagree</b> studio en Israël, <br></br> <i>un espace réservé aux femmes en plein cœur de Tel Aviv.</i> <br></br> <br></br> <b>Lagree</b> c’est la méthode ultime pour un <b>corps sculpté</b>. <br></br> <i> Contrôle. Fluidité. Force. Profondeur.</i> <b><br></br>Résultats concrets. Transformation durable. <br></br><br></br> Plus qu’un entraînement. Un univers.</b> <br></br><br></br> Pour celles qui s’entraînent comme des <i>stars</i> <br></br>  — et <i>brillent</i> comme elles. <br></br><br></br> <b>Ready to feel like a star?</b>",
     "cta": "DÉCOUVRIR STARLETTE"
   },
 
   "experience": {
     "title": "L'EXPÉRIENCE STARLETTE",
-    "body": "<b>RÉVÉLEZ LA MEILLEURE VERSION DE VOUS-MÊME.</b> <br></br> <b>STARLETTE</b> EST UN ESPACE DE <b>BIEN-ÊTRE</b> ET DE <b>PUISSANCE</b> — <br></br> CRÉÉ PAR UNE FEMME, POUR LES FEMMES. <br></br><br></br> LA MÉTHODE <b>LAGREE</b> EST ENFIN ARRIVÉE EN ISRAËL. <br></br> CHEZ <b>STARLETTE</b>, CHAQUE DÉTAIL COMPTE : <br></br> DES SÉANCES <b>SEMI-PRIVÉES</b> (MAX. 6 FEMMES) <br></br> POUR UN ENTRAÎNEMENT VÉRITABLEMENT <b>PERSONNALISÉ</b>, <br></br> DANS UN ENVIRONNEMENT INTIME ET INSPIRANT. <br></br><br></br> ICI, LA TRANSFORMATION VA AU-DELÀ DU PHYSIQUE — <br></br> ELLE EST ÉGALEMENT ÉMOTIONNELLE, MENTALE ET ÉNERGÉTIQUE. <br></br><br></br> <b>RAYONNANTE. PUISSANTE. INARRÊTABLE.</b> <br></br> BIENVENUE CHEZ STARLETTE"
+    "body": "<b>RÉVÉLEZ LA MEILLEURE VERSION DE VOUS-MÊME.</b> <br></br> <b>STARLETTE</b> EST UN ESPACE DE <b>BIEN-ÊTRE</b> ET DE <b>PUISSANCE</b> — <br></br> CRÉÉ PAR UNE FEMME, POUR LES FEMMES. <br></br><br></br> LA MÉTHODE <b>LAGREE</b> EST ENFIN ARRIVÉE EN ISRAËL. <br></br> CHEZ <b>STARLETTE</b>, CHAQUE DÉTAIL COMPTE : <br></br> DES SÉANCES <b>SEMI-PRIVÉES</b> (MAX. 6 FEMMES) <br></br> POUR UN ENTRAÎNEMENT VÉRITABLEMENT <b>PERSONNALISÉ</b>, <br></br> DANS UN ENVIRONNEMENT INTIME ET INSPIRANT. <br></br><br></br> ICI, LA TRANSFORMATION VA AU-DELÀ DU PHYSIQUE — <br></br> <i>ELLE EST ÉGALEMENT ÉMOTIONNELLE, MENTALE ET ÉNERGÉTIQUE.</i> <br></br><br></br> <b>RAYONNANTE. PUISSANTE. INARRÊTABLE. <br></br> BIENVENUE CHEZ STARLETTE.</b>"
   },
 
   "newway": {
-    "title": "UNE NOUVELLE FAÇON DE BOUGER",
-    "body": "<b>DÉCOUVREZ</b> UNE MÉTHODE INNOVANTE QUI REPousse LES LIMITES DU PILATES TRADITIONNEL. <br></br><br></br> SÉANCES <b>COURTES</b>, <b>INTENSES</b>, ET <b>À FAIBLE IMPACT</b>. SUR LE MICRO DELUXE, VOUS EXPÉRIMENTEREZ UNE TOUTE NOUVELLE FAÇON DE VOUS ENTRAÎNER. <br></br><br></br> MOUVEMENTS LENTS, CONTRÔLÉS ET CIBLÉS. FORCE ET CARDIO COMBINÉS — UN ENTRAÎNEMENT COMPLET AUX RÉSULTATS PROUVÉS. <br></br><br></br> POUR CELLES QUI AIMENT SE DÉFIER — AVEC ÉLÉGANCE, FORCE ET PUISSANCE."
+    "title": "UNE NOUVELLE FAÇON DE s'Entraîner",
+    "body": "DÉCOUVREZ LE <b>LAGREE :</b> <br></br> UNE MÉTHODE <b>INNOVANTE</b> QUI REPousse LES LIMITES DU PILATES. <br></br><br></br> des SÉANCES COURTES, INTENSES, ET sans IMPACT. SUR LE <b>MICRO DELUXE</b>, <br></br> VOUS VIVREZ UNE EXPÉRIENCE D'ENTRAÎNEMENT <b> INÉDITe</b>. <br></br><br></br> <i>des MOUVEMENTS LENTS, ET CIBLÉS.</i> <br></br> DU <b>RENFORCEMENT,</b> DU <b>CARDIO :</b> <br></br> UN ENTRAÎNEMENT <b>COMPLET</b> AUX <b>RÉSULTATS PROUVÉS.</b> <br></br><br></br> <b>POUR CELLES QUI AIMENT SE challenger. <br></br> AVEC ÉLÉGANCE, FORCE... ET PUISSANCE.</b>"
   },
   "buttons": {
     "theStudio": "LE STUDIO",
     "theMethod": "LA MÉTHODE",
-    "memberships": "ABONNEMENTS & FORFAITS"
+    "memberships": "TARIFS & ABONNEMENTS"
   },
   "pricing": {
     "globeText": "OFFRE D’ESSAI",
@@ -25,7 +25,7 @@
     "threeClassPrice": "300₪",
     "oneClassText": "1 cours",
     "threeClassText": "3 cours",
-    "gift": "+ CADEAU : PAIRE DE CHAUSSETTES ANTIDÉRAPANTES",
+    "gift": "+1 PAIRE DE CHAUSSETTES OFFERTE",
     "book": "RÉSERVER"
   },
   "bullets": {

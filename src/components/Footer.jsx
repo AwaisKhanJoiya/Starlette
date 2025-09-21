@@ -34,9 +34,9 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="flex flex-col items-center sm:items-end gap-1   text-center sm:text-right">
-        <p className="text-dark-gray text-xs sm:text-sm">{t("email")}</p>
-        <p className="text-dark-gray font-semibold italic text-xs sm:text-sm">
+      <div className="flex flex-col text-dark-gray  items-center sm:items-end gap-1   text-center sm:text-right">
+        <p className=" text-xs sm:text-sm">{t("email")}</p>
+        <p className="italic text-xs sm:text-sm">
           {t("rights")}
         </p>
       </div>

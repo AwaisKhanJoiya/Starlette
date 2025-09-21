@@ -49,19 +49,22 @@ export default function StarletteStudio() {
 
       <main className="font-arial text-light-gray">
         <section>
-          {/* HERO: keep design but make responsive */}
           <div
             className={`${
               locale === "he" && "rtl"
             } flex px-4 sm:px-6 lg:px-8 flex-col md:flex-row items-center md:items-end justify-between gap-8 py-12`}
           >
-            <div className="w-full md:w-1/2">
-              <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
+            <div
+              className={`w-full  ${
+                locale === "en" ? "md:w-1/2" : "md:w-full"
+              }`}
+            >
+              <h1 className="text-xl md:text-2xl  font-bold mb-6 md:mb-8 uppercase">
                 {t("hero.title")}
               </h1>
 
-              <div className="space-y-3 leading-relaxed font-arial">
-                <p className="text-sm uppercase">
+              <div className="space-y-3  font-arial">
+                <p className="text-sm uppercase ">
                   {t.rich("hero.body", {
                     b: (chunks) => <span className="font-bold">{chunks}</span>,
                     i: (chunks) => <span className="italic">{chunks}</span>,
@@ -118,7 +121,7 @@ export default function StarletteStudio() {
                 {t("experience.title")}
               </h1>
 
-              <div className="space-y-3 leading-relaxed font-arial">
+              <div className="space-y-3 font-arial">
                 <p className="text-sm uppercase">
                   {t.rich("experience.body", {
                     b: (chunks) => <span className="font-bold">{chunks}</span>,
@@ -134,7 +137,11 @@ export default function StarletteStudio() {
         {/* New way to move section */}
         <section className={`${locale === "he" && "rtl"} px-4 sm:px-6 lg:px-8`}>
           <div className="flex flex-col md:flex-row items-center justify-between  gap-8 pt-10">
-            <div className="w-full md:w-1/2  ">
+            <div
+              className={`w-full  ${
+                locale === "en" ? "md:w-1/2" : "md:w-full"
+              }`}
+            >
               <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
                 {t("newway.title")}
               </h1>

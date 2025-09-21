@@ -13,15 +13,15 @@ const DownloadApp = () => {
       {/* Left image (hidden on small screens) */}
       <div className="hidden md:flex w-1/2 justify-center relative">
         {/* Circle background */}
-        <div className="absolute w-96 h-96 bg-primary rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute w-80 h-80 bg-primary rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
         {/* Image on top */}
         <Image
-          src="/download-app.jpg"
+          src="/app-store.jpg"
           alt="starlette"
           width={200}
           height={100}
-          className="relative z-10"
+          className="relative z-10 border-8 border-[#000] rounded-2xl"
         />
       </div>
 
@@ -31,9 +31,10 @@ const DownloadApp = () => {
 
         <div className="leading-relaxed font-arial">
           <p className="text-sm tracking-wider">
-            {t("description.part1")}
-            <span className="font-semibold"> STARLETTE </span>
-            {t("description.part2")}
+            {t.rich("body", {
+              b: (chunks) => <span className="font-bold">{chunks}</span>,
+              br: () => <br />,
+            })}
           </p>
 
           {/* App Download Image */}
@@ -47,7 +48,7 @@ const DownloadApp = () => {
           </div>
 
           {/* Social Title */}
-          <p className="font-medium tracking-wider my-2 text-lg">
+          <p className="font-medium tracking-wider my-2 text-base">
             {t("socialTitle")}
           </p>
 

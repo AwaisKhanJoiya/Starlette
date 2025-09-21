@@ -282,8 +282,8 @@ const FitnessBookingCalendar = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between py-3 sm:py-4 border-gray-100 text-dark-gray">
-        <h1 className="text-lg sm:text-xl font-medium tracking-wide truncate">
+      <div className="flex items-center justify-between py-3 sm:py-4 border-gray-100 ">
+        <h1 className="text-lg sm:text-xl font-medium tracking-wide truncate text-dark-gray">
           {currentMonth}
         </h1>
 
@@ -329,12 +329,12 @@ const FitnessBookingCalendar = () => {
                     className="flex flex-col items-center cursor-pointer group min-w-[56px] sm:min-w-[64px]"
                     onClick={() => handleDateSelect(date)}
                   >
-                    <span className="text-xs sm:text-sm text-gray-500 mb-1 sm:mb-2 group-hover:text-gray-700 transition-colors">
+                    <span className="text-xs sm:text-sm text-[#000000] tracking-tight mb-1 sm:mb-2 group-hover:text-gray-700 transition-colors">
                       {formatDayName(date, index)}
                     </span>
 
                     <div
-                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-black flex items-center justify-center font-medium transition-all duration-200 ${
+                      className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full border text-[#000000] border-black flex items-center justify-center font-medium transition-all duration-200 ${
                         todayIs
                           ? "bg-primary shadow-sm"
                           : selectedIs
@@ -359,9 +359,10 @@ const FitnessBookingCalendar = () => {
       </div>
 
       {/* Selected Date Display */}
-      <div className="pb-3 sm:pb-4 border-b">
-        <h2 className="font-bold text-sm sm:text-base">
-          {selectedDate.toLocaleDateString(locale || "en-US", {
+      <div className="pb-3  border-b">
+        <h2 className="font-bold text-sm sm:text-base tracking-tight">
+          {selectedDate.toLocaleDateString("en-US", {
+            // {selectedDate.toLocaleDateString(locale || "en-US", {
             weekday: "long",
             month: "long",
             day: "numeric",
@@ -390,7 +391,9 @@ const FitnessBookingCalendar = () => {
                     <span className="font-bold text-sm sm:text-base mb-0.5">
                       {classItem.time}
                     </span>
-                    <span className="text-xs italic">{classItem.duration}</span>
+                    <span className="text-xs tracking-tight italic">
+                      {classItem.duration}
+                    </span>
                   </div>
 
                   {/* Title + Instructor (spans two cols on mobile if needed) */}

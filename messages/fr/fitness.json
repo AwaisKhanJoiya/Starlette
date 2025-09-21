@@ -1,22 +1,22 @@
 {
-  "today": "Aujourd'hui",
+  "today": "Today",
   "days": {
-    "sun": "Dim.",
-    "mon": "Lun.",
-    "tue": "Mar.",
-    "wed": "Mer.",
-    "thu": "Jeu.",
-    "fri": "Ven.",
-    "sat": "Sam."
+    "sun": "Sun.",
+    "mon": "Mon.",
+    "tue": "Tue.",
+    "wed": "Wed.",
+    "thu": "Thu.",
+    "fri": "Fri.",
+    "sat": "Sat."
   },
   "status": {
-    "available": "RÉSERVER",
-    "full": "COMPLET",
-    "booked": "RÉSERVÉ"
+    "available": "BOOK",
+    "full": "FULL",
+    "booked": "BOOKED"
   },
-  "join_waiting_list": "REJOINDRE LA LISTE D'ATTENTE",
-  "show_details": "VOIR LES DÉTAILS ▼",
-  "no_classes": "Aucun cours prévu pour ce jour",
-  "try_another_date": "Essayez de sélectionner une autre date",
-  "only_spots_left": "IL RESTE {count, plural, one {# PLACE} other {# PLACES}}"
+  "join_waiting_list": "JOIN THE WAITING LIST",
+  "show_details": "SHOW DETAILS ▼",
+  "no_classes": "No classes scheduled for this day",
+  "try_another_date": "Try selecting a different date",
+  "only_spots_left": "ONLY {count, plural, one {# SPOT LEFT} other {# SPOTS LEFT}}"
 }

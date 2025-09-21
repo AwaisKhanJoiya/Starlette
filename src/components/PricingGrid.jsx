@@ -189,12 +189,12 @@ export default function PricingGrid({
         <div
           className={`${
             locale === "he" && "rtl"
-          } relative z-10 mt-6 text-xs md:text-sm text-dark-gray px-4 sm:px-6 lg:px-8`}
+          } relative z-10 mt-6 text-xs md:text-sm  px-4 sm:ps-6 lg:ps-8 ` }
         >
           {bullets.map((b, i) => (
             <div key={i} className="mb-1 flex items-start">
               <span className="text-dark-gray font-bold mr-2">★</span>
-              <span>{b}</span>
+              <span className="text-light-gray">{b}</span>
             </div>
           ))}
         </div>
