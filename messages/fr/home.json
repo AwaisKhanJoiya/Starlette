@@ -20,6 +20,7 @@
     "memberships": "ABONNEMENTS & FORFAITS"
   },
   "pricing": {
+    "globeText": "OFFRE D’ESSAI",
     "oneClassPrice": "110₪",
     "threeClassPrice": "300₪",
     "oneClassText": "1 cours",

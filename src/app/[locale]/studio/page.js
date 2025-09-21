@@ -10,8 +10,8 @@ const StudioPage = () => {
     <>
       <div
         className={`${
-          locale === "he" ? "rtl" : ""
-        }  min-h-screen bg-white text-dark-gray px-4 sm:px-6 lg:px-8 py-12`}
+          locale === "he" && "rtl"
+        } min-h-screen bg-white text-dark-gray px-4 sm:px-6 lg:px-8 py-12`}
       >
         <div>
           {/* Header Section */}

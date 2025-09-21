@@ -26,7 +26,7 @@ const BannerVideo = () => {
 
   return (
     <div className="relative w-full mx-auto">
-      <div className="relative w-full aspect-video overflow-hidden bg-black max-h-screen">
+      <div className="relative w-full aspect-video overflow-hidden bg-black h-[calc(100vh-42px)]">
         <video
           ref={videoRef}
           src={VIDEO_URL}

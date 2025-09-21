@@ -9,9 +9,8 @@ import PricingGrid from "@/components/PricingGrid";
 import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
 import DownloadApp from "@/components/DownloadApp";
 
-export default function StarletteStudio({ params }) {
+export default function StarletteStudio() {
   const locale = useLocale();
-
   const t = useTranslations("home");
   const tPackages = useTranslations("packages");
   const cards = [
@@ -44,17 +43,16 @@ export default function StarletteStudio({ params }) {
           <div className="relative w-full">
             <BannerVideo />
           </div>
+          <AnnoucementBar />
         </div>
       </main>
 
-      <main className="font-arial text-dark-gray">
+      <main className="font-arial text-light-gray">
         <section>
-          <AnnoucementBar />
-
           {/* HERO: keep design but make responsive */}
           <div
             className={`${
-              locale === "he" ? "rtl" : ""
+              locale === "he" && "rtl"
             } flex px-4 sm:px-6 lg:px-8 flex-col md:flex-row items-center md:items-end justify-between gap-8 py-12`}
           >
             <div className="w-full md:w-1/2">
@@ -134,13 +132,11 @@ export default function StarletteStudio({ params }) {
         </section>
 
         {/* New way to move section */}
-        <section
-          className={`${locale === "he" ? "rtl" : ""}  px-4 sm:px-6 lg:px-8 `}
-        >
+        <section className={`${locale === "he" && "rtl"} px-4 sm:px-6 lg:px-8`}>
           <div className="flex flex-col md:flex-row items-center justify-between  gap-8 pt-10">
             <div className="w-full md:w-1/2  ">
               <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
-                {t("hero.title")}
+                {t("newway.title")}
               </h1>
 
               <div className="space-y-3 leading-relaxed font-arial">

@@ -6,12 +6,12 @@
   },
   "experience": {
     "title": "THE STARLETTE EXPERIENCE",
-    "body": "<b>REVEAL THE BEST VERSION OF YOURSELF.</b> <br></br> <b>STARLETTE</b> IS A SPACE OF <b>WELLNESS</b> AND <b>POWER</b> — <br></br> CREATED BY A WOMAN, FOR WOMEN. <br></br><br></br> THE <b>LAGREE</b> METHOD HAS FINALLY ARRIVED IN ISRAEL. <br></br> AT <b>STARLETTE</b>, EVERY DETAIL MATTERS: <br></br> <b>SEMI-PRIVATE</b> SESSIONS (MAX. 6 WOMEN) <br></br> FOR A TRULY <b>PERSONALIZED</b> COACHING, <br></br> IN AN INTIMATE AND INSPIRING ENVIRONMENT. <br></br><br></br> HERE, TRANSFORMATION GOES BEYOND THE PHYSICAL— <br></br> IT'S EMOTIONAL, MENTAL, AND ENERGETIC TOO. <br></br><br></br> <b>RADIANT. POWERFUL. UNSTOPPABLE.</b> <br></br> WELCOME TO STARLETTE"
+    "body": "<b>REVEAL THE BEST VERSION OF YOURSELF.</b> <br></br> <b>STARLETTE</b> IS A SPACE OF <b>WELLNESS</b> AND <b>POWER</b> — <br></br> <i>CREATED BY A WOMAN, FOR WOMEN.</i> <br></br><br></br> THE <b>LAGREE</b> METHOD HAS FINALLY ARRIVED IN ISRAEL. <br></br> AT <b>STARLETTE</b>, EVERY DETAIL MATTERS: <br></br> <b>SEMI-PRIVATE</b> SESSIONS (MAX. 5 WOMEN) <br></br> FOR A TRULY <b>PERSONALIZED</b> COACHING, <br></br> IN AN <i>INTIMATE</i> AND <i>INSPIRING</i> ENVIRONMENT. <br></br><br></br> HERE, <b>TRANSFORMATION</b> GOES BEYOND THE PHYSICAL— <br></br> IT'S <i>EMOTIONAL, MENTAL</i>, AND <i>ENERGETIC</i> TOO. <br></br><br></br> <b>RADIANT. POWERFUL. UNSTOPPABLE. <br></br> WELCOME TO STARLETTE</b>"
   },
 
   "newway": {
     "title": "A NEW WAY TO MOVE",
-    "body": "<b>DISCOVER</b> AN INNOVATIVE METHOD THAT PUSHES THE LIMITS OF TRADITIONAL PILATES. <br></br><br></br> <b>SHORT</b>, <b>INTENSE</b>, <b>LOW-IMPACT</b> SESSIONS. ON THE MICRO DELUXE YOU'LL EXPERIENCE A WHOLE NEW WAY TO TRAIN. <br></br><br></br> SLOW, CONTROLLED, AND TARGETED MOVEMENTS. STRENGTH AND CARDIO COMBINED — A COMPLETE WORKOUT WITH PROVEN RESULTS. <br></br><br></br> FOR THOSE WHO LOVE TO CHALLENGE THEMSELVES — WITH ELEGANCE, STRENGTH, AND POWER."
+    "body": "Discover <b>Lagree </b>: an INNOVATIVE method that pushes the LIMITS of traditional Pilates.<br></br><br></br><b> Short, intense</b>, and <b>low-impact</b> sessions.<br></br>On the <b>Micro deluxe</b>, you'll experience a whole <b>new </b>way to train.<br></br><br></br><i> Slow, controlled</i>, and <i>targeted movements.</i><br></br><b> Strength</b> and <b>cardio</b> combined —<br></br>a <b>complete</b> workout with <b>proven results</b>.<br></br><br></br><b> For those who love to challenge themselves — </b><br></br><b>With elegance, strength... and power.</b>"
   },
 
   "buttons": {
@@ -20,6 +20,7 @@
     "memberships": "MEMBERSHIPS & PACKS"
   },
   "pricing": {
+    "globeText": "WELCOME PACK",
     "oneClassPrice": "110₪",
     "threeClassPrice": "300₪",
     "oneClassText": "1 class",
