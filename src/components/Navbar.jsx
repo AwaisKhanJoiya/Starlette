@@ -44,9 +44,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`${
-        isLanding ? "fixed" : "sticky"
-      } rtl top-0 z-50 w-full transition-colors duration-300`}
+      className={`${isLanding ? "fixed" : "sticky"}
+      ${
+        locale === "he" ? "rtl" : ""
+      } top-0 z-50 w-full transition-colors duration-300`}
     >
       <div
         className={`relative px-4 sm:px-6 lg:px-8 flex min-h-16 items-center justify-between ${

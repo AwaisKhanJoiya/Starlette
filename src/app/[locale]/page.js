@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import AnnoucementBar from "@/components/AnnoucementBar";
 import BannerVideo from "@/components/BannerVideo";
 import Image from "next/image";
@@ -10,6 +10,8 @@ import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
 import DownloadApp from "@/components/DownloadApp";
 
 export default function StarletteStudio({ params }) {
+  const locale = useLocale();
+
   const t = useTranslations("home");
   const tPackages = useTranslations("packages");
   const cards = [
@@ -50,7 +52,11 @@ export default function StarletteStudio({ params }) {
           <AnnoucementBar />
 
           {/* HERO: keep design but make responsive */}
-          <div className="rtl flex px-4 sm:px-6 lg:px-8 flex-col md:flex-row items-center md:items-end justify-between gap-8 py-12">
+          <div
+            className={`${
+              locale === "he" ? "rtl" : ""
+            } flex px-4 sm:px-6 lg:px-8 flex-col md:flex-row items-center md:items-end justify-between gap-8 py-12`}
+          >
             <div className="w-full md:w-1/2">
               <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
                 {t("hero.title")}
@@ -128,7 +134,9 @@ export default function StarletteStudio({ params }) {
         </section>
 
         {/* New way to move section */}
-        <section className="rtl px-4 sm:px-6 lg:px-8 ">
+        <section
+          className={`${locale === "he" ? "rtl" : ""}  px-4 sm:px-6 lg:px-8 `}
+        >
           <div className="flex flex-col md:flex-row items-center justify-between  gap-8 pt-10">
             <div className="w-full md:w-1/2  ">
               <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">

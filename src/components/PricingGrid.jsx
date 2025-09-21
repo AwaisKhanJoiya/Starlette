@@ -1,9 +1,9 @@
-// components/PricingGrid.jsx
 "use client";
 
 import React, { useMemo } from "react";
 import Image from "next/image";
 import PricingCard from "./PricingCard";
+import { useLocale } from "next-intl";
 // import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
 // import DownloadApp from "@/components/DownloadApp";
 
@@ -15,6 +15,7 @@ export default function PricingGrid({
   bullets = [],
   packageName,
 }) {
+  const locale = useLocale();                 
   const gridClass = useMemo(() => {
     if (columns === 2)
       return "flex flex-col md:flex-row justify-center items-center gap-8";
@@ -67,7 +68,11 @@ export default function PricingGrid({
       </div>
 
       {bullets && bullets.length > 0 && (
-        <div className="rtl relative z-10 mt-6 text-xs md:text-sm text-dark-gray px-4 sm:px-6 lg:px-8">
+        <div
+          className={`${
+            locale === "he" ? "rtl" : ""
+          }  relative z-10 mt-6 text-xs md:text-sm text-dark-gray px-4 sm:px-6 lg:px-8`}
+        >
           {bullets.map((b, i) => (
             <div key={i} className="mb-1 flex items-start">
               <span className="text-dark-gray font-bold mr-2">★</span>

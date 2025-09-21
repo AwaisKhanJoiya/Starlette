@@ -2,13 +2,18 @@
 
 import Image from "next/image";
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const Footer = () => {
+    const locale = useLocale();
   const t = useTranslations("footer");
 
   return (
-    <div className="rtl px-4 sm:px-6 lg:px-8  py-4 font-arial mt-10">
+    <div
+      className={`${
+        locale === "he" ? "rtl" : ""
+      }  px-4 sm:px-6 lg:px-8  py-4 font-arial mt-10`}
+    >
       {/* Top section */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
         {/* Navigation Links */}

@@ -1,4 +1,4 @@
-/* [dir="rtl"] {
+[dir="rtl"] {
   direction: rtl;
   unicode-bidi: embed;
 }
@@ -6,4 +6,4 @@
 [dir="rtl"] body,
 [dir="rtl"] .rtl {
   text-align: right;
-} */
+}
