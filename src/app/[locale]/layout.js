@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import "../globals.css";
-// import "../rtl.css";
 import getRequestConfig from "@/i18n/request";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -24,13 +23,8 @@ export default async function LocaleLayout({ children, params }) {
   // Enable static rendering
   setRequestLocale(locale);
 
-  // Set dir to rtl for Hebrew, otherwise ltr
-  // const dir = locale === "he" ? "rtl" : "ltr";
   return (
-    <html
-      lang={locale}
-      // dir={dir}
-    >
+    <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="mx-auto bg-background">

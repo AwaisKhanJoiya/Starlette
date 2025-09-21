@@ -1,13 +1,18 @@
 "use client";
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const StudioPage = () => {
+  const locale = useLocale();
   const t = useTranslations("studio");
 
   return (
     <>
-      <div className="rtl min-h-screen bg-white text-dark-gray px-4 sm:px-6 lg:px-8 py-12">
+      <div
+        className={`${
+          locale === "he" && "rtl"
+        } min-h-screen bg-white text-dark-gray px-4 sm:px-6 lg:px-8 py-12`}
+      >
         <div>
           {/* Header Section */}
           <div className="mb-16">

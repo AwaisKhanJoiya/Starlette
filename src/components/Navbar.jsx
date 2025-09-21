@@ -44,9 +44,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`${
-        isLanding ? "fixed" : "sticky"
-      } rtl top-0 z-50 w-full transition-colors duration-300`}
+      className={`${isLanding ? "fixed" : "sticky"} ${
+        locale === "he" && "rtl"
+      } top-0 z-50 w-full transition-colors duration-300`}
     >
       <div
         className={`relative px-4 sm:px-6 lg:px-8 flex min-h-16 items-center justify-between ${
@@ -88,7 +88,17 @@ export default function Navbar() {
             </Button>
 
             {isLangOpen && (
-              <div className="absolute  right-0 top-full mt-2 z-50 w-24  text-dark-gray rounded-lg shadow-lg ring-1 ring-black/5 overflow-hidden">
+              <div
+                className={`absolute ${
+                  locale === "he" ? "right-0" : "left-2"
+                } w-24 rounded-md top-10 border backdrop-blur-lg z-40 transform transition-transform duration-300
+              ${
+                scrolled || !isLanding
+                  ? "border-gray-300 bg-white "
+                  : "border-white bg-transparent"
+              }`}
+              >
+                {/* <div className="absolute  right-0 top-full mt-2 z-50 w-24  text-dark-gray rounded-lg shadow-lg ring-1 ring-black/5 overflow-hidden"> */}
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -100,15 +110,14 @@ export default function Navbar() {
                       }`;
                     }}
                     className={`w-full text-left px-3 py-2 text-sm ${
-                      locale === lang.code
-                        ? "font-semibold bg-gray-100"
-                        : "hover:bg-gray-50"
+                      scrolled || !isLanding ? "text-gray-700" : "text-white"
                     }`}
                   >
                     {lang.label}
                   </button>
                 ))}
               </div>
+              // </div>
             )}
           </div>
           {/* )} */}
