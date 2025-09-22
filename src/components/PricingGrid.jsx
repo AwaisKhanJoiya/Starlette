@@ -101,7 +101,7 @@ export default function PricingGrid({
                   return (
                     <span
                       key={i}
-                      className="text-dark-gray font-bold text-sm md:text-base"
+                      className="text-dark-gray  font-bold text-sm md:text-base"
                       style={{
                         transform: `rotate(${
                           i *

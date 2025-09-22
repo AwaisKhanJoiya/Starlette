@@ -3,8 +3,10 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { useLocale } from "next-intl";
 
 const PricingCard = React.memo(function PricingCard({ data = {} }) {
+  const locale = useLocale();
   const router = useRouter();
   const {
     slug = "",
@@ -41,12 +43,20 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
           {star}
         </div>
         {headline && (
-          <div className="text-lg md:text-xl trea font-bold mb-1 tracking-widest text-[#787C7C]">
+          <div
+            dir={locale === "he" ? "rtl" : undefined}
+            className="text-lg md:text-xl trea font-bold mb-1 tracking-widest text-[#787C7C]"
+          >
             {headline}
           </div>
         )}
         {gift && (
-          <p className="text-[10px] font-bold mb-6 text-[#787C7C]">{gift}</p>
+          <p
+            dir={locale === "he" ? "rtl" : undefined}
+            className="text-[10px] font-bold mb-6 text-[#787C7C]"
+          >
+            {gift}
+          </p>
         )}
       </div>
 

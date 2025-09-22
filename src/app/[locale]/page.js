@@ -59,7 +59,10 @@ export default function StarletteStudio() {
                 locale === "en" ? "md:w-1/2" : "md:w-full"
               }`}
             >
-              <h1 className="text-xl md:text-2xl  font-bold mb-6 md:mb-8 uppercase">
+              <h1
+                dir={locale === "he" ? "ltr" : undefined}
+                className="text-xl md:text-2xl  font-bold mb-6 md:mb-8 uppercase"
+              >
                 {t("hero.title")}
               </h1>
 
@@ -89,7 +92,7 @@ export default function StarletteStudio() {
                 </div>
 
                 {/* CTA - using shadcn Button to keep consistent UI */}
-                <Button className="rounded-full px-6 md:px-8 py-3 text-sm w-full md:w-auto">
+                <Button className="rounded-full uppercase px-6 md:px-8 py-3 text-sm w-full md:w-auto">
                   {t("hero.cta")}
                 </Button>
               </div>
@@ -122,7 +125,10 @@ export default function StarletteStudio() {
               </h1>
 
               <div className="space-y-3 font-arial">
-                <p className="text-sm uppercase">
+                <p
+                  dir={locale === "he" ? "rtl" : undefined}
+                  className="text-sm uppercase"
+                >
                   {t.rich("experience.body", {
                     b: (chunks) => <span className="font-bold">{chunks}</span>,
                     i: (chunks) => <span className="italic">{chunks}</span>,
@@ -156,21 +162,21 @@ export default function StarletteStudio() {
                 </p>
               </div>
             </div>
-            <div className="w-full md:w-1/2 flex flex-col items-center md:items-end space-y-8">
+            <div className="w-full md:w-1/2 flex flex-col items-center  md:items-end space-y-8">
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className="md:w-72 w-full rounded-full px-6 py-3 text-sm">
+                <Button className="md:w-72 w-full rounded-full uppercase px-6 py-3 text-sm">
                   {t("buttons.theStudio")}
                 </Button>
               </div>
 
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className="md:w-72 w-full rounded-full px-6 py-3 text-sm">
+                <Button className="md:w-72 w-full rounded-full uppercase px-6 py-3 text-sm">
                   {t("buttons.theMethod")}
                 </Button>
               </div>
 
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className=" md:w-72 w-full rounded-full px-6 py-3 text-sm">
+                <Button className=" md:w-72 w-full rounded-full uppercase px-6 py-3 text-sm">
                   {t("buttons.memberships")}
                 </Button>
               </div>

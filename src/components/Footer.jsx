@@ -27,7 +27,10 @@ const Footer = () => {
         </ul>
 
         {/* Contact */}
-        <div className="flex items-center gap-2">
+        <div
+          dir={locale === "he" ? "ltr" : "rtl"}
+          className="flex items-center gap-2"
+        >
           <Image src="/whatsapp-icon.png" alt="phone" width={24} height={24} />
           <span className="text-dark-gray font-bold">{t("contact")}</span>
         </div>
@@ -36,9 +39,7 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="flex flex-col text-dark-gray  items-center sm:items-end gap-1   text-center sm:text-right">
         <p className=" text-xs sm:text-sm">{t("email")}</p>
-        <p className="italic text-xs sm:text-sm">
-          {t("rights")}
-        </p>
+        <p className="italic text-xs sm:text-sm">{t("rights")}</p>
       </div>
     </div>
   );
