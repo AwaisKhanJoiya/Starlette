@@ -1,5 +1,4 @@
 import dbConnect from "@/lib/mongodb";
-import { validateToken } from "@/lib/auth";
 import Coach from "@/models/Coach";
 import { NextResponse } from "next/server";
 import { adminMiddleware } from "@/middleware/admin";
@@ -47,7 +46,7 @@ export async function PUT(request, { params }) {
 
     const coachId = params.id;
     const body = await request.json();
-    
+
     // Don't allow password updates through this endpoint
     if (body.password) {
       delete body.password;
