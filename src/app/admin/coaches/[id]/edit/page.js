@@ -240,8 +240,8 @@ export default function EditCoach() {
 
           <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
             <p className="text-sm text-gray-700">
-              <strong>Note:</strong> To change the coach's password, please use
-              the password reset functionality.
+              <strong>Note:</strong> To change the coach&apos;s password, please
+              use the password reset functionality.
             </p>
           </div>
 
