@@ -83,23 +83,50 @@ const PricingPage = () => {
     },
   ];
 
+  let spaces = 0;
+
   return (
     <div className="bg-white">
       <div className="px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-stretch md:h-[640px] border-b border-dashed border-black">
         <div className="w-full md:w-1/2  relative z-10 flex flex-col justify-center p-6 md:p-12">
           <div className="mt-10 md:mt-0">
-            <h1 className="text-xl md:text-2xl font-bold mb-10 md:mb-20 tracking-wider text-center">
+            <h1 className="text-xl md:text-4xl font-bold mb-10 md:mb-20 tracking-wider text-center">
               PACKS & MEMBERSHIPS
             </h1>
 
             {/* Pricing cards: horizontally scroll on mobile, grid on md+ */}
             <div className="flex md:grid md:grid-cols-3 gap-2 overflow-x-auto md:overflow-visible pb-2">
               {/* Card 1 */}
-              <div className="flex-shrink-0 w-[120px] md:w-full ">
-                <div className="relative">
-                  <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase">
-                    WELCOME 
-                  </h2>
+              <div className="flex-shrink-0 w-12 md:w-32">
+                <div className="relative flex justify-center items-center">
+                  {/* <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase"> */}
+                  <div className="circular-text-container">
+                    <div className="circular-text">
+                      {tPackages("packCats.welcome")
+                        .split("")
+                        .map((char, i) => {
+                          if (char === " ") spaces += 1;
+                          return (
+                            <span
+                              key={i}
+                              className="text-dark-gray  font-bold text-sm md:text-base"
+                              style={{
+                                transform: `rotate(${
+                                  i *
+                                    (360 /
+                                      tPackages("packCats.welcome").length -
+                                      (18 + spaces * 1)) -
+                                  50
+                                }deg)`,
+                              }}
+                            >
+                              {char}
+                            </span>
+                          );
+                        })}
+                    </div>
+                  </div>
+                  {/* </h2> */}
                   <Image
                     src="/welcome-pack.jpg"
                     alt="welcome pack"
@@ -111,7 +138,7 @@ const PricingPage = () => {
               </div>
 
               {/* Card 2 */}
-              <div className="flex-shrink-0 w-[120px] md:w-full">
+              <div className="flex-shrink-0 w-12 md:w-32">
                 <div className="relative">
                   <h2 className="text-sm md:text-lg font-bold text-dark-gray text-center uppercase">
                     CLASS PACKS
@@ -127,7 +154,7 @@ const PricingPage = () => {
               </div>
 
               {/* Card 3 */}
-              <div className="flex-shrink-0 w-[120px]  md:w-full">
+              <div className="flex-shrink-0 w-12 md:w-32">
                 <div className="relative">
                   <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase">
                     MEMBERSHIPS

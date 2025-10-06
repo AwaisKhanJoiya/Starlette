@@ -1,0 +1,6 @@
+<!-- This SVG is a placeholder for user profile image -->
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="50" fill="#e2e8f0"/>
+  <circle cx="50" cy="40" r="20" fill="#94a3b8"/>
+  <path d="M20 85 Q50 60 80 85" stroke="#94a3b8" stroke-width="20" fill="none"/>
+</svg>

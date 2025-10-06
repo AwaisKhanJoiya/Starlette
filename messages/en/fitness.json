@@ -12,11 +12,29 @@
   "status": {
     "available": "BOOK",
     "full": "FULL",
-    "booked": "BOOKED"
+    "booked": "BOOKED",
+    "waitlisted": "WAITLISTED",
+    "cancel": "CANCEL",
+    "cancel_waitlist": "LEAVE WAITLIST",
+    "completed": "COMPLETED",
+    "cancelled": "CANCELLED",
+    "confirmed": "CONFIRMED"
   },
   "join_waiting_list": "JOIN THE WAITING LIST",
-  "show_details": "SHOW DETAILS ▼",
+  "show_details": "SHOW DETAILS",
+  "hide_details": "HIDE DETAILS",
   "no_classes": "No classes scheduled for this day",
   "try_another_date": "Try selecting a different date",
-  "only_spots_left": "ONLY {count, plural, one {# SPOT LEFT} other {# SPOTS LEFT}}"
+  "only_spots_left": "ONLY {count, plural, one {# SPOT LEFT} other {# SPOTS LEFT}}",
+  "class_details": "Class Details",
+  "no_description": "No description available for this class.",
+  "location": "Location",
+  "studio": "Studio",
+  "languages": "Languages",
+  "equipment": "Equipment",
+  "error": {
+    "loading_classes": "Failed to load classes",
+    "try_again": "Please try again later",
+    "refresh": "Refresh"
+  }
 }

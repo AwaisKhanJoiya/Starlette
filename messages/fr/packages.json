@@ -20,6 +20,11 @@
       "three": "Pour votre confort et votre sécurité, des chaussettes antidérapantes sont obligatoires pendant toutes les séances."
     }
   },
+  "packCats": {
+    "welcome": "OFFRE D’ESSAI",
+    "classPacks": "A LA CARTE",
+    "memberships": "ABONEMENTS"
+  },
 
   "pricingPage": {
     "section1": {

@@ -1,14 +1,16 @@
 "use client";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import { useAuth } from "@/hooks/useAuth";
+import LoadingButton from "@/components/ui/LoadingButton";
 
 export default function LoginPage() {
   const t = useTranslations("auth");
-  const router = useRouter();
+  const { login, error: authError, isLoading } = useAuth();
+  const [formError, setFormError] = useState(null);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -21,15 +23,26 @@ export default function LoginPage() {
       ...prev,
       [name]: value,
     }));
+    // Clear error when user starts typing again
+    if (formError) setFormError(null);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Login with:", formData);
-    // Add login logic here
-
-    // Redirect to schedule after login
-    // router.push("./schedule");
+    
+    // Basic validation
+    if (!formData.email || !formData.password) {
+      setFormError(t("loginRequiredFields"));
+      return;
+    }
+    
+    try {
+      await login(formData);
+      // Redirect happens in the useAuth hook after successful login
+    } catch (err) {
+      // Error handling is done in the useAuth hook
+      console.error("Login error:", err);
+    }
   };
 
   return (
@@ -73,15 +86,23 @@ export default function LoginPage() {
             />
 
             <div className="mt-8 space-y-4">
-              <button
+              {formError && (
+                <div className="text-red-500 text-sm mb-4">{formError}</div>
+              )}
+              {authError && (
+                <div className="text-red-500 text-sm mb-4">{authError}</div>
+              )}
+              
+              <LoadingButton
                 type="submit"
-                className="w-full px-4 py-2.5 text-sm text-dark-gray bg-primary rounded-xl uppercase tracking-wider focus:outline-none relative"
-              >
-                {t("login")}
-                <span className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                  ➝
-                </span>
-              </button>
+                text={t("login")}
+                loadingText={t("loggingIn")}
+                isLoading={isLoading}
+                disabled={isLoading}
+                className="w-full"
+                icon="➝"
+                variant="primary"
+              />
 
               <div className="flex items-center my-4">
                 <div className="flex-grow h-px bg-[#000000]"></div>

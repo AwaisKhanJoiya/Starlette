@@ -1,0 +1,21 @@
+{
+  "my_classes": "My Classes",
+  "show_history": "Show past classes",
+  "with": "with",
+  "no_classes": "You haven't booked any classes yet",
+  "book_classes_message": "Visit the schedule to book your next class",
+  "refresh": "Refresh",
+  "cancel_class": "Cancel",
+  "show_details": "Show details",
+  "hide_details": "Hide details",
+  "class_description": "About this class",
+  "no_description": "No description available",
+  "capacity": "Capacity",
+  "languages": "Languages",
+  "status": {
+    "confirmed": "Confirmed",
+    "waitlisted": "On waitlist",
+    "cancelled": "Cancelled",
+    "completed": "Completed"
+  }
+}
