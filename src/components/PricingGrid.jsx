@@ -30,59 +30,6 @@ export default function PricingGrid({
 
   return (
     <section>
-      <style jsx>{`
-        .circular-text-container {
-          position: relative;
-          // width: 150px;
-          // height: 150px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-right: 20px;
-        }
-
-        .circular-text {
-          position: absolute;
-          // width: 100%;
-          // height: 100%;
-          top: -20px;
-          border-radius: 50%;
-          // animation: rotate 25s linear infinite;
-        }
-
-        .circular-text span {
-          position: absolute;
-          top: 0;
-          left: 50%;
-          transform-origin: 0 75px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          font-weight: bold;
-        }
-
-        .circular-image {
-          position: relative;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 110px;
-          height: 110px;
-          border-radius: 50%;
-          overflow: hidden;
-          z-index: 2;
-        }
-
-        @keyframes rotate {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-      `}</style>
-
       <div className="px-4 lg:px-8 md:flex hidden flex-col md:flex-row justify-between items-end mb-8 pt-12">
         <div className="flex-1">
           <div className="space-y-4">
@@ -189,7 +136,7 @@ export default function PricingGrid({
         <div
           className={`${
             locale === "he" && "rtl"
-          } relative z-10 mt-6 text-xs md:text-sm  px-4 sm:ps-6 lg:ps-8 ` }
+          } relative z-10 mt-6 text-xs md:text-sm  px-4 sm:ps-6 lg:ps-8 `}
         >
           {bullets.map((b, i) => (
             <div key={i} className="mb-1 flex items-start">

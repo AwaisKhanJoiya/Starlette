@@ -5,6 +5,7 @@ import { Plus, Edit, Menu, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import LoadingButton from "@/components/ui/LoadingButton";
 
 export default function AccountDashboard() {
   const t = useTranslations("account");
@@ -129,11 +130,14 @@ export default function AccountDashboard() {
                     {/* Action / status (right aligned) */}
                     <div className="flex justify-end">
                       {i < 2 ? (
-                        <button className="text-xs  px-6 py-1 rounded-md bg-primary font-medium transition">
-                          {t("buttons.modify")}
-                        </button>
+                        <LoadingButton
+                          text={t("buttons.modify")}
+                          loadingText={t("loading")}
+                          className="text-xs px-6 py-1 rounded-md font-medium"
+                          variant="primary"
+                        />
                       ) : (
-                        <button className="text-xs  px-6 py-1 rounded-md bg-custome-gray font-medium transition">
+                        <button className="text-xs px-6 py-1 rounded-md bg-custome-gray font-medium transition">
                           {t("status.waitingList")}
                         </button>
                       )}
@@ -286,12 +290,18 @@ export default function AccountDashboard() {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="text-xs bg-primary text-dark-gray font-medium px-10 py-3 rounded-md">
-                    {t("buttons.modify")}
-                  </button>
-                  <button className="text-xs bg-primary text-dark-gray font-medium px-10 py-3 rounded-md">
-                    {t("buttons.cancellation")}
-                  </button>
+                  <LoadingButton
+                    text={t("buttons.modify")}
+                    loadingText={t("loading")}
+                    className="text-xs px-10 py-3 rounded-md font-medium"
+                    variant="primary"
+                  />
+                  <LoadingButton
+                    text={t("buttons.cancellation")}
+                    loadingText={t("processing")}
+                    className="text-xs px-10 py-3 rounded-md font-medium"
+                    variant="primary"
+                  />
                 </div>
               </div>
             </div>

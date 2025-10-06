@@ -1,0 +1,34 @@
+{
+  "today": "Hoy",
+  "days": {
+    "sun": "Dom.",
+    "mon": "Lun.",
+    "tue": "Mar.",
+    "wed": "Mié.",
+    "thu": "Jue.",
+    "fri": "Vie.",
+    "sat": "Sáb."
+  },
+  "status": {
+    "available": "RESERVAR",
+    "full": "COMPLETO",
+    "booked": "RESERVADO"
+  },
+  "join_waiting_list": "UNIRSE A LA LISTA DE ESPERA",
+  "show_details": "MOSTRAR DETALLES",
+  "hide_details": "OCULTAR DETALLES",
+  "no_classes": "No hay clases programadas para este día",
+  "try_another_date": "Intente seleccionar otra fecha",
+  "only_spots_left": "SÓLO {count, plural, one {# PLAZA DISPONIBLE} other {# PLAZAS DISPONIBLES}}",
+  "class_details": "Detalles de la clase",
+  "no_description": "No hay descripción disponible para esta clase.",
+  "location": "Ubicación",
+  "studio": "Estudio",
+  "languages": "Idiomas",
+  "equipment": "Equipamiento",
+  "error": {
+    "loading_classes": "Error al cargar las clases",
+    "try_again": "Por favor, inténtelo de nuevo más tarde",
+    "refresh": "Actualizar"
+  }
+}

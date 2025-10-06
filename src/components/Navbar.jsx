@@ -4,13 +4,15 @@ import { AlignLeft, User } from "lucide-react";
 import { usePathname, useRouter, Link } from "../i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
+import UserProfileDropdown from "@/components/ui/UserProfileDropdown";
+import { useAuthContext } from "@/context/AuthContext";
 
 export default function Navbar() {
   const locale = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const { user } = useAuthContext();
   const t = useTranslations("nav");
   const pathname = usePathname();
   const router = useRouter();
@@ -121,11 +123,16 @@ export default function Navbar() {
             )}
           </div>
           {/* )} */}
-          <Link href={"/login"}>
-            <Button>Login</Button>
-          </Link>
+          
+          {user ? (
+            <UserProfileDropdown />
+          ) : (
+            <Link href={"/login"}>
+              <Button>Login</Button>
+            </Link>
+          )}
 
-          {isAccount && (
+          {isAccount && !user && (
             <div className="flex items-center">
               <User size={28} className={iconColorClass} />
             </div>

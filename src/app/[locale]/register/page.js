@@ -1,17 +1,19 @@
 "use client";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import Link from "next/link";
+import { useAuth } from "@/hooks/useAuth";
+import { useMultiStepForm } from "@/hooks/useMultiStepForm";
+import LoadingButton from "@/components/ui/LoadingButton";
 
 export default function RegisterPage() {
   const t = useTranslations("auth");
-  const router = useRouter();
-  const [step, setStep] = useState(1);
-
-  const [formData, setFormData] = useState({
+  const { register, error: authError, isLoading } = useAuth();
+  const [formError, setFormError] = useState(null);
+  
+  const initialFormData = {
     firstName: "",
     lastName: "",
     email: "",
@@ -23,41 +25,91 @@ export default function RegisterPage() {
     zipCode: "",
     country: "",
     agreedToTerms: false,
-  });
+  };
+  
+  const {
+    currentStep,
+    formData,
+    nextStep,
+    prevStep,
+    handleChange,
+    isLastStep
+  } = useMultiStepForm(3, initialFormData);
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+  // Form validation for each step
+  const validateStep = (stepNumber) => {
+    setFormError(null);
+    
+    switch(stepNumber) {
+      case 1:
+        if (!formData.firstName || !formData.lastName || !formData.email || !formData.password) {
+          setFormError(t("registerRequiredFields"));
+          return false;
+        }
+        if (formData.password !== formData.confirmPassword) {
+          setFormError(t("passwordsDoNotMatch"));
+          return false;
+        }
+        if (formData.password.length < 8) {
+          setFormError(t("passwordTooShort"));
+          return false;
+        }
+        return true;
+        
+      case 2:
+        if (!formData.phoneNumber || !formData.address || !formData.city || !formData.zipCode || !formData.country) {
+          setFormError(t("registerAddressRequired"));
+          return false;
+        }
+        return true;
+        
+      case 3:
+        if (!formData.agreedToTerms) {
+          setFormError(t("termsRequired"));
+          return false;
+        }
+        return true;
+        
+      default:
+        return true;
+    }
   };
 
   const handleNextStep = (e) => {
     e.preventDefault();
-    setStep(step + 1);
+    if (validateStep(currentStep)) {
+      nextStep();
+    }
   };
 
   const handlePrevStep = () => {
-    setStep(step - 1);
+    prevStep();
+    setFormError(null); // Clear any errors when going back
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Registration data:", formData);
-    // Add registration logic here
-
-    // Redirect to schedule after registration
-    // router.push("./schedule");
+    
+    if (!validateStep(currentStep)) {
+      return;
+    }
+    
+    try {
+      await register(formData);
+      // Redirect happens in the useAuth hook after successful registration
+    } catch (err) {
+      // Error handling is done in the useAuth hook
+      console.error("Registration error:", err);
+    }
   };
 
   return (
     <>
-      <div className="min-h-screen  text-dark-gray flex flex-col items-center justify-center py-12 px-4">
-        <div className="w-full max-w-md  p-6">
+      <div className="min-h-screen bg-white text-dark-gray flex flex-col items-center justify-center py-12 px-4 mt-16">
+        <div className="w-full max-w-md bg-white border-y border-dashed border-dark-gray p-6">
           <div className="mb-8 flex flex-col items-center">
             <h2 className="text-xs font-medium text-dark-gray mb-2">
-              {t("registrationStep")} {step}/3
+              {t("registrationStep")} {currentStep}/3
             </h2>
             <div className="flex items-center justify-center mb-2">
               <Image
@@ -70,203 +122,192 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          {step === 1 && (
+          {formError && (
+            <div className="text-red-500 text-sm mb-4">{formError}</div>
+          )}
+          {authError && (
+            <div className="text-red-500 text-sm mb-4">{authError}</div>
+          )}
+          
+          {currentStep === 1 && (
             <form onSubmit={handleNextStep} className="space-y-6">
               <input
                 type="text"
                 name="firstName"
                 placeholder={t("firstName")}
                 value={formData.firstName}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-
+              
               <input
                 type="text"
                 name="lastName"
                 placeholder={t("lastName")}
                 value={formData.lastName}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-
+              
               <input
                 type="email"
                 name="email"
                 placeholder={t("email")}
                 value={formData.email}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-
+              
               <input
                 type="password"
                 name="password"
                 placeholder={t("password")}
                 value={formData.password}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-
+              
               <input
                 type="password"
                 name="confirmPassword"
                 placeholder={t("confirmPassword")}
                 value={formData.confirmPassword}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
 
-              <button
+              <LoadingButton
                 type="submit"
-                className="w-full px-4 py-2.5 text-sm text-dark-gray bg-primary rounded-xl uppercase tracking-wider focus:outline-none relative"
-              >
-                {t("next")}
-                <span className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                  ➝
-                </span>
-              </button>
+                text={t("next")}
+                loadingText={t("loading")}
+                isLoading={isLoading}
+                disabled={isLoading}
+                className="w-full"
+                icon="➝"
+                variant="primary"
+              />
 
               <div className="text-center mt-4">
-                <Link
-                  href="./login"
-                  className="text-sm underline text-dark-gray"
-                >
+                <Link href="./login" className="text-sm underline text-dark-gray">
                   {t("alreadyHaveAccount")}
                 </Link>
               </div>
             </form>
           )}
 
-          {step === 2 && (
+          {currentStep === 2 && (
             <form onSubmit={handleNextStep} className="space-y-6">
               <input
                 type="tel"
                 name="phoneNumber"
                 placeholder={t("phoneNumber")}
                 value={formData.phoneNumber}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-
+              
               <input
                 type="text"
                 name="address"
                 placeholder={t("address")}
                 value={formData.address}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-
+              
               <input
                 type="text"
                 name="city"
                 placeholder={t("city")}
                 value={formData.city}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-
+              
               <input
                 type="text"
                 name="zipCode"
                 placeholder={t("zipCode")}
                 value={formData.zipCode}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-
+              
               <input
                 type="text"
                 name="country"
                 placeholder={t("country")}
                 value={formData.country}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2.5 border border-black border-dashed rounded-xl text-sm placeholder-[#000000] italic font-medium tracking-wider focus:outline-none focus:border-pink-300"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
 
               <div className="flex justify-between space-x-4">
-                <button
+                <LoadingButton
                   type="button"
                   onClick={handlePrevStep}
-                  className="w-1/2 px-4 py-2.5 text-sm text-dark-gray bg-gray-200 rounded-xl uppercase tracking-wider focus:outline-none relative"
-                >
-                  <span className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                    ←
-                  </span>
-                  {t("back")}
-                </button>
-
-                <button
+                  text={t("back")}
+                  className="w-1/2"
+                  variant="gray"
+                  icon="←"
+                />
+                
+                <LoadingButton
                   type="submit"
-                  className="w-1/2 px-4 py-2.5 text-sm text-dark-gray bg-primary rounded-xl uppercase tracking-wider focus:outline-none relative"
-                >
-                  {t("next")}
-                  <span className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                    ➝
-                  </span>
-                </button>
+                  text={t("next")}
+                  loadingText={t("loading")}
+                  isLoading={isLoading}
+                  disabled={isLoading}
+                  className="w-1/2"
+                  variant="primary"
+                  icon="➝"
+                />
               </div>
             </form>
           )}
 
-          {step === 3 && (
+          {currentStep === 3 && (
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="border border-black border-dashed rounded-xl p-4">
+              <div className="border border-dark-gray border-dashed rounded-xl p-4">
                 <div className="flex items-start mb-4">
                   <input
                     type="checkbox"
                     id="terms"
                     name="agreedToTerms"
                     checked={formData.agreedToTerms}
-                    onChange={handleInputChange}
-                    required
+                    onChange={handleChange}
                     className="mr-2 mt-1"
                   />
                   <label htmlFor="terms" className="text-sm">
                     {t("termsAgreement")}
                   </label>
                 </div>
-
+                
                 <div className="h-40 overflow-auto border border-gray-300 p-2 text-xs">
                   {t("termsContent")}
                 </div>
               </div>
 
               <div className="flex justify-between space-x-4">
-                <button
+                <LoadingButton
                   type="button"
                   onClick={handlePrevStep}
-                  className="w-1/2 px-4 py-2.5 text-sm text-dark-gray bg-gray-200 rounded-xl uppercase tracking-wider focus:outline-none relative"
-                >
-                  <span className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                    ←
-                  </span>
-                  {t("back")}
-                </button>
-
-                <button
+                  text={t("back")}
+                  className="w-1/2"
+                  variant="gray"
+                  icon="←"
+                />
+                
+                <LoadingButton
                   type="submit"
-                  disabled={!formData.agreedToTerms}
-                  className={`w-1/2 px-4 py-2.5 text-sm text-dark-gray ${
-                    formData.agreedToTerms ? "bg-primary" : "bg-gray-300"
-                  } rounded-xl uppercase tracking-wider focus:outline-none relative`}
-                >
-                  {t("register")}
-                  <span className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                    ➝
-                  </span>
-                </button>
+                  text={t("register")}
+                  loadingText={t("registering")}
+                  isLoading={isLoading}
+                  disabled={isLoading || !formData.agreedToTerms}
+                  className="w-1/2"
+                  variant={formData.agreedToTerms ? "primary" : "gray"}
+                  icon="➝"
+                />
               </div>
             </form>
           )}

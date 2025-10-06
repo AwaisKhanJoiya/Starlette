@@ -20,7 +20,11 @@
       "three": "For your comfort and safety, grip socks are required during all sessions."
     }
   },
-
+  "packCats": {
+    "welcome": "Welcome Pack",
+    "classPacks": "Class Packs",
+    "memberships": "Memberships"
+  },
   "pricingPage": {
     "section1": {
       "cards": {
