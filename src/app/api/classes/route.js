@@ -1,6 +1,22 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Class from "@/models/Class";
+import Coach from "@/models/Coach"; // Import Coach model to ensure it's registered
+import { extractTokenFromHeader, verifyToken } from "@/lib/tokens";
+
+// Helper function to get user ID from token (if available)
+async function getUserIdFromToken(request) {
+  try {
+    const token = extractTokenFromHeader(request);
+    if (!token) return null;
+
+    const decoded = verifyToken(token);
+    return decoded?.id || null;
+  } catch (error) {
+    console.warn("Error extracting user ID from token:", error.message);
+    return null;
+  }
+}
 
 // GET classes for the booking calendar (public endpoint)
 export async function GET(request) {
@@ -138,25 +154,29 @@ export async function GET(request) {
       return virtualDate;
     }
 
+    // Get user ID from Bearer token if available
+    const userId = await getUserIdFromToken(request);
+
     // Transform class data to the format expected by the calendar
     const formattedClasses = classes.map((classItem) => {
       // Calculate class status based on enrolledStudents
       const confirmedStudents = (classItem.enrolledStudents || []).filter(
-        (student) => student.status === "confirmed"
+        (student) =>
+          student.status === "confirmed" &&
+          new Date(student.instanceDate).toISOString().split("T")[0] === date
       ).length;
 
-      const capacity = classItem.capacity || 10;
+      const capacity = classItem.capacity || 5;
       const spotsLeft = capacity - confirmedStudents;
 
+      // Default status based on capacity
       let status = "available";
       if (spotsLeft <= 0) {
         status = "full";
       }
 
-      // Format class duration
-      const startTime = new Date(`2000-01-01T${classItem.startTime}`);
-      const endTime = new Date(`2000-01-01T${classItem.endTime}`);
-      const durationMinutes = Math.round((endTime - startTime) / (1000 * 60));
+      // Format class duration - use fixed 50 minutes if endTime is not available
+      const durationMinutes = 50;
 
       // For recurring classes, adjust the date while keeping the same time
       const isRecurring =
@@ -190,24 +210,49 @@ export async function GET(request) {
         ? createRecurringInstance(classItem, date)
         : new Date(classItem.startDate);
 
+      // Check if user is already enrolled in this class on this date
+      if (userId) {
+        const userEnrollment = (classItem.enrolledStudents || []).find(
+          (student) => {
+            // Handle cases where studentId might be an ObjectId
+            const studentIdStr = student.studentId?.toString();
+            if (!studentIdStr) return false;
+
+            // For one-time classes, just check the student ID
+            if (!isRecurring) {
+              return studentIdStr === userId;
+            }
+
+            // For recurring classes, check both student ID and instance date
+            return studentIdStr === userId && student.instanceId === instanceId;
+          }
+        );
+
+        // If user is enrolled, set status to their enrollment status
+        if (userEnrollment) {
+          status = userEnrollment.status; // "confirmed" or "waitlisted"
+        }
+      }
+
       return {
         id: instanceId,
         time: classItem.startTime,
         duration: `${durationMinutes} min`,
         type: classItem.classType?.toUpperCase() || "CLASS",
         instructor: classItem.coach?.name || "Instructor",
-        status: status,
+        status: status, // Will be "available", "full", "confirmed", or "waitlisted"
         capacity: `${confirmedStudents}/${capacity}`,
         date: displayDate,
         virtualDate: virtualStartTime, // Include the calculated date with correct time
         location: classItem.location || "Studio",
         waitlistEnabled: classItem.waitlistEnabled || false,
-        languages: classItem.languages || ["English"],
+        languages: classItem.languages || ["Hebrew"], // Default to Hebrew
         description: classItem.description || "",
         title: classItem.title,
         recurrenceType: classItem.recurrenceType || "onetime",
         isRecurringInstance: isRecurring,
         originalClassId: classItem._id.toString(), // Store the original class ID for booking
+        spotsLeft: spotsLeft, // Include the number of spots left for easier frontend handling
       };
     });
 
@@ -217,6 +262,7 @@ export async function GET(request) {
     return NextResponse.json({
       classes: filteredClasses,
       requestedDate: date,
+      userSpecific: !!userId, // Flag indicating if user-specific status was applied
     });
   } catch (error) {
     console.error("Get public classes error:", error);

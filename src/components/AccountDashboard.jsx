@@ -1,13 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
-import { Plus, Edit, Menu, Settings } from "lucide-react";
+import React, { useCallback, useEffect, useState } from "react";
+import { Plus, Edit } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import LoadingButton from "@/components/ui/LoadingButton";
+import { useUserAuthContext } from "@/context/UserAuthContext";
 
 export default function AccountDashboard() {
+  const {
+    user: { user },
+    getAuthToken,
+  } = useUserAuthContext();
   const t = useTranslations("account");
   const sections = [
     "myInformation",
@@ -16,8 +21,42 @@ export default function AccountDashboard() {
     "classHistory",
     "mySubscription",
   ];
+  const [bookedClasses, setBookedClasses] = useState([]); // Array of enrolled classes
+  const [loading, setLoading] = useState(false); // Loading state
+  const [userLoading, setUserLoading] = useState(false); // User profile loading state
+  const [open, setOpen] = useState(1); // Default open to "myBookings" section (index 1)
 
-  const [open, setOpen] = useState(null); // index of open section or null
+  // Fetch user's enrolled classes
+  const fetchEnrolledClasses = useCallback(async () => {
+    const token = getAuthToken();
+    if (!token) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch("/api/classes/enrolled", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Store the classes array directly
+        setBookedClasses(data.classes || []);
+      } else {
+        console.error("Failed to fetch enrolled classes:", response.status);
+      }
+    } catch (error) {
+      console.error("Error fetching enrolled classes:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [getAuthToken]);
+
+  useEffect(() => {
+    // Fetch enrolled classes on component mount
+    fetchEnrolledClasses();
+  }, [fetchEnrolledClasses]);
   const toggle = (index) => setOpen(open === index ? null : index);
 
   // Header component — no bg by default; selected gets bg-primary + text-white
@@ -57,29 +96,45 @@ export default function AccountDashboard() {
   const renderDetail = (key) => {
     switch (key) {
       case "myInformation":
-        // Now shows contact info (originally under myBookings)
+        // Now shows contact info from the user context
         return (
           <div className="py-6">
-            <div className="space-y-2 font-arial">
-              <div className="flex justify-between items-center">
-                <span className="uppercase tracking-wider">Dana Toledano</span>
-                <Edit className="w-4 h-4 text-gray-600" />
+            {!user ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="animate-spin h-6 w-6 border-2 border-solid border-primary border-r-transparent rounded-full mr-2"></div>
+                <p>{t("loading")}</p>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="">+33 7 45 35 30 50</span>
-                <Edit className="w-4 h-4 text-gray-600" />
+            ) : (
+              <div className="space-y-2 font-arial">
+                {/* Full name */}
+                <div className="flex justify-between items-center">
+                  <span className="uppercase tracking-wider">{user.name}</span>
+                  <Edit className="w-4 h-4 text-gray-600 cursor-pointer" />
+                </div>
+
+                {/* Phone number */}
+                <div className="flex justify-between items-center">
+                  <span>{user.phoneNumber || t("noPhoneProvided")}</span>
+                  <Edit className="w-4 h-4 text-gray-600 cursor-pointer" />
+                </div>
+
+                {/* Birthday */}
+                <div className="flex justify-between items-center">
+                  <span className="tracking-wider">
+                    {user.dateOfBirth
+                      ? new Date(user.dateOfBirth).toLocaleDateString()
+                      : t("noBirthdayProvided")}
+                  </span>
+                  <Edit className="w-4 h-4 text-gray-600 cursor-pointer" />
+                </div>
+
+                {/* Email */}
+                <div className="flex justify-between items-center">
+                  <span className="uppercase tracking-wider">{user.email}</span>
+                  <Edit className="w-4 h-4 text-gray-600 cursor-pointer" />
+                </div>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="tracking-wider">01/02/1998</span>
-                <Edit className="w-4 h-4 text-gray-600" />
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="uppercase tracking-wider">
-                  danatoledano@hotmail.fr
-                </span>
-                <Edit className="w-4 h-4 text-gray-600" />
-              </div>
-            </div>
+            )}
           </div>
         );
 
@@ -92,58 +147,78 @@ export default function AccountDashboard() {
               </h3>
 
               {/* container with single top & bottom borders and single divider between rows */}
-              <div className="border-t border-b border-[#000000] divide-y divide-[#000000]  overflow-hidden">
-                {[
-                  ["31/05/2025", "08:00", "FULL BODY", "Dana", "3/5"],
-                  ["06/05/2025", "10:00", "FULL BODY", "Dana", "5/5"],
-                  ["22/05/2025", "08:00", "FULL BODY", "Dana", "5/5"],
-                ].map((row, i) => (
-                  <div
-                    key={i}
-                    className="py-3 px-4 grid grid-cols-2 md:grid-cols-6 gap-3 items-center"
-                  >
-                    {/* Date */}
-                    <div className="text-xs md:text-sm text-dark-gray font-medium">
-                      {row[0]}
-                    </div>
-
-                    {/* Time */}
-                    <div className="text-xs md:text-sm text-dark-gray font-medium">
-                      {row[1]}
-                    </div>
-
-                    {/* Class name */}
-                    <div className="text-xs md:text-sm text-dark-gray font-medium">
-                      {row[2]}
-                    </div>
-
-                    {/* Instructor */}
-                    <div className="text-xs md:text-sm text-dark-gray font-medium">
-                      {row[3]}
-                    </div>
-
-                    {/* Slot / capacity */}
-                    <div className="text-xs md:text-sm text-dark-gray">
-                      {row[4]}
-                    </div>
-
-                    {/* Action / status (right aligned) */}
-                    <div className="flex justify-end">
-                      {i < 2 ? (
-                        <LoadingButton
-                          text={t("buttons.modify")}
-                          loadingText={t("loading")}
-                          className="text-xs px-6 py-1 rounded-md font-medium"
-                          variant="primary"
-                        />
-                      ) : (
-                        <button className="text-xs px-6 py-1 rounded-md bg-custome-gray font-medium transition">
-                          {t("status.waitingList")}
-                        </button>
-                      )}
-                    </div>
+              <div className="border-t border-b border-[#000000] divide-y divide-[#000000] overflow-hidden">
+                {loading ? (
+                  <div className="py-8 text-center">
+                    <div className="inline-block animate-spin rounded-full h-6 w-6 border-2 border-solid border-primary border-r-transparent"></div>
+                    <p className="mt-2 text-sm">{t("loading")}</p>
                   </div>
-                ))}
+                ) : bookedClasses.length === 0 ? (
+                  <div className="py-6 text-center text-gray-500">
+                    {t("noBookedClasses")}
+                  </div>
+                ) : (
+                  bookedClasses.map((classItem, i) => {
+                    // Format the date nicely
+                    const classDate = new Date(classItem.date);
+                    const formattedDate = classDate.toLocaleDateString(
+                      "default",
+                      {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      }
+                    );
+
+                    return (
+                      <div
+                        key={classItem.id}
+                        className="py-3 px-4 grid grid-cols-2 md:grid-cols-6 gap-3 items-center"
+                      >
+                        {/* Date */}
+                        <div className="text-xs md:text-sm text-dark-gray font-medium">
+                          {formattedDate}
+                        </div>
+
+                        {/* Time */}
+                        <div className="text-xs md:text-sm text-dark-gray font-medium">
+                          {classItem.time}
+                        </div>
+
+                        {/* Class name */}
+                        <div className="text-xs md:text-sm text-dark-gray font-medium">
+                          {classItem.title || classItem.type}
+                        </div>
+
+                        {/* Instructor */}
+                        <div className="text-xs md:text-sm text-dark-gray font-medium">
+                          {classItem.instructor}
+                        </div>
+
+                        {/* Slot / capacity */}
+                        <div className="text-xs md:text-sm text-dark-gray">
+                          {classItem.capacity}
+                        </div>
+
+                        {/* Action / status (right aligned) */}
+                        <div className="flex justify-end">
+                          {classItem.enrollmentStatus === "confirmed" ? (
+                            <LoadingButton
+                              text={t("buttons.modify")}
+                              loadingText={t("loading")}
+                              className="text-xs px-6 py-1 rounded-md font-medium"
+                              variant="primary"
+                            />
+                          ) : (
+                            <button className="text-xs px-6 py-1 rounded-md bg-custome-gray font-medium transition">
+                              {t("status.waitingList")}
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
               </div>
             </div>
           </div>
@@ -323,7 +398,7 @@ export default function AccountDashboard() {
   return (
     <div>
       <h1 className="text-xl font-bold tracking-wider mb-4 text-dark-gray">
-        {t("title")}
+        {user ? `${t("welcome")} ${user.name?.toUpperCase()}` : t("title")}
       </h1>
 
       <div className="space-y-0">

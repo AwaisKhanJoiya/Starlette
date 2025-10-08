@@ -31,20 +31,31 @@ export async function GET(request) {
     await dbConnect();
 
     // Get user ID from token
-    const userId = decodedToken.userId;
+    const userId = decodedToken.id;
 
     // Get query parameters
     const { searchParams } = new URL(request.url);
     const includeHistory = searchParams.get("includeHistory") === "true";
-    
+    const now = new Date();
+
     // Base query to find classes where the user is enrolled
     const query = {
       "enrolledStudents.studentId": userId,
     };
-    
+
     // If not including history, only get upcoming classes
     if (!includeHistory) {
-      query.startDate = { $gte: new Date() };
+      // For one-time classes, check the startDate
+      // For recurring classes with instanceDate, check the instanceDate
+      query["$or"] = [
+        {
+          recurrenceType: "onetime",
+          startDate: { $gte: now },
+        },
+        {
+          "enrolledStudents.instanceDate": { $gte: now },
+        },
+      ];
     }
 
     // Find classes where the user is enrolled
@@ -52,53 +63,79 @@ export async function GET(request) {
       .sort({ startDate: 1, startTime: 1 })
       .populate("coach", "name")
       .lean();
-
     // Format the classes for the response
-    const enrolledClasses = classes.map(classItem => {
-      // Find the user's enrollment status
-      const userEnrollment = classItem.enrolledStudents.find(
-        student => student.studentId.toString() === userId
+    const enrolledClasses = [];
+
+    // Process each class and create entries for each of the user's enrollments
+    classes.forEach((classItem) => {
+      // Find all enrollments for this user in this class
+      const userEnrollments = classItem.enrolledStudents.filter(
+        (student) => student.studentId.toString() === userId
       );
 
-      // Calculate class status based on enrolledStudents
-      const confirmedStudents = (classItem.enrolledStudents || []).filter(
-        student => student.status === "confirmed"
-      ).length;
+      // For each enrollment, create a class instance in the response
+      userEnrollments.forEach((enrollment) => {
+        // Calculate class status based on enrolledStudents
+        const confirmedStudents = (classItem.enrolledStudents || []).filter(
+          (student) => student.status === "confirmed"
+        ).length;
 
-      const capacity = classItem.capacity || 10;
-      const spotsLeft = capacity - confirmedStudents;
+        const capacity = classItem.capacity || 5;
+        const spotsLeft = capacity - confirmedStudents;
 
-      let classStatus = "available";
-      if (spotsLeft <= 0) {
-        classStatus = "full";
-      }
+        let classStatus = "available";
+        if (spotsLeft <= 0) {
+          classStatus = "full";
+        }
 
-      // Format class duration
-      const startTime = new Date(`2000-01-01T${classItem.startTime}`);
-      const endTime = new Date(`2000-01-01T${classItem.endTime}`);
-      const durationMinutes = Math.round((endTime - startTime) / (1000 * 60));
+        // Format class duration - use fixed 50 minutes
+        const durationMinutes = 50;
 
-      // Check if class is in the past
-      const isPast = new Date(classItem.startDate) < new Date();
+        // Determine the correct date to display
+        let displayDate;
+        let isPast;
 
-      return {
-        id: classItem._id.toString(),
-        time: classItem.startTime,
-        duration: `${durationMinutes} min`,
-        type: classItem.classType?.toUpperCase() || "CLASS",
-        instructor: classItem.coach?.name || "Instructor",
-        status: classStatus,
-        capacity: `${confirmedStudents}/${capacity}`,
-        date: new Date(classItem.startDate).toISOString().split("T")[0],
-        location: classItem.location || "Studio",
-        waitlistEnabled: classItem.waitlistEnabled || false,
-        languages: classItem.languages || ["English"],
-        description: classItem.description || "",
-        title: classItem.title,
-        enrollmentStatus: userEnrollment?.status || "confirmed",
-        isPast,
-        canCancel: !isPast && userEnrollment?.status !== "cancelled"
-      };
+        // For recurring classes with instance data
+        if (enrollment.instanceDate) {
+          displayDate = new Date(enrollment.instanceDate);
+          isPast = displayDate < new Date();
+        }
+        // For one-time classes
+        else {
+          displayDate = new Date(classItem.startDate);
+          isPast = displayDate < new Date();
+        }
+
+        enrolledClasses.push({
+          id: enrollment.instanceId || classItem._id.toString(),
+          time: classItem.startTime,
+          duration: `${durationMinutes} min`,
+          type: classItem.classType?.toUpperCase() || "CLASS",
+          instructor: classItem.coach?.name || "Instructor",
+          status: classStatus,
+          capacity: `${confirmedStudents}/${capacity}`,
+          date: displayDate.toISOString().split("T")[0],
+          location: classItem.location || "Studio",
+          waitlistEnabled: classItem.waitlistEnabled || false,
+          languages: classItem.languages || ["Hebrew"],
+          description: classItem.description || "",
+          title: classItem.title,
+          enrollmentStatus: enrollment.status || "confirmed",
+          isPast,
+          canCancel: !isPast && enrollment.status !== "cancelled",
+          instanceId: enrollment.instanceId,
+        });
+      });
+    });
+
+    // Sort by date and time
+    enrolledClasses.sort((a, b) => {
+      // First by date
+      const dateComparison = new Date(a.date) - new Date(b.date);
+      if (dateComparison !== 0) return dateComparison;
+
+      // Then by time if on the same date
+      return a.time.localeCompare(b.time);
     });
 
     return NextResponse.json({

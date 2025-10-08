@@ -16,12 +16,13 @@ export default function NewClass() {
     coach: "", // Changed from instructor to coach
     location: "",
     classType: "", // New field for class type
-    languages: [], // New field for languages
+    languages: ["Hebrew"], // Default language is Hebrew
     startDate: "",
-    endDate: "",
+    endDate: "", // Optional now
     startTime: "",
-    endTime: "",
-    capacity: 20,
+    // endTime removed as it's now calculated automatically (50 min duration)
+    duration: 50, // All classes are 50 minutes
+    capacity: 5, // Maximum capacity is 5
     recurrenceType: "onetime", // 'onetime', 'daily', 'weekly', 'monthly'
     recurrenceDays: [],
     waitlistEnabled: false, // New field for waitlist

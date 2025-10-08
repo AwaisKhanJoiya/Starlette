@@ -154,9 +154,8 @@ export default function ClassForm({ initialData, onSubmit, isSubmitting }) {
       newErrors.startTime = "Start time is required";
     }
 
-    if (!formData.endTime) {
-      newErrors.endTime = "End time is required";
-    }
+    // End time is no longer required - it will be calculated automatically
+    // based on the 50-minute duration
 
     if (formData.capacity <= 0) {
       newErrors.capacity = "Capacity must be greater than zero";
@@ -324,12 +323,16 @@ export default function ClassForm({ initialData, onSubmit, isSubmitting }) {
                 value={formData.capacity}
                 onChange={handleChange}
                 min="1"
+                max="5"
                 className={`pl-10 pr-4 py-2 w-full border ${
                   errors.capacity ? "border-red-500" : "border-gray-300"
                 } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary`}
-                placeholder="Enter maximum capacity"
+                placeholder="Enter maximum capacity (max 5)"
               />
             </div>
+            <span className="text-xs text-gray-500 block mt-1">
+              Maximum allowed capacity is 5 students
+            </span>
             {errors.capacity && (
               <p className="mt-1 text-sm text-red-500">{errors.capacity}</p>
             )}
@@ -358,72 +361,57 @@ export default function ClassForm({ initialData, onSubmit, isSubmitting }) {
             )}
           </div>
 
+          {/* {formData.recurrenceType !== "onetime" && (
+            <div className="relative">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                End Date{" "}
+                <span className="text-xs text-gray-500">
+                  (optional for recurring classes)
+                </span>
+              </label>
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <input
+                  type="date"
+                  name="endDate"
+                  value={formData.endDate}
+                  onChange={handleChange}
+                  className={`pl-10 pr-4 py-2 w-full border ${
+                    errors.endDate ? "border-red-500" : "border-gray-300"
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary`}
+                />
+              </div>
+              {errors.endDate && (
+                <p className="mt-1 text-sm text-red-500">{errors.endDate}</p>
+              )}
+              <p className="mt-1 text-xs text-gray-500">
+                If no end date is provided, the class will recur indefinitely
+              </p>
+            </div>
+          )} */}
+
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              End Date{" "}
-              <span className="text-xs text-gray-500">
-                (for recurring classes)
-              </span>
+              Start Time*
             </label>
             <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
-                type="date"
-                name="endDate"
-                value={formData.endDate}
+                type="time"
+                name="startTime"
+                value={formData.startTime}
                 onChange={handleChange}
                 className={`pl-10 pr-4 py-2 w-full border ${
-                  errors.endDate ? "border-red-500" : "border-gray-300"
+                  errors.startTime ? "border-red-500" : "border-gray-300"
                 } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary`}
               />
             </div>
-            {errors.endDate && (
-              <p className="mt-1 text-sm text-red-500">{errors.endDate}</p>
+            {errors.startTime && (
+              <p className="mt-1 text-sm text-red-500">{errors.startTime}</p>
             )}
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Start Time*
-              </label>
-              <div className="relative">
-                <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                <input
-                  type="time"
-                  name="startTime"
-                  value={formData.startTime}
-                  onChange={handleChange}
-                  className={`pl-10 pr-4 py-2 w-full border ${
-                    errors.startTime ? "border-red-500" : "border-gray-300"
-                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary`}
-                />
-              </div>
-              {errors.startTime && (
-                <p className="mt-1 text-sm text-red-500">{errors.startTime}</p>
-              )}
-            </div>
-
-            <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                End Time*
-              </label>
-              <div className="relative">
-                <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                <input
-                  type="time"
-                  name="endTime"
-                  value={formData.endTime}
-                  onChange={handleChange}
-                  className={`pl-10 pr-4 py-2 w-full border ${
-                    errors.endTime ? "border-red-500" : "border-gray-300"
-                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary`}
-                />
-              </div>
-              {errors.endTime && (
-                <p className="mt-1 text-sm text-red-500">{errors.endTime}</p>
-              )}
-            </div>
+            <p className="mt-2 text-sm text-gray-500">
+              All classes are 50 minutes in duration
+            </p>
           </div>
         </div>
       </div>
@@ -539,7 +527,7 @@ export default function ClassForm({ initialData, onSubmit, isSubmitting }) {
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {["English", "French", "Spanish"].map((lang) => (
+              {["Hebrew", "English", "French"].map((lang) => (
                 <button
                   key={lang}
                   type="button"
