@@ -29,13 +29,19 @@ const classSchema = new mongoose.Schema(
     },
     endTime: {
       type: String,
-      required: [true, "End time is required"],
       trim: true,
+      // Now optional, will be calculated as startTime + 50 minutes if not provided
+    },
+    duration: {
+      type: Number,
+      default: 50, // Default duration is 50 minutes
     },
     capacity: {
       type: Number,
       required: [true, "Capacity is required"],
       min: [1, "Capacity must be at least 1"],
+      max: [5, "Maximum capacity is 5 students"],
+      default: 5,
     },
     // Add new fields
     classType: {
@@ -46,7 +52,7 @@ const classSchema = new mongoose.Schema(
     },
     languages: {
       type: [String],
-      default: ["English"],
+      default: ["Hebrew"], // Changed default from English to Hebrew
     },
     waitlistEnabled: {
       type: Boolean,
@@ -56,16 +62,6 @@ const classSchema = new mongoose.Schema(
       type: String,
       enum: ["onetime", "daily", "weekly", "monthly"],
       default: "onetime",
-    },
-    recurrenceEndDate: {
-      type: Date,
-      // Required only if recurrenceType is not "onetime"
-      validate: {
-        validator: function (value) {
-          return this.recurrenceType === "onetime" || value !== undefined;
-        },
-        message: "End date is required for recurring classes",
-      },
     },
     daysOfWeek: {
       // For weekly recurrence, which days of the week (0=Sunday, 1=Monday, etc.)
@@ -127,6 +123,22 @@ classSchema.methods.isClassFull = function () {
   return confirmedStudents >= this.capacity;
 };
 
+// Create a method to check if a specific instance of a class is full
+classSchema.methods.isInstanceFull = function (instanceId) {
+  // If no instanceId provided, use the regular isClassFull method
+  if (!instanceId) {
+    return this.isClassFull();
+  }
+
+  // Count confirmed students for this specific instance
+  const confirmedStudents = this.enrolledStudents.filter(
+    (student) =>
+      student.status === "confirmed" && student.instanceId === instanceId
+  ).length;
+
+  return confirmedStudents >= this.capacity;
+};
+
 // Create a method to enroll a student
 classSchema.methods.enrollStudent = function (studentId, metadata = {}) {
   // Extract instance information for recurring classes
@@ -150,10 +162,23 @@ classSchema.methods.enrollStudent = function (studentId, metadata = {}) {
     };
   }
 
+  // Check if class is full, considering the specific instance for recurring classes
+  const isClassFull = instanceId
+    ? this.isInstanceFull(instanceId)
+    : this.isClassFull();
+
+  // If class is full and waitlist is not enabled, reject enrollment
+  if (isClassFull && !this.waitlistEnabled) {
+    return {
+      success: false,
+      message: "Class is full and waitlist is not enabled",
+    };
+  }
+
   // Enrollment data to add
   const enrollmentData = {
     studentId,
-    status: this.isClassFull() ? "waitlisted" : "confirmed",
+    status: isClassFull ? "waitlisted" : "confirmed",
   };
 
   // Add instance metadata for recurring classes if available
@@ -170,7 +195,7 @@ classSchema.methods.enrollStudent = function (studentId, metadata = {}) {
 
   return {
     success: true,
-    message: this.isClassFull() ? "Added to waitlist" : "Enrollment confirmed",
+    message: isClassFull ? "Added to waitlist" : "Enrollment confirmed",
   };
 };
 

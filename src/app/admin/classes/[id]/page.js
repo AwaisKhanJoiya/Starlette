@@ -169,7 +169,8 @@ export default function ClassDetails() {
               <div>
                 <p className="text-sm text-gray-500">Time</p>
                 <p className="font-medium">
-                  {classData.startTime} - {classData.endTime}
+                  {classData.startTime} 
+                  <span className="text-sm text-gray-500 ml-2">(50 minutes)</span>
                 </p>
               </div>
             </div>
@@ -200,6 +201,7 @@ export default function ClassDetails() {
                   ).length || 0}{" "}
                   / {classData.capacity}
                 </p>
+                <p className="text-xs text-gray-500">(Maximum capacity is 5)</p>
               </div>
             </div>
           </div>

@@ -61,8 +61,32 @@ export async function POST(request) {
     // Parse request body
     const body = await request.json();
 
-    // Create new class
-    const newClass = new Class(body);
+    // Create new class with calculated end time
+    const classData = { ...body };
+    
+    // If end time is not provided, calculate it based on start time + 50 minutes
+    if (!classData.endTime && classData.startTime) {
+      const [hours, minutes] = classData.startTime.split(':').map(Number);
+      const startDate = new Date(2000, 0, 1, hours, minutes);
+      const endDate = new Date(startDate.getTime() + 50 * 60000); // Add 50 minutes
+      
+      // Format as HH:MM
+      const endHours = endDate.getHours().toString().padStart(2, '0');
+      const endMinutes = endDate.getMinutes().toString().padStart(2, '0');
+      classData.endTime = `${endHours}:${endMinutes}`;
+    }
+    
+    // Set default language to Hebrew if not provided
+    if (!classData.languages || classData.languages.length === 0) {
+      classData.languages = ["Hebrew"];
+    }
+    
+    // Ensure capacity doesn't exceed 5
+    if (classData.capacity > 5) {
+      classData.capacity = 5;
+    }
+    
+    const newClass = new Class(classData);
     await newClass.save();
 
     return NextResponse.json(

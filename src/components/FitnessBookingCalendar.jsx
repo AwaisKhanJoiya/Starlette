@@ -60,6 +60,7 @@ const FitnessBookingCalendar = () => {
   // Fetch classes from the API
   const fetchClasses = useCallback(
     async (date) => {
+      const token = getAuthToken();
       try {
         setLoading(true);
         setError(null);
@@ -68,7 +69,11 @@ const FitnessBookingCalendar = () => {
         const dateStr = date.toISOString().split("T")[0];
 
         // Fetch classes from our API for the selected date
-        const response = await fetch(`/api/classes?date=${dateStr}`);
+        const response = await fetch(`/api/classes?date=${dateStr}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`Failed to fetch classes: ${response.status}`);

@@ -1,5 +1,6 @@
 {
-  "title": "WELCOME DANA",
+  "title": "WELCOME",
+  "welcome": "WELCOME",
   "subtitle": "Your profile & bookings",
   "sections": {
     "myInformation": "MY INFORMATION",
@@ -38,5 +39,10 @@
     "expired": "EXPIRED",
     "waitingList": "WAITING LIST"
   },
+  "noBookedClasses": "You have no upcoming classes booked",
+  "loading": "Loading...",
+  "noPhoneProvided": "No phone number provided",
+  "noBirthdayProvided": "No birthday provided",
+  "editProfile": "Edit profile",
   "lastUpdated": "Updated recently"
 }

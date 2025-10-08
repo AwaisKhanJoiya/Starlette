@@ -1,8 +1,6 @@
 import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
-import Navbar from "@/components/Navbar";
 import React from "react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 
 const SchedulePage = () => {
   const t = useTranslations("schedule");

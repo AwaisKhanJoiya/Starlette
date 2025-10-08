@@ -100,10 +100,52 @@ export async function POST(request) {
     const bookingMetadata =
       instanceId && instanceId !== classId ? { instanceId, date } : {};
 
+    // For recurring classes, check if this specific instance is full
+    if (instanceId && instanceId !== classId) {
+      // Count confirmed students for this specific instance
+      const confirmedStudentsForInstance = classToBook.enrolledStudents.filter(
+        (student) =>
+          student.status === "confirmed" && student.instanceId === instanceId
+      ).length;
+
+      // Check if this specific instance is at capacity
+      if (confirmedStudentsForInstance >= classToBook.capacity) {
+        // If waitlist is not enabled, reject the booking
+        if (!classToBook.waitlistEnabled) {
+          return NextResponse.json(
+            { message: "This class is full for the selected date" },
+            { status: 400 }
+          );
+        }
+      }
+    } else {
+      // For one-time classes, check if the class is full
+      const confirmedStudents = classToBook.enrolledStudents.filter(
+        (student) => student.status === "confirmed"
+      ).length;
+
+      // Check if at capacity and waitlist is disabled
+      if (
+        confirmedStudents >= classToBook.capacity &&
+        !classToBook.waitlistEnabled
+      ) {
+        return NextResponse.json(
+          { message: "This class is full and waitlist is not enabled" },
+          { status: 400 }
+        );
+      }
+    }
+
     // Check if user is already enrolled
-    const existingEnrollment = classToBook.enrolledStudents.find(
-      (student) => student.studentId.toString() === userId
-    );
+    const existingEnrollment = instanceId
+      ? classToBook.enrolledStudents.find(
+          (student) =>
+            student.studentId.toString() === userId &&
+            student.instanceId === instanceId
+        )
+      : classToBook.enrolledStudents.find(
+          (student) => student.studentId.toString() === userId
+        );
 
     if (existingEnrollment) {
       if (existingEnrollment.status === "cancelled") {
@@ -127,16 +169,27 @@ export async function POST(request) {
 
     // Use the class model's enrollment method with metadata for recurring classes
     const enrollmentResult = classToBook.enrollStudent(userId, bookingMetadata);
+
+    // If enrollment failed (class is full and waitlist not enabled)
+    if (!enrollmentResult.success) {
+      return NextResponse.json(
+        {
+          message: enrollmentResult.message,
+          status: "error",
+        },
+        { status: 400 }
+      );
+    }
+
+    // Save changes if successful
     await classToBook.save();
 
     // Return appropriate response with instance information for recurring classes
     return NextResponse.json({
       message: enrollmentResult.message,
-      status: enrollmentResult.success
-        ? enrollmentResult.message.includes("waitlist")
-          ? "waitlisted"
-          : "confirmed"
-        : "error",
+      status: enrollmentResult.message.includes("waitlist")
+        ? "waitlisted"
+        : "confirmed",
       // Include instance info if this was a recurring class
       instanceId: instanceId || classId,
       date: date || new Date(classToBook.startDate).toISOString().split("T")[0],
