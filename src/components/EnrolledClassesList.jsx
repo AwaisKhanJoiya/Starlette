@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
+import { useUserAuthContext } from "@/context/UserAuthContext";
 import {
   Calendar,
   Clock,
@@ -22,13 +23,8 @@ const EnrolledClassesList = () => {
   const [cancelSuccess, setCancelSuccess] = useState(null);
   const [showHistory, setShowHistory] = useState(false);
 
-  // Get authentication token
-  const getAuthToken = useCallback(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("authToken");
-    }
-    return null;
-  }, []);
+  // Use auth context
+  const { user, getAuthToken } = useUserAuthContext();
 
   // Fetch enrolled classes from API
   const fetchEnrolledClasses = useCallback(async () => {

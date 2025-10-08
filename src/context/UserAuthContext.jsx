@@ -3,11 +3,11 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { useAuth } from "@/hooks/useAuth";
 
-// Create Authentication Context
-const AuthContext = createContext(null);
+// Create User Authentication Context
+const UserAuthContext = createContext(null);
 
-// Context Provider Component
-export function AuthProvider({ children }) {
+// User Context Provider Component
+export function UserAuthProvider({ children }) {
   const auth = useAuth();
   const [loading, setLoading] = useState(true);
 
@@ -33,14 +33,18 @@ export function AuthProvider({ children }) {
     );
   }
 
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+  return (
+    <UserAuthContext.Provider value={auth}>{children}</UserAuthContext.Provider>
+  );
 }
 
-// Custom hook to use the auth context
-export function useAuthContext() {
-  const context = useContext(AuthContext);
+// Custom hook to use the user auth context
+export function useUserAuthContext() {
+  const context = useContext(UserAuthContext);
   if (context === null) {
-    throw new Error("useAuthContext must be used within an AuthProvider");
+    throw new Error(
+      "useUserAuthContext must be used within a UserAuthProvider"
+    );
   }
   return context;
 }

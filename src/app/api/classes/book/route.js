@@ -31,8 +31,8 @@ export async function POST(request) {
     // Connect to database
     await dbConnect();
 
-    // Get class ID from request body
-    const { classId } = await request.json();
+    // Get data from request body
+    const { classId, date, instanceId } = await request.json();
     if (!classId) {
       return NextResponse.json(
         { message: "Class ID is required" },
@@ -49,19 +49,56 @@ export async function POST(request) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    // Find the class
+    // Find the class by original ID
     const classToBook = await Class.findById(classId);
     if (!classToBook) {
       return NextResponse.json({ message: "Class not found" }, { status: 404 });
     }
 
+    let effectiveDate = classToBook.startDate;
+
+    // For recurring classes, we need to handle the specific instance date
+    if (
+      classToBook.recurrenceType &&
+      classToBook.recurrenceType !== "onetime" &&
+      date
+    ) {
+      // Use the provided date for the recurring instance
+      effectiveDate = new Date(date);
+
+      // If the recurring class hasn't started yet according to its schedule,
+      // or has already ended, reject the booking
+      const originalStartDate = new Date(classToBook.startDate);
+      const recurrenceEndDate = classToBook.recurrenceEndDate
+        ? new Date(classToBook.recurrenceEndDate)
+        : null;
+
+      if (
+        originalStartDate > effectiveDate ||
+        (recurrenceEndDate && recurrenceEndDate < effectiveDate)
+      ) {
+        return NextResponse.json(
+          {
+            message:
+              "Cannot book this recurring class instance - out of valid date range",
+          },
+          { status: 400 }
+        );
+      }
+    }
+
     // Check if the class date is in the past
-    if (new Date(classToBook.startDate) < new Date()) {
+    if (new Date(effectiveDate) < new Date()) {
       return NextResponse.json(
         { message: "Cannot book a class that has already started" },
         { status: 400 }
       );
     }
+
+    // For recurring classes, we should also store the instance ID in the enrollment
+    // so we can track which specific instance was booked
+    const bookingMetadata =
+      instanceId && instanceId !== classId ? { instanceId, date } : {};
 
     // Check if user is already enrolled
     const existingEnrollment = classToBook.enrolledStudents.find(
@@ -88,10 +125,11 @@ export async function POST(request) {
       }
     }
 
-    // Use the class model's enrollment method
-    const enrollmentResult = classToBook.enrollStudent(userId);
+    // Use the class model's enrollment method with metadata for recurring classes
+    const enrollmentResult = classToBook.enrollStudent(userId, bookingMetadata);
     await classToBook.save();
 
+    // Return appropriate response with instance information for recurring classes
     return NextResponse.json({
       message: enrollmentResult.message,
       status: enrollmentResult.success
@@ -99,6 +137,9 @@ export async function POST(request) {
           ? "waitlisted"
           : "confirmed"
         : "error",
+      // Include instance info if this was a recurring class
+      instanceId: instanceId || classId,
+      date: date || new Date(classToBook.startDate).toISOString().split("T")[0],
     });
   } catch (error) {
     console.error("Book class error:", error);

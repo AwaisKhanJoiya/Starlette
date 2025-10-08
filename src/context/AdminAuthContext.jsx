@@ -3,11 +3,11 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-// Create Auth Context
-const AuthContext = createContext();
+// Create Admin Auth Context
+const AdminAuthContext = createContext();
 
-// Auth Provider Component
-export function AuthProvider({ children }) {
+// Admin Auth Provider Component
+export function AdminAuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     async function loadUserFromSession() {
       try {
-        // Check if user is logged in
+        // Check if admin user is logged in
         const response = await fetch("/api/admin/auth/check");
 
         if (response.ok) {
@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
           setUser(null);
         }
       } catch (error) {
-        console.error("Failed to load user session:", error);
+        console.error("Failed to load admin session:", error);
         setUser(null);
       } finally {
         setLoading(false);
@@ -53,7 +53,7 @@ export function AuthProvider({ children }) {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Login failed");
+        throw new Error(data.message || "Admin login failed");
       }
 
       setUser({
@@ -64,7 +64,7 @@ export function AuthProvider({ children }) {
 
       return { success: true };
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Admin login error:", error);
       return { success: false, error: error.message };
     } finally {
       setLoading(false);
@@ -81,7 +81,7 @@ export function AuthProvider({ children }) {
       setUser(null);
       router.push("/admin/login");
     } catch (error) {
-      console.error("Logout error:", error);
+      console.error("Admin logout error:", error);
     } finally {
       setLoading(false);
     }
@@ -96,14 +96,23 @@ export function AuthProvider({ children }) {
     isAuthenticated: !!user,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AdminAuthContext.Provider value={value}>
+      {children}
+    </AdminAuthContext.Provider>
+  );
 }
 
-// Custom hook to use the auth context
-export const useAuthContext = () => {
-  const context = useContext(AuthContext);
+// Custom hook to use the admin auth context
+export const useAdminAuthContext = () => {
+  const context = useContext(AdminAuthContext);
   if (!context) {
-    throw new Error("useAuthContext must be used within an AuthProvider");
+    console.error(
+      "AdminAuthContext not found! Check the component hierarchy to ensure the AdminAuthProvider is present."
+    );
+    throw new Error(
+      "useAdminAuthContext must be used within an AdminAuthProvider. Make sure your component is wrapped with AdminAuthProvider."
+    );
   }
   return context;
 };

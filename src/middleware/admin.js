@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 
 export async function adminMiddleware(request) {
   try {
+    const cookie = await cookies();
     // Connect to the database
     await dbConnect();
 
@@ -14,7 +15,7 @@ export async function adminMiddleware(request) {
 
     // If no token in header, try to get it from cookies
     if (!token) {
-      token = cookies().get("admin-token")?.value;
+      token = cookie.get("admin-token")?.value;
     }
 
     // If still no token, return unauthorized

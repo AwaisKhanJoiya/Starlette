@@ -5,14 +5,14 @@ import { usePathname, useRouter, Link } from "../i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import UserProfileDropdown from "@/components/ui/UserProfileDropdown";
-import { useAuthContext } from "@/context/AuthContext";
+import { useUserAuthContext } from "@/context/UserAuthContext";
 
 export default function Navbar() {
   const locale = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { user } = useAuthContext();
+  const { user } = useUserAuthContext();
   const t = useTranslations("nav");
   const pathname = usePathname();
   const router = useRouter();
@@ -123,7 +123,7 @@ export default function Navbar() {
             )}
           </div>
           {/* )} */}
-          
+
           {user ? (
             <UserProfileDropdown />
           ) : (

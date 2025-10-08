@@ -1,16 +1,19 @@
 import "./globals.css";
-import { AuthProvider } from "@/context/AuthContext";
+import { UserAuthProvider } from "@/context/UserAuthContext";
+import AdminAuthWrapper from "@/components/AdminAuthWrapper";
 
 export const metadata = {
-  title: "Starlette Admin",
-  description: "Admin dashboard for Starlette",
+  title: "Starlette",
+  description: "Starlette - The first MicroLagree studio in Israel",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <UserAuthProvider>
+          <AdminAuthWrapper>{children}</AdminAuthWrapper>
+        </UserAuthProvider>
       </body>
     </html>
   );

@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useAuthContext } from "@/context/AuthContext";
+import { useAdminAuthContext } from "@/context/AdminAuthContext";
 
 export default function AdminLogin() {
   const router = useRouter();
-  const { login, user, loading: authLoading } = useAuthContext();
+  const { login, user } = useAdminAuthContext();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({

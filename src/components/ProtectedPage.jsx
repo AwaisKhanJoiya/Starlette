@@ -1,53 +1,24 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { useUserAuthContext } from "@/context/UserAuthContext";
 
 const ProtectedPage = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user, isLoading } = useUserAuthContext();
   const router = useRouter();
 
+  // Redirect if not authenticated
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const token = localStorage.getItem("authToken");
+    if (!isLoading && !user) {
+      router.push(
+        "/login?redirect=" + encodeURIComponent(window.location.pathname)
+      );
+    }
+  }, [user, isLoading, router]);
 
-        if (!token) {
-          router.push(
-            "/login?redirect=" + encodeURIComponent(window.location.pathname)
-          );
-          return;
-        }
-
-        // Verify token with the server
-        const response = await fetch("/api/auth/validate", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (response.ok) {
-          setIsAuthenticated(true);
-        } else {
-          // Token is invalid, redirect to login
-          localStorage.removeItem("authToken");
-          router.push(
-            "/login?redirect=" + encodeURIComponent(window.location.pathname)
-          );
-        }
-      } catch (error) {
-        console.error("Authentication check failed:", error);
-        router.push("/login");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    checkAuth();
-  }, [router]);
-
+  // Show loading state
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -59,7 +30,8 @@ const ProtectedPage = ({ children }) => {
     );
   }
 
-  return isAuthenticated ? children : null;
+  // Only render children if user is authenticated
+  return user ? children : null;
 };
 
 export default ProtectedPage;

@@ -4,10 +4,11 @@ import dbConnect from "@/lib/mongodb";
 import Class from "@/models/Class";
 
 // GET a specific class
-export async function GET(request, { params }) {
+export async function GET(request, { params: pParams }) {
   try {
     // Connect to DB
     await dbConnect();
+    const params = await pParams;
 
     // Verify admin access
     const authResult = await adminMiddleware(request);
@@ -36,11 +37,11 @@ export async function GET(request, { params }) {
 }
 
 // PUT update a class
-export async function PUT(request, { params }) {
+export async function PUT(request, { params: pParams }) {
   try {
     // Connect to DB
     await dbConnect();
-
+    const params = await pParams;
     // Verify admin access
     const authResult = await adminMiddleware(request);
     if (!authResult.success) {
@@ -78,11 +79,11 @@ export async function PUT(request, { params }) {
 }
 
 // DELETE a class
-export async function DELETE(request, { params }) {
+export async function DELETE(request, { params: pParams }) {
   try {
     // Connect to DB
     await dbConnect();
-
+    const params = await pParams;
     // Verify admin access
     const authResult = await adminMiddleware(request);
     if (!authResult.success) {
