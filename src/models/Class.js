@@ -106,6 +106,13 @@ const classSchema = new mongoose.Schema(
           enum: ["confirmed", "waitlisted", "cancelled"],
           default: "confirmed",
         },
+        // For recurring classes - track which specific instance was booked
+        instanceId: {
+          type: String, // Format: original_class_id_YYYY-MM-DD
+        },
+        instanceDate: {
+          type: Date, // The specific date of this recurring instance
+        },
       },
     ],
   },
@@ -121,32 +128,50 @@ classSchema.methods.isClassFull = function () {
 };
 
 // Create a method to enroll a student
-classSchema.methods.enrollStudent = function (studentId) {
-  // Check if student is already enrolled
-  const existingEnrollment = this.enrolledStudents.find(
-    (student) => student.studentId.toString() === studentId.toString()
-  );
+classSchema.methods.enrollStudent = function (studentId, metadata = {}) {
+  // Extract instance information for recurring classes
+  const { instanceId, date } = metadata;
+
+  // For recurring classes with instance data, check if student is enrolled in THIS specific instance
+  const existingEnrollment = instanceId
+    ? this.enrolledStudents.find(
+        (student) =>
+          student.studentId.toString() === studentId.toString() &&
+          student.instanceId === instanceId
+      )
+    : this.enrolledStudents.find(
+        (student) => student.studentId.toString() === studentId.toString()
+      );
 
   if (existingEnrollment) {
-    return { success: false, message: "Student already enrolled" };
+    return {
+      success: false,
+      message: "Student already enrolled in this class instance",
+    };
   }
 
-  // Check if class is full
-  if (this.isClassFull()) {
-    // Add to waitlist
-    this.enrolledStudents.push({
-      studentId,
-      status: "waitlisted",
-    });
-    return { success: true, message: "Added to waitlist" };
-  }
-
-  // Add as confirmed enrollment
-  this.enrolledStudents.push({
+  // Enrollment data to add
+  const enrollmentData = {
     studentId,
-    status: "confirmed",
-  });
-  return { success: true, message: "Enrollment confirmed" };
+    status: this.isClassFull() ? "waitlisted" : "confirmed",
+  };
+
+  // Add instance metadata for recurring classes if available
+  if (instanceId) {
+    enrollmentData.instanceId = instanceId;
+  }
+
+  if (date) {
+    enrollmentData.instanceDate = new Date(date);
+  }
+
+  // Add to waitlist or confirmed based on capacity
+  this.enrolledStudents.push(enrollmentData);
+
+  return {
+    success: true,
+    message: this.isClassFull() ? "Added to waitlist" : "Enrollment confirmed",
+  };
 };
 
 const Class = mongoose.models.Class || mongoose.model("Class", classSchema);

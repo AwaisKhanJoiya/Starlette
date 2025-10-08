@@ -4,12 +4,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { LogOut, Settings, User as UserIcon } from "lucide-react";
-import { useAuthContext } from "@/context/AuthContext";
+import { useUserAuthContext } from "@/context/UserAuthContext";
 
 const UserProfileDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const { user, logout } = useAuthContext();
+  const { user, logout } = useUserAuthContext();
   const router = useRouter();
 
   // Close dropdown when clicking outside
@@ -60,10 +60,12 @@ const UserProfileDropdown = () => {
         <div className="absolute right-0 mt-2 w-48 py-1 bg-white border border-gray-200 rounded-md shadow-lg z-50">
           {/* User info */}
           <div className="px-4 py-2 border-b border-gray-100">
-            <p className="text-sm font-medium text-gray-900">{user?.name || "User"}</p>
+            <p className="text-sm font-medium text-gray-900">
+              {user?.name || "User"}
+            </p>
             <p className="text-xs text-gray-500 truncate">{user?.email}</p>
           </div>
-          
+
           {/* Menu items */}
           <button
             onClick={goToProfile}
@@ -72,7 +74,7 @@ const UserProfileDropdown = () => {
             <UserIcon size={14} className="mr-2" />
             My Profile
           </button>
-          
+
           <button
             onClick={handleLogout}
             className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"

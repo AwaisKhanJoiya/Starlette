@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const CoachSchema = new mongoose.Schema({
   name: {
@@ -73,4 +73,6 @@ CoachSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
-module.exports = mongoose.models.Coach || mongoose.model("Coach", CoachSchema);
+const Coach = mongoose.models.Coach || mongoose.model("Coach", CoachSchema);
+
+export default Coach;

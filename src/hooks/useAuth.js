@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, createContext, useContext } from "react";
+import { useState, createContext } from "react";
 import { useRouter } from "next/navigation";
 import { authService } from "@/services/authService";
 
@@ -91,10 +91,15 @@ export function useAuth() {
     }
   };
 
+  const getAuthToken = () => {
+    return localStorage.getItem("authToken");
+  };
+
   return {
     user,
     isLoading,
     error,
+    getAuthToken,
     login,
     register,
     logout,

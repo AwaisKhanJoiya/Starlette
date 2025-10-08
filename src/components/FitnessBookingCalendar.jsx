@@ -11,6 +11,7 @@ import {
   CheckCircle,
   Loader2,
 } from "lucide-react";
+import { useUserAuthContext } from "@/context/UserAuthContext";
 
 const FitnessBookingCalendar = () => {
   const t = useTranslations("fitness");
@@ -27,13 +28,8 @@ const FitnessBookingCalendar = () => {
   const [bookedClasses, setBookedClasses] = useState(new Map()); // Map classId to enrollment status
   const [expandedClassId, setExpandedClassId] = useState(null);
 
-  // Check if user is authenticated
-  const getAuthToken = useCallback(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("authToken");
-    }
-    return null;
-  }, []);
+  // Use auth context
+  const { getAuthToken } = useUserAuthContext();
 
   // Fetch user's enrolled classes
   const fetchEnrolledClasses = useCallback(async () => {
@@ -68,21 +64,11 @@ const FitnessBookingCalendar = () => {
         setLoading(true);
         setError(null);
 
-        // Calculate start date (Sunday of the week) and end date (Saturday)
-        const weekStart = new Date(date);
-        weekStart.setDate(date.getDate() - date.getDay());
+        // Format date for API - now we just need the selected date
+        const dateStr = date.toISOString().split("T")[0];
 
-        const weekEnd = new Date(weekStart);
-        weekEnd.setDate(weekStart.getDate() + 6);
-
-        // Format dates for API
-        const startDateStr = weekStart.toISOString().split("T")[0];
-        const endDateStr = weekEnd.toISOString().split("T")[0];
-
-        // Fetch classes from our API
-        const response = await fetch(
-          `/api/classes?startDate=${startDateStr}&endDate=${endDateStr}`
-        );
+        // Fetch classes from our API for the selected date
+        const response = await fetch(`/api/classes?date=${dateStr}`);
 
         if (!response.ok) {
           throw new Error(`Failed to fetch classes: ${response.status}`);
@@ -217,6 +203,20 @@ const FitnessBookingCalendar = () => {
       return;
     }
 
+    // Find the class in our list to get the original class ID and date
+    const classToBook = classes.find((c) => c.id === classId);
+    if (!classToBook) {
+      setBookingError("Class not found");
+      return;
+    }
+
+    // For booking, we need the original class ID and the date for recurring classes
+    const bookingData = {
+      classId: classToBook.originalClassId, // Use the original class ID stored in our data
+      date: classToBook.date, // For recurring classes, this is the specific date instance
+      instanceId: classId, // The instance ID (for recurring classes this is a compound ID)
+    };
+
     try {
       setBookingClassId(classId);
       setBookingError(null);
@@ -228,7 +228,7 @@ const FitnessBookingCalendar = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ classId }),
+        body: JSON.stringify(bookingData),
       });
 
       const data = await response.json();
