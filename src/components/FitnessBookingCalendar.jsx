@@ -12,12 +12,18 @@ import {
   Loader2,
 } from "lucide-react";
 import { useUserAuthContext } from "@/context/UserAuthContext";
+import axios from "axios";
 
 const FitnessBookingCalendar = () => {
   const t = useTranslations("fitness");
   const locale = useLocale();
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(() => {
+    // Initialize with current date at midnight to avoid timezone issues
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
+  });
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -37,14 +43,10 @@ const FitnessBookingCalendar = () => {
     if (!token) return;
 
     try {
-      const response = await fetch("/api/classes/enrolled", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get("/classes/enrolled");
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response.status === 200) {
+        const data = response.data;
         // Create a map of classId -> enrollment status
         const enrolledMap = new Map();
         data.classes.forEach((classItem) => {
@@ -65,8 +67,11 @@ const FitnessBookingCalendar = () => {
         setLoading(true);
         setError(null);
 
-        // Format date for API - now we just need the selected date
-        const dateStr = date.toISOString().split("T")[0];
+        // Format date for API using local timezone to avoid UTC conversion issues
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // months are 0-indexed
+        const day = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${year}-${month}-${day}`;
 
         // Fetch classes from our API for the selected date
         const response = await fetch(`/api/classes?date=${dateStr}`, {
@@ -87,40 +92,6 @@ const FitnessBookingCalendar = () => {
       } catch (err) {
         console.error("Error fetching classes:", err);
         setError(err.message);
-
-        // Use fallback/mock data in case of error
-        setClasses([
-          {
-            id: "mock1",
-            time: "08:00",
-            duration: "50 min",
-            type: "FULL BODY",
-            instructor: "Dana",
-            status: "available",
-            capacity: "5/6",
-            date: new Date().toISOString().split("T")[0],
-          },
-          {
-            id: "mock2",
-            time: "09:00",
-            duration: "50 min",
-            type: "CARDIO BLAST",
-            instructor: "Mike",
-            status: "available",
-            capacity: "6/8",
-            date: new Date().toISOString().split("T")[0],
-          },
-          {
-            id: "mock3",
-            time: "18:00",
-            duration: "60 min",
-            type: "YOGA FLOW",
-            instructor: "Sarah",
-            status: "full",
-            capacity: "0/10",
-            date: new Date().toISOString().split("T")[0],
-          },
-        ]);
       } finally {
         setLoading(false);
       }
@@ -131,12 +102,17 @@ const FitnessBookingCalendar = () => {
   // Get dates for the current week
   const getWeekDates = (date) => {
     const weekDates = [];
+    // Create a new date object to avoid modifying the original date
     const startOfWeek = new Date(date);
+    // Adjust to the start of the week (Sunday)
     startOfWeek.setDate(date.getDate() - date.getDay());
 
     for (let i = 0; i < 7; i++) {
+      // Important: Create a NEW date object for each day to avoid reference issues
       const currentDate = new Date(startOfWeek);
       currentDate.setDate(startOfWeek.getDate() + i);
+      // Ensure the date is set to midnight to avoid timezone issues
+      currentDate.setHours(0, 0, 0, 0);
       weekDates.push(currentDate);
     }
 
@@ -149,7 +125,11 @@ const FitnessBookingCalendar = () => {
       return [];
     }
 
-    const dateStr = date.toISOString().split("T")[0];
+    // Format date consistently using local timezone
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const dateStr = `${year}-${month}-${day}`;
     return classes.filter((classItem) => classItem.date === dateStr);
   };
 
@@ -170,7 +150,12 @@ const FitnessBookingCalendar = () => {
   };
 
   const isSameDate = (date1, date2) => {
-    return date1.toDateString() === date2.toDateString();
+    // Compare year, month, and day independently to avoid timezone issues
+    return (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getDate() === date2.getDate()
+    );
   };
 
   const formatDayName = (date, index) => {
@@ -187,7 +172,10 @@ const FitnessBookingCalendar = () => {
   };
 
   const handleDateSelect = (date) => {
-    setSelectedDate(new Date(date));
+    // Create a new date object and ensure it's set to midnight in local time
+    const newDate = new Date(date);
+    newDate.setHours(0, 0, 0, 0);
+    setSelectedDate(newDate);
   };
 
   const handleCalendarClick = () => {
@@ -195,53 +183,45 @@ const FitnessBookingCalendar = () => {
   };
 
   const handleDatePickerChange = (e) => {
-    const newDate = new Date(e.target.value);
+    // Get the date from input and ensure it's treated as a local date
+    const dateStr = e.target.value; // Format: YYYY-MM-DD
+    const [year, month, day] = dateStr
+      .split("-")
+      .map((num) => parseInt(num, 10));
+    const newDate = new Date(year, month - 1, day); // Month is 0-indexed in JavaScript
+    newDate.setHours(0, 0, 0, 0);
     setSelectedDate(newDate);
     setShowDatePicker(false);
   };
 
   const handleBookClass = async (classId) => {
-    const token = getAuthToken();
-    if (!token) {
-      window.location.href =
-        "/login?redirect=" + encodeURIComponent(window.location.pathname);
-      return;
-    }
-
-    // Find the class in our list to get the original class ID and date
-    const classToBook = classes.find((c) => c.id === classId);
-    if (!classToBook) {
-      setBookingError("Class not found");
-      return;
-    }
-
-    // For booking, we need the original class ID and the date for recurring classes
-    const bookingData = {
-      classId: classToBook.originalClassId, // Use the original class ID stored in our data
-      date: classToBook.date, // For recurring classes, this is the specific date instance
-      instanceId: classId, // The instance ID (for recurring classes this is a compound ID)
-    };
-
     try {
+      const token = getAuthToken();
+      if (!token) {
+        window.location.href =
+          "/login?redirect=" + encodeURIComponent(window.location.pathname);
+        return;
+      }
+
+      // Find the class in our list to get the original class ID and date
+      const classToBook = classes.find((c) => c.id === classId);
+      if (!classToBook) {
+        setBookingError("Class not found");
+        return;
+      }
+
+      // For booking, we need the original class ID and the date for recurring classes
+      const bookingData = {
+        classId: classToBook.originalClassId, // Use the original class ID stored in our data
+        date: classToBook.date, // For recurring classes, this is the specific date instance
+        instanceId: classId, // The instance ID (for recurring classes this is a compound ID)
+      };
+
       setBookingClassId(classId);
       setBookingError(null);
       setBookingSuccess(null);
 
-      const response = await fetch("/api/classes/book", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(bookingData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setBookingError(data.message);
-        return;
-      }
+      const { data } = await axios.post("/classes/book", bookingData);
 
       // Update booked classes map with the new status
       setBookedClasses((prev) => {
@@ -255,8 +235,7 @@ const FitnessBookingCalendar = () => {
       // Refresh classes to get updated capacity info
       await fetchClasses(selectedDate);
     } catch (error) {
-      console.error("Error booking class:", error);
-      setBookingError(error.message || "Failed to book class");
+      console.log(error);
     } finally {
       setBookingClassId(null);
     }
@@ -268,32 +247,18 @@ const FitnessBookingCalendar = () => {
 
   // Handle cancellation of booked class
   const handleCancelClass = async (classId) => {
-    const token = getAuthToken();
-    if (!token) {
-      window.location.href = "/login";
-      return;
-    }
-
     try {
+      const token = getAuthToken();
+      if (!token) {
+        window.location.href = "/login";
+        return;
+      }
+
       setBookingClassId(classId);
       setBookingError(null);
       setBookingSuccess(null);
 
-      const response = await fetch("/api/classes/cancel", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ classId }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setBookingError(data.message);
-        return;
-      }
+      const { data } = await axios.post("/classes/cancel", { classId });
 
       // Update booked classes map
       setBookedClasses((prev) => {
@@ -307,8 +272,7 @@ const FitnessBookingCalendar = () => {
       // Refresh classes to get updated capacity info
       await fetchClasses(selectedDate);
     } catch (error) {
-      console.error("Error cancelling class:", error);
-      setBookingError(error.message || "Failed to cancel class");
+      console.log(error);
     } finally {
       setBookingClassId(null);
     }
@@ -381,7 +345,12 @@ const FitnessBookingCalendar = () => {
             <div className="absolute z-10 top-10 inset-x-4 sm:inset-auto sm:right-0  sm:left-auto w-auto sm:w-44 max-w-xs sm:max-w-none  border border-gray-200 rounded-lg shadow-lg p-3 sm:p-4">
               <input
                 type="date"
-                value={selectedDate.toISOString().split("T")[0]}
+                value={`${selectedDate.getFullYear()}-${String(
+                  selectedDate.getMonth() + 1
+                ).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(
+                  2,
+                  "0"
+                )}`}
                 onChange={handleDatePickerChange}
                 className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
               />

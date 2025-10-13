@@ -6,6 +6,7 @@ import "../globals.css";
 import getRequestConfig from "@/i18n/request";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -29,6 +30,19 @@ export default async function LocaleLayout({ children, params }) {
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="mx-auto bg-background">
             <Navbar />
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick={false}
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              transition={Bounce}
+            />
             {children}
             <Footer />
           </div>

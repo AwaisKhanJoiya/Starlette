@@ -3,6 +3,8 @@
 import { useState, createContext } from "react";
 import { useRouter } from "next/navigation";
 import { authService } from "@/services/authService";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 // Create a context for global loading state
 export const AuthLoadingContext = createContext({
@@ -27,8 +29,10 @@ export function useAuth() {
 
       // Store token in localStorage for persistent auth
       localStorage.setItem("authToken", response.token);
-
-      // Redirect to schedule after successful login
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${response.token}`;
+      // Redirect to schedule after successful login";
       window.location.href = "./schedule";
       return response;
     } catch (err) {
@@ -50,9 +54,13 @@ export function useAuth() {
 
       // Store token in localStorage for persistent auth
       localStorage.setItem("authToken", response.token);
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${response.token}`;
 
       // Redirect to schedule after successful registration
       window.location.href = "./schedule";
+
       return response;
     } catch (err) {
       setError(err.message || "Registration failed. Please try again.");
@@ -66,15 +74,47 @@ export function useAuth() {
   const logout = () => {
     localStorage.removeItem("authToken");
     setUser(null);
+    axios.defaults.headers.common["Authorization"] = null;
     window.location.href = "./login";
   };
 
   // Check if user is authenticated
   const checkAuth = async () => {
+    axios.defaults.baseURL = "/api";
+
+    axios.interceptors.response.use(
+      (response) => {
+        if (response.data.message) {
+          toast.success(response.data.message);
+        }
+        return response;
+      },
+      (error) => {
+        if (error.response && error.response.status === 401) {
+          // Handle unauthorized access, e.g., redirect to login
+          if (typeof window !== "undefined") {
+            window.location.href = "/login";
+          }
+        }
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          // Show toast notification for the error message
+          toast.error(error.response.data.message);
+        }
+        return Promise.reject(error);
+      }
+    );
     const token = localStorage.getItem("authToken");
     if (!token) {
       setUser(null);
       return false;
+    }
+
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }
 
     try {
