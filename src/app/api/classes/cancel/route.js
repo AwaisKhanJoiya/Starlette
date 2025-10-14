@@ -43,17 +43,16 @@ export async function POST(request) {
     const userId = decodedToken.userId;
 
     // Find the class
-    const classToCancel = await Class.findById(classId);
+    const classToCancel = await Class.findOne({
+      "enrolledStudents.instanceId": classId,
+    });
     if (!classToCancel) {
-      return NextResponse.json(
-        { message: "Class not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "Class not found" }, { status: 404 });
     }
 
     // Find the student's enrollment
     const studentEnrollmentIndex = classToCancel.enrolledStudents.findIndex(
-      (student) => student.studentId.toString() === userId
+      (student) => student.instanceId.toString() === classId
     );
 
     if (studentEnrollmentIndex === -1) {
@@ -75,13 +74,25 @@ export async function POST(request) {
     }
 
     // Check if the class is starting in less than 24 hours
-    const classDate = new Date(classToCancel.startDate);
+    // Get date from enrollment.instanceDate and time from classToCancel.startTime
+    const classDateStr = enrollment.instanceDate
+      ? new Date(enrollment.instanceDate).toISOString().split("T")[0]
+      : new Date().toISOString().split("T")[0];
+    const classTimeStr = classToCancel.startTime;
+
+    // Combine date and time into a single datetime
+    const [hours, minutes] = classTimeStr.split(":").map(Number);
+    const classDateTime = new Date(classDateStr);
+    classDateTime.setHours(hours, minutes, 0, 0);
+
     const now = new Date();
-    const hoursDifference = (classDate - now) / (1000 * 60 * 60);
+    const hoursDifference = (classDateTime - now) / (1000 * 60 * 60);
 
     if (hoursDifference < 24) {
       return NextResponse.json(
-        { message: "Cannot cancel a class less than 24 hours before start time" },
+        {
+          message: "Cannot cancel a class less than 24 hours before start time",
+        },
         { status: 400 }
       );
     }
@@ -100,8 +111,9 @@ export async function POST(request) {
         // Move the first waitlisted student to confirmed
         const firstWaitlisted = waitlistedStudents[0];
         const waitlistedIndex = classToCancel.enrolledStudents.findIndex(
-          (student) => 
-            student.studentId.toString() === firstWaitlisted.studentId.toString()
+          (student) =>
+            student.studentId.toString() ===
+            firstWaitlisted.studentId.toString()
         );
 
         if (waitlistedIndex !== -1) {
@@ -112,7 +124,7 @@ export async function POST(request) {
     }
 
     return NextResponse.json({
-      message: "Class booking cancelled successfully"
+      message: "Class booking cancelled successfully",
     });
   } catch (error) {
     console.error("Cancel class error:", error);
