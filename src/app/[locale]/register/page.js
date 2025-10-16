@@ -7,12 +7,14 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { useMultiStepForm } from "@/hooks/useMultiStepForm";
 import LoadingButton from "@/components/ui/LoadingButton";
+import TermsOfUseDialog from "@/components/TermsOfUseDialog";
 
 export default function RegisterPage() {
   const t = useTranslations("auth");
   const { register, error: authError, isLoading } = useAuth();
   const [formError, setFormError] = useState(null);
-  
+  const [termsDialogOpen, setTermsDialogOpen] = useState(false);
+
   const initialFormData = {
     firstName: "",
     lastName: "",
@@ -26,23 +28,28 @@ export default function RegisterPage() {
     country: "",
     agreedToTerms: false,
   };
-  
+
   const {
     currentStep,
     formData,
     nextStep,
     prevStep,
     handleChange,
-    isLastStep
-  } = useMultiStepForm(3, initialFormData);
+    isLastStep,
+  } = useMultiStepForm(2, initialFormData);
 
   // Form validation for each step
   const validateStep = (stepNumber) => {
     setFormError(null);
-    
-    switch(stepNumber) {
+
+    switch (stepNumber) {
       case 1:
-        if (!formData.firstName || !formData.lastName || !formData.email || !formData.password) {
+        if (
+          !formData.firstName ||
+          !formData.lastName ||
+          !formData.email ||
+          !formData.password
+        ) {
           setFormError(t("registerRequiredFields"));
           return false;
         }
@@ -55,21 +62,24 @@ export default function RegisterPage() {
           return false;
         }
         return true;
-        
+
       case 2:
-        if (!formData.phoneNumber || !formData.address || !formData.city || !formData.zipCode || !formData.country) {
+        if (
+          !formData.phoneNumber ||
+          !formData.address ||
+          !formData.city ||
+          !formData.zipCode ||
+          !formData.country
+        ) {
           setFormError(t("registerAddressRequired"));
           return false;
         }
-        return true;
-        
-      case 3:
         if (!formData.agreedToTerms) {
           setFormError(t("termsRequired"));
           return false;
         }
         return true;
-        
+
       default:
         return true;
     }
@@ -89,11 +99,11 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateStep(currentStep)) {
       return;
     }
-    
+
     try {
       await register(formData);
       // Redirect happens in the useAuth hook after successful registration
@@ -105,11 +115,16 @@ export default function RegisterPage() {
 
   return (
     <>
+      <TermsOfUseDialog
+        open={termsDialogOpen}
+        onOpenChange={setTermsDialogOpen}
+      />
+
       <div className="min-h-screen bg-white text-dark-gray flex flex-col items-center justify-center py-12 px-4 mt-16">
         <div className="w-full max-w-md bg-white border-y border-dashed border-dark-gray p-6">
           <div className="mb-8 flex flex-col items-center">
             <h2 className="text-xs font-medium text-dark-gray mb-2">
-              {t("registrationStep")} {currentStep}/3
+              {t("registrationStep")} {currentStep}/2
             </h2>
             <div className="flex items-center justify-center mb-2">
               <Image
@@ -128,7 +143,7 @@ export default function RegisterPage() {
           {authError && (
             <div className="text-red-500 text-sm mb-4">{authError}</div>
           )}
-          
+
           {currentStep === 1 && (
             <form onSubmit={handleNextStep} className="space-y-6">
               <input
@@ -139,7 +154,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-              
+
               <input
                 type="text"
                 name="lastName"
@@ -148,7 +163,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-              
+
               <input
                 type="email"
                 name="email"
@@ -157,7 +172,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-              
+
               <input
                 type="password"
                 name="password"
@@ -166,7 +181,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-              
+
               <input
                 type="password"
                 name="confirmPassword"
@@ -188,7 +203,10 @@ export default function RegisterPage() {
               />
 
               <div className="text-center mt-4">
-                <Link href="./login" className="text-sm underline text-dark-gray">
+                <Link
+                  href="./login"
+                  className="text-sm underline text-dark-gray"
+                >
                   {t("alreadyHaveAccount")}
                 </Link>
               </div>
@@ -196,7 +214,7 @@ export default function RegisterPage() {
           )}
 
           {currentStep === 2 && (
-            <form onSubmit={handleNextStep} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <input
                 type="tel"
                 name="phoneNumber"
@@ -205,7 +223,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-              
+
               <input
                 type="text"
                 name="address"
@@ -214,7 +232,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-              
+
               <input
                 type="text"
                 name="city"
@@ -223,7 +241,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-              
+
               <input
                 type="text"
                 name="zipCode"
@@ -232,7 +250,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
-              
+
               <input
                 type="text"
                 name="country"
@@ -242,50 +260,25 @@ export default function RegisterPage() {
                 className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
 
-              <div className="flex justify-between space-x-4">
-                <LoadingButton
-                  type="button"
-                  onClick={handlePrevStep}
-                  text={t("back")}
-                  className="w-1/2"
-                  variant="gray"
-                  icon="←"
+              <div className="flex items-center mt-4">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  name="agreedToTerms"
+                  checked={formData.agreedToTerms}
+                  onChange={handleChange}
+                  className="mr-2"
                 />
-                
-                <LoadingButton
-                  type="submit"
-                  text={t("next")}
-                  loadingText={t("loading")}
-                  isLoading={isLoading}
-                  disabled={isLoading}
-                  className="w-1/2"
-                  variant="primary"
-                  icon="➝"
-                />
-              </div>
-            </form>
-          )}
-
-          {currentStep === 3 && (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="border border-dark-gray border-dashed rounded-xl p-4">
-                <div className="flex items-start mb-4">
-                  <input
-                    type="checkbox"
-                    id="terms"
-                    name="agreedToTerms"
-                    checked={formData.agreedToTerms}
-                    onChange={handleChange}
-                    className="mr-2 mt-1"
-                  />
-                  <label htmlFor="terms" className="text-sm">
-                    {t("termsAgreement")}
-                  </label>
-                </div>
-                
-                <div className="h-40 overflow-auto border border-gray-300 p-2 text-xs">
-                  {t("termsContent")}
-                </div>
+                <label htmlFor="terms" className="text-sm text-dark-gray">
+                  {t("iHaveRead")}{" "}
+                  <button
+                    type="button"
+                    onClick={() => setTermsDialogOpen(true)}
+                    className="text-primary hover:underline"
+                  >
+                    {t("termsOfUse")}
+                  </button>
+                </label>
               </div>
 
               <div className="flex justify-between space-x-4">
@@ -297,7 +290,7 @@ export default function RegisterPage() {
                   variant="gray"
                   icon="←"
                 />
-                
+
                 <LoadingButton
                   type="submit"
                   text={t("register")}

@@ -31,7 +31,7 @@ const BannerVideo = () => {
           ref={videoRef}
           src={VIDEO_URL}
           poster={POSTER}
-          className="object-cover w-full"
+          className="object-cover w-full h-full"
           controls={false}
           autoPlay={true}
           muted={isMuted}
@@ -40,12 +40,14 @@ const BannerVideo = () => {
           preload="metadata"
         />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
-          <h1 className="font-shrikhand text-4xl md:text-5xl text-primary m-0">
-            <span className="outlined-text">A </span>
-            <span className="text-8xl">Starlette</span>{" "}
-            <span className="outlined-text">is Born</span>
+          <h1 className="flex md:block flex-col font-shrikhand text-2xl md:text-5xl text-primary m-0">
+            <span className="outlined-text text-3xl md:text-[60px]">A </span>
+            <span className="text-6xl md:text-8xl">Starlette</span>{" "}
+            <span className="outlined-text text-xl md:text-[60px]">
+              is Born
+            </span>
           </h1>
-          <p className="text-primary uppercase text-md letter-spacing-2 tracking-widest m-0">
+          <p className="text-primary uppercase text-sm md:text-md letter-spacing-2 tracking-widest m-0">
             Where elegance meets strength – the Lagree experience in Tel Aviv
           </p>
         </div>

@@ -23,7 +23,7 @@ export default function Navbar() {
     { label: t("THE_METHOD"), href: "/method" },
     { label: t("PRICING"), href: "/pricing" },
     { label: t("SCHEDULE"), href: "/schedule" },
-    { label: t("ACCOUNT"), href: "/account" },
+    ...(user ? [{ label: t("ACCOUNT"), href: "/account" }] : []),
   ];
 
   const languages = [
@@ -47,7 +47,7 @@ export default function Navbar() {
   return (
     <nav
       className={`${isLanding ? "fixed" : "sticky"} ${
-        locale === "he" && "rtl"
+        locale === "he" ? "rtl" : ""
       } top-0 z-50 w-full transition-colors duration-300`}
     >
       <div

@@ -51,7 +51,7 @@ export default function StarletteStudio() {
         <section>
           <div
             className={`${
-              locale === "he" && "rtl"
+              locale === "he" ? "rtl" : ""
             } flex px-4 sm:px-6 lg:px-8 flex-col md:flex-row items-center md:items-end justify-between gap-8 py-12`}
           >
             <div
@@ -189,7 +189,7 @@ export default function StarletteStudio() {
           cards={cards}
           columns={2}
           bullets={bullets}
-          packageName={"WELCOME PACK"}
+          packageName={t("pricing.globeText")}
         />
         <div className="px-4 sm:px-6 lg:px-8 pt-12">
           <FitnessBookingCalendar />

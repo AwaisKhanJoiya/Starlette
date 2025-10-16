@@ -16,10 +16,10 @@ const StudioPage = () => {
             : undefined
         }
         className={`${
-          locale === "he" && "rtl"
+          locale === "he" ? "rtl" : ""
         } min-h-screen bg-white bg-cover bg-center  bg-no-repeat  text-dark-gray px-4 sm:px-6 lg:px-8 py-16`}
       >
-        <div className="space-y-96">
+        <div className="space-y-20 md:space-y-80">
           {/* Header Section */}
           <div className="">
             <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
@@ -41,7 +41,7 @@ const StudioPage = () => {
           </div>
 
           {/* Location Section */}
-          <div className=" bg-white py-4 px-10 rounded-3xl">
+          <div className=" bg-white p-4 rounded-3xl">
             <h1 className="text-xl  font-bold mb-2 tracking-widest uppercase text-dark-gray">
               {t("location.title")}
             </h1>

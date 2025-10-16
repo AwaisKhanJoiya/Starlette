@@ -90,12 +90,12 @@ const PricingPage = () => {
       <div className="px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-stretch md:h-[640px] border-b border-dashed border-black">
         <div className="w-full md:w-1/2  relative z-10 flex flex-col justify-center p-6 md:p-12">
           <div className="mt-10 md:mt-0">
-            <h1 className="text-xl md:text-4xl font-bold mb-10 md:mb-20 tracking-wider text-center">
+            <h1 className="text-xl md:text-2xl font-bold mb-10 md:mb-20 tracking-[0.5rem] text-center">
               PACKS & MEMBERSHIPS
             </h1>
 
             {/* Pricing cards: horizontally scroll on mobile, grid on md+ */}
-            <div className="flex md:grid md:grid-cols-3 gap-2 overflow-x-auto md:overflow-visible pb-2">
+            <div className="hidden md:grid md:grid-cols-3 gap-2 overflow-x-auto md:overflow-visible pb-2">
               {/* Card 1 */}
               <div className="flex-shrink-0 w-12 md:w-32">
                 <div className="relative flex justify-center items-center">
@@ -109,13 +109,13 @@ const PricingPage = () => {
                           return (
                             <span
                               key={i}
-                              className="text-dark-gray  font-bold text-sm md:text-base"
+                              className="text-secondary font-bold text-sm md:text-base origin-[0_80px]"
                               style={{
                                 transform: `rotate(${
                                   i *
                                     (360 /
                                       tPackages("packCats.welcome").length -
-                                      (18 + spaces * 1)) -
+                                      (16 + spaces)) -
                                   50
                                 }deg)`,
                               }}
@@ -125,47 +125,105 @@ const PricingPage = () => {
                           );
                         })}
                     </div>
+                    {/* </h2> */}
+                    <div className="circular-image">
+                      <Image
+                        src="/welcome-pack.jpg"
+                        alt="welcome pack"
+                        width={150}
+                        height={150}
+                        className="object-contain rounded-full"
+                      />
+                    </div>
                   </div>
-                  {/* </h2> */}
-                  <Image
-                    src="/welcome-pack.jpg"
-                    alt="welcome pack"
-                    width={150}
-                    height={150}
-                    className="w-full h-auto object-cover rounded-full"
-                  />
                 </div>
               </div>
 
               {/* Card 2 */}
+
               <div className="flex-shrink-0 w-12 md:w-32">
-                <div className="relative">
-                  <h2 className="text-sm md:text-lg font-bold text-dark-gray text-center uppercase">
-                    CLASS PACKS
-                  </h2>
-                  <Image
-                    src="/welcome-pack.jpg"
-                    alt="class pack"
-                    width={150}
-                    height={150}
-                    className="w-full h-auto object-cover rounded-full"
-                  />
+                <div className="relative flex justify-center items-center">
+                  {/* <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase"> */}
+                  <div className="circular-text-container">
+                    <div className="circular-text">
+                      {tPackages("packCats.classPacks")
+                        .split("")
+                        .map((char, i) => {
+                          if (char === " ") spaces += 1;
+                          return (
+                            <span
+                              key={i}
+                              className="text-dark-gray  font-bold text-sm md:text-base origin-[0_80px]"
+                              style={{
+                                transform: `rotate(${
+                                  i *
+                                    (360 /
+                                      tPackages("packCats.classPacks").length -
+                                      (16 + spaces)) -
+                                  50
+                                }deg)`,
+                              }}
+                            >
+                              {char}
+                            </span>
+                          );
+                        })}
+                    </div>
+                    {/* </h2> */}
+                    <div className="circular-image">
+                      <Image
+                        src="/welcome-pack.jpg"
+                        alt="welcome pack"
+                        width={150}
+                        height={150}
+                        className="object-contain rounded-full"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 
               {/* Card 3 */}
+
               <div className="flex-shrink-0 w-12 md:w-32">
-                <div className="relative">
-                  <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase">
-                    MEMBERSHIPS
-                  </h2>
-                  <Image
-                    src="/welcome-pack.jpg"
-                    alt="membership"
-                    width={150}
-                    height={150}
-                    className="w-full h-auto object-cover rounded-full"
-                  />
+                <div className="relative flex justify-center items-center">
+                  {/* <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase"> */}
+                  <div className="circular-text-container">
+                    <div className="circular-text">
+                      {tPackages("packCats.memberships")
+                        .split("")
+                        .map((char, i) => {
+                          if (char === " ") spaces += 1;
+                          return (
+                            <span
+                              key={i}
+                              className="text-secondary font-bold text-sm md:text-base origin-[0_80px]"
+                              style={{
+                                transform: `rotate(${
+                                  i *
+                                    (360 /
+                                      tPackages("packCats.memberships").length -
+                                      (16 + spaces)) -
+                                  50
+                                }deg)`,
+                              }}
+                            >
+                              {char}
+                            </span>
+                          );
+                        })}
+                    </div>
+                    {/* </h2> */}
+                    <div className="circular-image">
+                      <Image
+                        src="/welcome-pack.jpg"
+                        alt="welcome pack"
+                        width={150}
+                        height={150}
+                        className="object-contain rounded-full"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -189,7 +247,7 @@ const PricingPage = () => {
           cards={section1Cards}
           columns={2}
           bullets={section1Bullets}
-          packageName={"WELCOME PACK"}
+          packageName={tPackages("packCats.welcome")}
         />
 
         {/* 2) second set of 2 cards */}
@@ -197,7 +255,7 @@ const PricingPage = () => {
           cards={section2Cards}
           columns={2}
           bullets={section1Bullets}
-          packageName={"CLASS PACK"}
+          packageName={tPackages("packCats.classPacks")}
         />
 
         {/* 3) 4 cards */}
@@ -205,7 +263,7 @@ const PricingPage = () => {
           cards={section3Cards}
           columns={4}
           bullets={section1Bullets}
-          packageName={"MEMBERSHIPS"}
+          packageName={tPackages("packCats.memberships")}
         />
       </div>
     </div>

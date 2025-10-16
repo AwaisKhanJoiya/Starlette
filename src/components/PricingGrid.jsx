@@ -30,7 +30,7 @@ export default function PricingGrid({
 
   return (
     <section>
-      <div className="px-4 lg:px-8 md:flex hidden flex-col md:flex-row justify-between items-end mb-8 pt-12">
+      <div className="pr-2 md:flex hidden flex-col md:flex-row justify-between items-end mb-8 pt-12">
         <div className="flex-1">
           <div className="space-y-4">
             <div className="h-[2px] mr-4 bg-dark-gray"></div>
@@ -41,34 +41,29 @@ export default function PricingGrid({
         <div className="relative flex justify-center items-center">
           <div className="circular-text-container">
             <div className="circular-text">
-              {t("pricing.globeText")
-                .split("")
-                .map((char, i) => {
-                  if (char === " ") spaces += 1;
-                  return (
-                    <span
-                      key={i}
-                      className="text-dark-gray  font-bold text-sm md:text-base"
-                      style={{
-                        transform: `rotate(${
-                          i *
-                            (360 / t("pricing.globeText").length -
-                              (18 + spaces * 1)) -
-                          50
-                        }deg)`,
-                      }}
-                    >
-                      {char}
-                    </span>
-                  );
-                })}
+              {packageName.split("").map((char, i) => {
+                if (char === " ") spaces += 1;
+                return (
+                  <span
+                    key={i}
+                    className="text-dark-gray  font-bold text-sm md:text-base origin-[0_80px]"
+                    style={{
+                      transform: `rotate(${
+                        i * (360 / packageName.length - (16 + spaces)) - 50
+                      }deg)`,
+                    }}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
             </div>
-            <div className="circular-image">
+            <div className="circular-image w-28 h-28">
               <Image
                 src={headerImage}
                 alt="globe"
-                width={110}
-                height={110}
+                width={150}
+                height={150}
                 className="object-contain rounded-full"
               />
             </div>
@@ -91,22 +86,24 @@ export default function PricingGrid({
               {packageName.split("").map((char, i) => (
                 <span
                   key={i}
-                  className="text-dark-gray font-bold text-sm"
+                  className="text-dark-gray font-bold text-sm origin-[0_70px]"
                   style={{
-                    transform: `rotate(${i * (360 / packageName.length)}deg)`,
+                    transform: `rotate(${
+                      i * (360 / packageName.length - (15 + spaces)) - 50
+                    }deg)`,
                   }}
                 >
                   {char}
                 </span>
               ))}
             </div>
-            <div className="circular-image">
+            <div className="circular-image w-24 h-24">
               <Image
                 src={headerImage}
                 alt="globe"
                 width={90}
                 height={90}
-                className="object-contain rounded-full"
+                className="object-contain rounded-full w-full h-full"
               />
             </div>
           </div>
@@ -125,9 +122,7 @@ export default function PricingGrid({
 
         <div className={`relative z-10 ${gridClass}`}>
           {cards.map((c) => (
-            <div key={c.id} className="relative">
-              <PricingCard data={c} />
-            </div>
+            <PricingCard key={c.id} data={c} />
           ))}
         </div>
       </div>
@@ -135,7 +130,7 @@ export default function PricingGrid({
       {bullets && bullets.length > 0 && (
         <div
           className={`${
-            locale === "he" && "rtl"
+            locale === "he" ? "rtl" : ""
           } relative z-10 mt-6 text-xs md:text-sm  px-4 sm:ps-6 lg:ps-8 `}
         >
           {bullets.map((b, i) => (
