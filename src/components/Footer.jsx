@@ -3,27 +3,44 @@
 import Image from "next/image";
 import React from "react";
 import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
+import { useAuth } from "@/hooks/useAuth";
 
 const Footer = () => {
+  const { user } = useAuth();
   const locale = useLocale();
   const t = useTranslations("footer");
 
   return (
     <div
       className={`${
-        locale === "he" && "rtl"
-      } px-4 sm:px-6 lg:px-8  py-4 font-arial mt-10`}
+        locale === "he" ? "rtl" : ""
+      } px-4 sm:px-6 lg:px-8 py-6 bg-white font-arial`}
     >
       {/* Top section */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
         {/* Navigation Links */}
         <ul className="flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm text-dark-gray font-bold text-center">
-          <li>{t("links.home")}</li>
-          <li>{t("links.studio")}</li>
-          <li>{t("links.method")}</li>
-          <li>{t("links.pricing")}</li>
-          <li>{t("links.schedule")}</li>
-          <li>{t("links.account")}</li>
+          <Link href="/">
+            <li>{t("links.home")}</li>
+          </Link>
+          <Link href="/studio">
+            <li>{t("links.studio")}</li>
+          </Link>
+          <Link href="/method">
+            <li>{t("links.method")}</li>
+          </Link>
+          <Link href="/pricing">
+            <li>{t("links.pricing")}</li>
+          </Link>
+          <Link href="/schedule">
+            <li>{t("links.schedule")}</li>
+          </Link>
+          {user && (
+            <Link href="/account">
+              <li>{t("links.account")}</li>
+            </Link>
+          )}
         </ul>
 
         {/* Contact */}

@@ -13,14 +13,14 @@ const DownloadApp = () => {
       {/* Left image (hidden on small screens) */}
       <div className="hidden md:flex w-1/2 justify-center relative">
         {/* Circle background */}
-        <div className="absolute w-80 h-80 bg-primary rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute w-96 h-96 bg-primary rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
         {/* Image on top */}
         <Image
           src="/app-store.jpg"
           alt="starlette"
-          width={200}
-          height={100}
+          width={250}
+          height={150}
           className="relative z-10 border-8 border-[#000] rounded-2xl"
         />
       </div>
@@ -42,8 +42,8 @@ const DownloadApp = () => {
             <Image
               src="/google-app.jpg"
               alt="starlette"
-              width={200}
-              height={200}
+              width={280}
+              height={280}
             />
           </div>
 

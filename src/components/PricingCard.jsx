@@ -29,7 +29,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
 
   return (
     <div className="relative">
-      <div className=" border-2 text-dark-gray border-black bg-white rounded-xl py-8 px-4 w-56 md:w-60 text-center shadow-sm">
+      <div className=" border-2 text-dark-gray border-black bg-white rounded-3xl py-8 px-4 w-72 md:w-60 text-center shadow-sm">
         {slug && (
           <div className="text-xs md:text-sm mb-2 font-bold text-primary">
             {slug}
@@ -59,6 +59,9 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
           </p>
         )}
       </div>
+      <p className="absolute right-3 top-6 -rotate-90 origin-right text-[11px] font-bold mb-6 text-[#b8b6b3]">
+        valid for 1 month
+      </p>
 
       <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2">
         <Button

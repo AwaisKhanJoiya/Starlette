@@ -31,7 +31,7 @@ const MethodPage = () => {
               </div>
             </div>
 
-            <div className="mx-auto w-full sm:w-64 md:w-80">
+            <div className="mx-auto w-full sm:w-64 md:w-96">
               <div className="aspect-[4/3] overflow-hidden">
                 <video
                   className="w-full h-full object-cover"
@@ -55,7 +55,7 @@ const MethodPage = () => {
 
         {/* Section 2 */}
         <section>
-          <div className="flex flex-col-reverse md:flex-row items-center md:gap-10 gap-6 pt-12 pb-8">
+          <div className="flex flex-col-reverse md:flex-row items-center md:gap-10 gap-6 pt-12 md:pt-0 pb-8">
             <div className="w-full md:w-1/2">
               <Image
                 src="/micro-delux.jpg"
@@ -85,21 +85,21 @@ const MethodPage = () => {
         </section>
 
         {/* Section 3 */}
-        <section className="pb-12">
-          <h1 className="text-xl md:text-2xl font-bold tracking-wider mb-6">
-            {t("section3.title")}
-          </h1>
+        <section className="pb-6">
           <div className="flex flex-col-reverse md:flex-row items-center md:gap-10 gap-6">
             <div className="flex-1">
+              <h1 className="text-xl md:text-4xl font-bold tracking-[0.8rem] mb-6">
+                {t("section3.title")}
+              </h1>
               <FitnessBenefits />
             </div>
             <div className="hidden md:block">
               <Image
                 src="/choose-lagree.jpg"
                 alt="starlette"
-                width={700}
-                height={500}
-                className="w-full h-auto object-cover rounded"
+                width={500}
+                height={100}
+                className="w-96 h-auto object-cover rounded"
               />
             </div>
           </div>
