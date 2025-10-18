@@ -63,9 +63,9 @@
 
 .outlined-text {
   
-  font-weight: bold;
+  font-weight: 600;
   color: transparent;
-  -webkit-text-stroke: 1px var(--primary); /* Works in Chrome/Edge/Safari */
+  -webkit-text-stroke: 0.1px var(--primary); /* Works in Chrome/Edge/Safari */
 
   /* Fallback for Firefox */
   /* text-shadow: 

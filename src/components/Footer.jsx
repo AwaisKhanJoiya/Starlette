@@ -44,18 +44,25 @@ const Footer = () => {
         </ul>
 
         {/* Contact */}
-        <div
-          dir={locale === "he" ? "ltr" : "rtl"}
+        <Link
+          href={"https://wa.me/972586010898"}
+          target="_blank"
+          dir={locale === "he" ? "rtl" : "ltr"}
           className="flex items-center gap-2"
         >
           <Image src="/whatsapp-icon.png" alt="phone" width={24} height={24} />
           <span className="text-dark-gray font-bold">{t("contact")}</span>
-        </div>
+        </Link>
       </div>
 
       {/* Footer Bottom */}
       <div className="flex flex-col text-dark-gray  items-center sm:items-end gap-1   text-center sm:text-right">
-        <p className=" text-xs sm:text-sm">{t("email")}</p>
+        <Link
+          href={`mailto:${t("email").toLowerCase()}`}
+          className=" text-xs sm:text-sm"
+        >
+          {t("email")}
+        </Link>
         <p className="italic text-xs sm:text-sm">{t("rights")}</p>
       </div>
     </div>

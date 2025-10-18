@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Volume2, VolumeX } from "lucide-react";
-// import Image from "next/image";
+import Image from "next/image";
 
 const BannerVideo = () => {
   const videoRef = useRef(null);
@@ -40,10 +40,17 @@ const BannerVideo = () => {
           preload="metadata"
         />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
-          <h1 className="flex md:block flex-col font-shrikhand text-2xl md:text-5xl text-primary m-0">
-            <span className="outlined-text text-3xl md:text-[60px]">A </span>
-            <span className="text-6xl md:text-8xl">Starlette</span>{" "}
-            <span className="outlined-text text-xl md:text-[60px]">
+          <h1 className="flex flex-col justify-center items-center gap-2 md:flex-row font-shrikhand text-2xl md:text-3xl text-primary m-0">
+            <span className="outlined-text text-3xl md:text-[55px]">A </span>
+            {/* <span className="text-6xl md:text-8xl">Starlette</span>{" "} */}
+            <Image
+              src="/starlette-title.png"
+              alt="Lagree Tel Aviv"
+              width={360}
+              height={50}
+              className="object-cover mb-3"
+            />
+            <span className="outlined-text text-xl md:text-[55px]">
               is Born
             </span>
           </h1>
