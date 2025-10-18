@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { InstagramIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 const DownloadApp = () => {
   const t = useTranslations("downloadApp");
@@ -54,8 +55,18 @@ const DownloadApp = () => {
 
           {/* Social Icons */}
           <div className="flex justify-center md:justify-end gap-4 mt-2">
-            <InstagramIcon color="black" size={30} />
-            <Image src="/tiktok.png" alt="starlette" width={30} height={30} />
+            <Link
+              href={"https://www.instagram.com/starlette_tlv/?hl=en"}
+              target="_blank"
+            >
+              <InstagramIcon color="black" size={30} />
+            </Link>
+            <Link
+              href={"https://www.tiktok.com/@starlette_tlv"}
+              target="_blank"
+            >
+              <Image src="/tiktok.png" alt="starlette" width={30} height={30} />
+            </Link>
           </div>
         </div>
       </div>

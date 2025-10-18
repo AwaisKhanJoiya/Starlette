@@ -14,18 +14,19 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const icons = [
-  Flame,
-  User,
-  Dumbbell,
-  Star,
-  Zap,
-  Users,
-  Clock,
-  Activity,
-  Target,
-  RotateCcw,
+  "/icons/fire.png",
+  "/icons/posture.png",
+  "/icons/diet.png",
+  "/icons/star.png",
+  "/icons/sun.png",
+  "/icons/yoga-pose.png",
+  "/icons/stopwatch.png",
+  "/icons/foot.png",
+  "/icons/tornado.png",
+  "/icons/recycle.png",
 ];
 
 const FitnessBenefits = () => {
@@ -39,15 +40,16 @@ const FitnessBenefits = () => {
         return (
           <div
             key={index}
-            className="group relative  py-1 px-2 text-dark-gray rounded-2xl border-2 border-dashed border-[#000] flex flex-col justify-center"
+            className="group relative p-2 text-dark-gray rounded-3xl border-4 border-dashed border-[#000] flex flex-col justify-center"
           >
-            <div className="flex items-center gap-1">
-              <Icon className="w-4 h-4" />
-              <div>
-                <p className="text-[10px] font-bold tracking-wider">
+            <div className="flex items-start gap-2">
+              {/* <Icon className="w-8 h-8" /> */}
+              <Image src={Icon} width={40} height={40} />
+              <div className="flex-1">
+                <p className="text-sm font-bold tracking-wider border-b-2 border-dashed border-light-gray w-full mb-1">
                   {benefit.title}
                 </p>
-                <p className="text-[10px] mb-0 whitespace-pre-line">
+                <p className="text-xs mb-0 whitespace-pre-line">
                   {benefit.subtitle}
                 </p>
               </div>

@@ -40,19 +40,20 @@ export default function Navbar() {
 
   const isLanding = pathname === "/";
   const isAccount = pathname === "/account";
+  const isPricing = pathname === "/pricing";
   // Icon color: white on dark bg, gray on light bg
   const iconColorClass =
     isLanding && !scrolled ? "text-white" : "text-gray-700";
 
   return (
     <nav
-      className={`${isLanding ? "fixed" : "sticky"} ${
+      className={`${isLanding || isPricing ? "fixed" : "sticky"} ${
         locale === "he" ? "rtl" : ""
       } top-0 z-50 w-full transition-colors duration-300`}
     >
       <div
         className={`relative px-4 sm:px-6 lg:px-8 flex min-h-16 items-center justify-between ${
-          scrolled || !isLanding ? "  bg-white" : "bg-transparent"
+          scrolled || (!isLanding && !isPricing) ? "bg-white" : "bg-transparent"
         }`}
       >
         {/* Left: Menu Icon */}

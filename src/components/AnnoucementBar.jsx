@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const AnnoucementBar = () => {
   const t = useTranslations("announcement");
@@ -31,37 +32,77 @@ const AnnoucementBar = () => {
     <div className="bg-primary w-full py-2 overflow-hidden open-sans">
       <div ref={containerRef} className="marquee-container">
         <div ref={contentRef} className="marquee-content">
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
           </span>
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
+          </span>{" "}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
+          </span>{" "}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
           </span>
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
-          </span>
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
-          </span>
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
           </span>
         </div>
         <div className="marquee-content" aria-hidden="true">
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
           </span>
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
           </span>
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
           </span>
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
           </span>
-          <span className="text-light-gray font-medium tracking-wider me-2">
-            {scrollingText}
+          <span className="text-black font-medium tracking-wider me-2 flex items-center gap-2">
+            {t.rich("scrolling_text", {
+              img: () => (
+                <Image src={"/star-icon.png"} width={12} height={12} alt="★" />
+              ),
+            })}
           </span>
         </div>
       </div>
@@ -70,12 +111,17 @@ const AnnoucementBar = () => {
           display: flex;
           width: 100%;
           overflow: hidden;
+          gap: 8rem;
         }
 
         .marquee-content {
           display: flex;
           white-space: nowrap;
-          animation: marquee var(--duration, 20s) linear infinite;
+          animation: marquee var(--duration, 2s) linear infinite;
+          gap: 8rem;
+        }
+        .marquee-content span {
+          letter-spacing: 3px;
         }
 
         @keyframes marquee {
