@@ -99,7 +99,7 @@ export default function NewCoach() {
         </button>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-background shadow-md rounded-lg p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">
           Create New Coach
         </h1>

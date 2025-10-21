@@ -120,8 +120,8 @@ export default function RegisterPage() {
         onOpenChange={setTermsDialogOpen}
       />
 
-      <div className="min-h-screen bg-white text-dark-gray flex flex-col items-center justify-center py-12 px-4 mt-16">
-        <div className="w-full max-w-md bg-white border-y border-dashed border-dark-gray p-6">
+      <div className="min-h-screen bg-background text-dark-gray flex flex-col items-center justify-center py-12 px-4 mt-16">
+        <div className="w-full max-w-md bg-background border-y border-dashed border-dark-gray p-6">
           <div className="mb-8 flex flex-col items-center">
             <h2 className="text-xs font-medium text-dark-gray mb-2">
               {t("registrationStep")} {currentStep}/2

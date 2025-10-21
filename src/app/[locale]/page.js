@@ -36,7 +36,7 @@ export default function StarletteStudio() {
     tPackages("home.bullets.three"),
   ];
   return (
-    <div className="min-h-screen mx-auto text-white relative bg-white">
+    <div className="min-h-screen mx-auto text-white relative bg-background">
       {/* Hero video area */}
       <main className="flex items-center justify-center relative">
         <div className="text-center w-full">
@@ -78,7 +78,7 @@ export default function StarletteStudio() {
             </div>
 
             <div className="w-full md:w-1/2 flex flex-col items-center md:items-end gap-4">
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center gap-8">
                 <div className="mb-0 hidden md:block">
                   <div className="w-40 h-40 md:w-56 md:h-56 flex items-center justify-center">
                     <Image
@@ -104,18 +104,18 @@ export default function StarletteStudio() {
 
         {/* Experience section - responsive */}
         <section className="px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col-reverse md:flex-row md:items-start items-center pt-12 border-b border-dashed border-black">
+          <div className="flex flex-col-reverse md:flex-row md:items-start items-center pt-12 border-b border-dashed border-black overflow-hidden">
             <div className="w-full md:w-1/2 pt-20">
               <Image
-                src="/starlette-exprience.png"
+                src="/starlette-experience-2.png"
                 alt="starlette"
-                width={700}
+                width={900}
                 height={500}
                 style={{
-                  transform: "rotateY(180deg) rotateZ(-3deg)",
-                  filter: "drop-shadow(-1px -1px 13px #545454)",
+                  // transform: "rotateY(180deg) rotateZ(-3deg)",
+                  filter: "drop-shadow(-1px -1px 5px #545454)",
                 }}
-                className="w-full h-auto object-cover rounded"
+                className="w-full h-auto object-cover rounded -mb-1"
               />
             </div>
 
@@ -164,19 +164,19 @@ export default function StarletteStudio() {
             </div>
             <div className="w-full md:w-1/2 flex flex-col items-center  md:items-end space-y-8">
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className="md:w-72 w-full rounded-full uppercase px-6 py-3 text-sm">
+                <Button className="md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
                   {t("buttons.theStudio")}
                 </Button>
               </div>
 
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className="md:w-72 w-full rounded-full uppercase px-6 py-3 text-sm">
+                <Button className="md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
                   {t("buttons.theMethod")}
                 </Button>
               </div>
 
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className=" md:w-72 w-full rounded-full uppercase px-6 py-3 text-sm">
+                <Button className=" md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
                   {t("buttons.memberships")}
                 </Button>
               </div>
@@ -195,9 +195,9 @@ export default function StarletteStudio() {
           <FitnessBookingCalendar />
         </div>
 
-        <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+        {/* <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-10">
           <DownloadApp />
-        </div>
+        </div> */}
       </main>
     </div>
   );

@@ -15,7 +15,7 @@ const Footer = () => {
     <div
       className={`${
         locale === "he" ? "rtl" : ""
-      } px-4 sm:px-6 lg:px-8 py-6 bg-white font-arial`}
+      } px-4 sm:px-6 lg:px-8 py-6 bg-background font-arial`}
     >
       {/* Top section */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">

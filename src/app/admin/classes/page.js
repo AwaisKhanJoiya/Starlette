@@ -128,7 +128,7 @@ export default function ClassesManagement() {
           <p className="text-red-500">{error}</p>
         </div>
       ) : (
-        <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+        <div className="overflow-x-auto bg-background shadow-md rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
@@ -155,7 +155,7 @@ export default function ClassesManagement() {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-background divide-y divide-gray-200">
               {filteredClasses.length === 0 ? (
                 <tr>
                   <td

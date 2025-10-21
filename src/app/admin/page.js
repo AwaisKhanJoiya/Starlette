@@ -107,7 +107,7 @@ export default function AdminDashboard() {
       {/* Recent Activity */}
       <div className="mt-8">
         <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
+        <div className="bg-background rounded-lg shadow p-4 border border-gray-200">
           <div className="space-y-4">
             {[
               "New class 'Full Body' was created",
@@ -132,7 +132,7 @@ export default function AdminDashboard() {
 // Stats card component
 function StatsCard({ title, value, icon }) {
   return (
-    <div className="bg-white rounded-lg shadow p-6 border border-gray-200">
+    <div className="bg-background rounded-lg shadow p-6 border border-gray-200">
       <div className="flex items-center">
         <div className="mr-4">{icon}</div>
         <div>

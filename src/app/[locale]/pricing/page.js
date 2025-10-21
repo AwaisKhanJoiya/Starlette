@@ -100,7 +100,7 @@ const PricingPage = () => {
   let spaces = 0;
 
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       <div className="px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-stretch md:h-screen border-b border-dashed border-black">
         <div className="w-full md:w-1/2  relative z-10 flex flex-col justify-center p-6 md:p-12">
           <div className="mt-10 md:mt-0">
@@ -281,7 +281,7 @@ const PricingPage = () => {
         />
         <div className="mb-20"></div>
       </div>
-      <div className="bg-white text-dark-gray px-4 sm:px-6 lg:px-8">
+      <div className="bg-background text-dark-gray px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-16">
           <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wider uppercase">

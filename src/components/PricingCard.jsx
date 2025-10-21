@@ -30,7 +30,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
 
   return (
     <div className="relative">
-      <div className=" border-2 text-dark-gray border-black bg-white rounded-3xl py-8 px-4 w-72 md:w-60 text-center shadow-sm">
+      <div className=" border-2 text-dark-gray border-black bg-background rounded-3xl py-8 w-72 md:w-52 text-center shadow-sm">
         {slug && (
           <div className="text-xs md:text-sm mb-2 font-bold text-primary">
             {slug}
@@ -52,7 +52,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
         {headline && (
           <div
             dir={locale === "he" ? "rtl" : undefined}
-            className="text-lg md:text-xl trea font-bold mb-1 tracking-widest text-[#787C7C]"
+            className="text-lg md:text-2xl trea font-bold mb-1 tracking-widest text-[#787C7C]"
           >
             {headline}
           </div>
@@ -60,20 +60,20 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
         {gift && (
           <p
             dir={locale === "he" ? "rtl" : undefined}
-            className="text-[10px] font-bold mb-6 text-[#787C7C]"
+            className="text-[9px] font-bold mb-2 text-[#787C7C] mt-1"
           >
             {gift}
           </p>
         )}
       </div>
-      <p className="absolute right-3 top-6 -rotate-90 origin-right text-[11px] font-bold mb-6 text-[#b8b6b3]">
+      <p className="absolute right-3 top-6 -rotate-90 origin-right text-[11px] font-normal mb-6 text-[#b8b6b3]">
         valid for 1 month
       </p>
 
       <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2">
         <Button
           onClick={handleClick}
-          className="bg-secondary border border-black text-dark-gray py-2 px-6 rounded shadow-md"
+          className="bg-secondary border border-black text-dark-gray py-4 h-10 px-6 rounded-lg shadow-md"
           aria-label={buttonLabel}
         >
           {buttonLabel}

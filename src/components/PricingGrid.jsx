@@ -10,7 +10,8 @@ import { useLocale, useTranslations } from "next-intl";
 export default function PricingGrid({
   cards = [],
   columns = 3,
-  backgroundImage = "/light-logo.jpg",
+  // backgroundImage = "/light-logo.jpg",
+  backgroundImage = "/hd-logo.png",
   headerImage = "/welcome-pack.jpg",
   bullets = [],
   packageName,

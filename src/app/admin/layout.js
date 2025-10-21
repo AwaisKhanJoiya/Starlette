@@ -87,7 +87,7 @@ export default function AdminLayout({ children }) {
         <div className="lg:hidden fixed top-4 left-4 z-40">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 rounded-md text-gray-700 bg-white shadow-md"
+            className="p-2 rounded-md text-gray-700 bg-background shadow-md"
           >
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -97,7 +97,7 @@ export default function AdminLayout({ children }) {
         <div
           className={`${
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:translate-x-0 fixed z-30 inset-y-0 left-0 w-64 transition-transform duration-300 ease-in-out bg-white border-r border-gray-200 lg:static lg:inset-0 lg:block`}
+          } lg:translate-x-0 fixed z-30 inset-y-0 left-0 w-64 transition-transform duration-300 ease-in-out bg-background border-r border-gray-200 lg:static lg:inset-0 lg:block`}
         >
           <div className="h-full flex flex-col">
             {/* Logo */}

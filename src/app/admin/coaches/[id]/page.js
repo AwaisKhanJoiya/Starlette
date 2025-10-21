@@ -140,7 +140,7 @@ export default function CoachDetails() {
         </div>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-background shadow-md rounded-lg p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">{coach.name}</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

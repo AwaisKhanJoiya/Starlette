@@ -53,7 +53,9 @@ export default function Navbar() {
     >
       <div
         className={`relative px-4 sm:px-6 lg:px-8 flex min-h-16 items-center justify-between ${
-          scrolled || (!isLanding && !isPricing) ? "bg-white" : "bg-transparent"
+          scrolled || (!isLanding && !isPricing)
+            ? "bg-background"
+            : "bg-transparent"
         }`}
       >
         {/* Left: Menu Icon */}
@@ -97,7 +99,7 @@ export default function Navbar() {
                 } w-24 rounded-md top-10 border backdrop-blur-lg z-40 transform transition-transform duration-300
               ${
                 scrolled || !isLanding
-                  ? "border-gray-300 bg-white "
+                  ? "border-gray-300 bg-background "
                   : "border-white bg-transparent"
               }`}
               >
@@ -147,7 +149,7 @@ export default function Navbar() {
             } w-36 rounded-md top-16 border p-1 backdrop-blur-lg z-40 transform transition-transform duration-300
               ${
                 scrolled || !isLanding
-                  ? "border-gray-300 bg-white "
+                  ? "border-gray-300 bg-background "
                   : "border-white bg-transparent"
               }`}
           >

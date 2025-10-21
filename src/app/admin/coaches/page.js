@@ -171,7 +171,7 @@ export default function CoachesPage() {
         </Link>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="bg-background shadow-md rounded-lg overflow-hidden">
         <div className="p-4 border-b">
           <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2">
             <Search size={20} className="text-gray-400" />
@@ -275,7 +275,7 @@ export default function CoachesPage() {
                   className={`px-3 py-1 rounded ${
                     currentPage === 1
                       ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                      : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                      : "bg-background border border-gray-300 text-gray-700 hover:bg-gray-50"
                   }`}
                 >
                   Previous
@@ -288,7 +288,7 @@ export default function CoachesPage() {
                   className={`px-3 py-1 rounded ${
                     currentPage === totalPages
                       ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                      : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                      : "bg-background border border-gray-300 text-gray-700 hover:bg-gray-50"
                   }`}
                 >
                   Next

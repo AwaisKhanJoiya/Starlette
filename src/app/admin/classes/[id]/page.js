@@ -144,7 +144,7 @@ export default function ClassDetails() {
         </div>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-background shadow-md rounded-lg p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-2">
           {classData.title}
         </h1>
@@ -169,8 +169,10 @@ export default function ClassDetails() {
               <div>
                 <p className="text-sm text-gray-500">Time</p>
                 <p className="font-medium">
-                  {classData.startTime} 
-                  <span className="text-sm text-gray-500 ml-2">(50 minutes)</span>
+                  {classData.startTime}
+                  <span className="text-sm text-gray-500 ml-2">
+                    (50 minutes)
+                  </span>
                 </p>
               </div>
             </div>
@@ -242,7 +244,7 @@ export default function ClassDetails() {
       </div>
 
       {/* Enrolled Students Section */}
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-background shadow-md rounded-lg p-6">
         <h2 className="text-xl font-semibold mb-4">Enrolled Students</h2>
 
         {!classData.enrolledStudents ||
@@ -267,7 +269,7 @@ export default function ClassDetails() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-background divide-y divide-gray-200">
                 {classData.enrolledStudents.map((student, index) => (
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">

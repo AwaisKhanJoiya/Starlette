@@ -4,13 +4,13 @@
       "one": {
         "price": "110₪",
         "headline": "1 class",
-        "gift": "+ GIFT: PAIR OF GRIP SOCKS",
+        "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
         "button": "BOOK"
       },
       "three": {
         "price": "300₪",
         "headline": "3 classes",
-        "gift": "+ GIFT: PAIR OF GRIP SOCKS",
+        "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
         "button": "BOOK"
       }
     },
@@ -31,13 +31,13 @@
         "a": {
           "price": "110₪",
           "headline": "1 class",
-          "gift": "+ GIFT: PAIR OF GRIP SOCKS",
+          "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
           "button": "BOOK"
         },
         "b": {
           "price": "300₪",
           "headline": "3 classes",
-          "gift": "+ GIFT: PAIR OF GRIP SOCKS",
+          "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
           "button": "BOOK"
         }
       },

@@ -1,17 +1,17 @@
 {
   "hero": {
     "title": "Lagree, But make it like a Starlette.",
-    "body": "<b>Starlette</b> is the first <b>MicroLagree</b> studio in Israel — a women-only space in the heart of Tel Aviv. <br></br> <br></br> <b>Lagree</b> is the ultimate method for a <b>sculpted body</b>. <br></br> <i> Control. Fluidity. Strength. Depth.</i> <b><br></br>Real results. Lasting transformation. <br></br><br></br> More than just a workout. A whole universe.</b> <br></br><br></br> <i>For women who train like stars — and shine like them.</i> <br></br> <br></br> <b>Ready to feel like a star?</b>",
+    "body": "<b>Starlette</b> is the first <b>MicroLagree</b> studio in Israel —<br></br> a women-only space in the heart of Tel Aviv. <br></br> <br></br> <b>Lagree</b> is the ultimate method for a <b>sculpted body</b>. <br></br> <i> Control. Fluidity. Strength. Depth.</i> <b><br></br>Real results. Lasting transformation. <br></br><br></br> More than just a workout. A whole universe.</b> <br></br><br></br> <i>For women who train like stars — and shine like them.</i> <br></br> <br></br> <b>Ready to feel like a star?</b>",
     "cta": "DISCOVER STARLETTE"
   },
   "experience": {
     "title": "THE STARLETTE EXPERIENCE",
-    "body": "<b>REVEAL THE BEST VERSION OF YOURSELF.</b> <br></br> <b>STARLETTE</b> IS A SPACE OF <b>WELLNESS</b> AND <b>POWER</b> — <br></br> <i>CREATED BY A WOMAN, FOR WOMEN.</i> <br></br><br></br> THE <b>LAGREE</b> METHOD HAS FINALLY ARRIVED IN ISRAEL. <br></br> AT <b>STARLETTE</b>, EVERY DETAIL MATTERS: <br></br> <b>SEMI-PRIVATE</b> SESSIONS (MAX. 5 WOMEN) <br></br> FOR A TRULY <b>PERSONALIZED</b> COACHING, <br></br> IN AN <i>INTIMATE</i> AND <i>INSPIRING</i> ENVIRONMENT. <br></br><br></br> HERE, <b>TRANSFORMATION</b> GOES BEYOND THE PHYSICAL— <br></br> IT'S <i>EMOTIONAL, MENTAL</i>, AND <i>ENERGETIC</i> TOO. <br></br><br></br> <b>RADIANT. POWERFUL. UNSTOPPABLE. <br></br> WELCOME TO STARLETTE</b>"
+    "body": "<b>REVEAL THE BEST VERSION OF YOURSELF.</b> <br></br> <b>STARLETTE</b> IS A SPACE OF <b>WELLNESS</b> AND <b>POWER</b> — <br></br> <i>CREATED BY A WOMAN, FOR WOMEN.</i> <br></br><br></br> THE <b>LAGREE</b> METHOD HAS FINALLY ARRIVED IN ISRAEL. <br></br> AT <b>STARLETTE</b>, EVERY DETAIL MATTERS: <br></br> <b>SEMI-PRIVATE</b> SESSIONS (MAX. 5 WOMEN) <br></br> FOR A TRULY <b>PERSONALIZED</b> COACHING, <br></br> IN AN <i>INTIMATE</i> AND <i>INSPIRING</i> ENVIRONMENT. <br></br><br></br> HERE, <b>TRANSFORMATION</b> GOES BEYOND THE PHYSICAL — <br></br> IT'S <i>EMOTIONAL, MENTAL</i>, AND <i>ENERGETIC</i> TOO. <br></br><br></br> <b>RADIANT. POWERFUL. UNSTOPPABLE. <br></br> WELCOME TO STARLETTE.</b>"
   },
 
   "newway": {
     "title": "A NEW WAY TO MOVE",
-    "body": "Discover <b>Lagree </b>: an INNOVATIVE method that pushes <br></br> the LIMITS of traditional Pilates.<br></br><br></br><b> Short, intense</b>, and <b>low-impact</b> sessions.<br></br>On the <b>Micro deluxe</b>, you'll experience a whole <b>new </b>way to train.<br></br><br></br><i> Slow, controlled</i>, and <i>targeted movements.</i><br></br><b> Strength</b> and <b>cardio</b> combined —<br></br>a <b>complete</b> workout with <b>proven results</b>.<br></br><br></br><b> For those who love to challenge themselves — </b><br></br><b>With elegance, strength... and power.</b>"
+    "body": "Discover <b>Lagree </b>: an INNOVATIVE method that pushes <br></br> the LIMITS of traditional Pilates.<br></br><br></br><b> Short, intense</b>, and <b>low-impact</b> sessions.<br></br>On the <b>Micro deluxe</b>, you'll experience a whole <b>new </b>way to train.<br></br><br></br><i> Slow, controlled</i>, and <i>targeted movements.</i><br></br><b> Strength</b> and <b>cardio</b> combined —<br></br>a <b>complete</b> workout with <b>proven results</b>.<br></br><br></br><b> For those who love to challenge themselves — </b><br></br><b>With elegance and power.</b>"
   },
 
   "buttons": {
@@ -25,7 +25,7 @@
     "threeClassPrice": "300₪",
     "oneClassText": "1 class",
     "threeClassText": "3 class",
-    "gift": "+ GIFT: PAIR OF GRIP SOCKS",
+    "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
     "book": "BOOK"
   },
   "bullets": {

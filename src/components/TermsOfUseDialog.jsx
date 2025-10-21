@@ -10,7 +10,7 @@ import {
 const TermsOfUseDialog = ({ open, onOpenChange }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-[90vh] overflow-y-auto p-6 bg-white">
+      <DialogContent className="max-w-xl max-h-[90vh] overflow-y-auto p-6 bg-background">
         <DialogHeader className="flex items-start justify-between">
           <DialogTitle className="text-lg font-bold text-dark-gray underline">
             TERMS OF USE

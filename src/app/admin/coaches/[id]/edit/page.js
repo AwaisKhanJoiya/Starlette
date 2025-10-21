@@ -150,7 +150,7 @@ export default function EditCoach() {
         </button>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-background shadow-md rounded-lg p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Edit Coach</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
