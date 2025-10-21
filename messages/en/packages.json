@@ -75,28 +75,28 @@
         "c1": {
           "slug": "A STARLETTE IS BORN",
           "price": "500₪",
-          "headline": "1 class per week",
+          "headline": "1 class <br></br> per week",
           "gift": "",
           "button": "BOOK"
         },
         "c2": {
           "slug": "A LUCKY STAR",
           "price": "920₪",
-          "headline": "2 classes per week",
+          "headline": "2 classes <br></br> per week",
           "gift": "",
           "button": "BOOK"
         },
         "c3": {
           "slug": "A SUPERSTAR-LETTE",
           "price": "1200₪",
-          "headline": "3 classes per week",
+          "headline": "3 classes <br></br> per week",
           "gift": "",
           "button": "BOOK"
         },
         "c4": {
           "slug": "A STARLETTE ADDICT",
           "price": "1600₪",
-          "headline": "unlimted classes",
+          "headline": "UNLIMITED CLASSES",
           "gift": "",
           "button": "BOOK"
         }

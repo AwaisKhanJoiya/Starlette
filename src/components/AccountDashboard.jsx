@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import LoadingButton from "@/components/ui/LoadingButton";
 import { useUserAuthContext } from "@/context/UserAuthContext";
+import { locales } from "@/i18n/navigation";
 
 export default function AccountDashboard() {
   const {
@@ -18,8 +19,8 @@ export default function AccountDashboard() {
     "myInformation",
     "myBookings",
     "myClassPack",
-    "classHistory",
     "mySubscription",
+    "classHistory",
   ];
   const [bookedClasses, setBookedClasses] = useState([]); // Array of enrolled classes
   const [loading, setLoading] = useState(false); // Loading state
@@ -62,7 +63,7 @@ export default function AccountDashboard() {
   // Header component — no bg by default; selected gets bg-primary + text-white
   const Header = ({ label, index, isOpen, isLast }) => {
     // base classes: full width, top border; last item also gets bottom border (applied where rendering)
-    const base = `w-full flex items-center justify-between gap-4 px-4 py-2 text-left border-t border-[#000000] transition focus:outline-none focus:ring-2 focus:ring-pink-300`;
+    const base = `w-full flex items-center hover:bg-primary hover:text-white justify-between gap-4 px-4 py-2 text-left border-t border-[#000000] transition focus:outline-none focus:ring-2 focus:ring-pink-300`;
     const selected = isOpen
       ? "bg-primary text-white"
       : "bg-transparent text-dark-gray";
@@ -75,7 +76,7 @@ export default function AccountDashboard() {
         onClick={() => toggle(index)}
         aria-expanded={isOpen}
         aria-controls={`acc-panel-${index}`}
-        className={`${base} ${selected} ${lastBorder}`}
+        className={`${base} ${selected} ${lastBorder} `}
       >
         <div>
           <div className="text-xs font-medium">{label}</div>
@@ -142,9 +143,7 @@ export default function AccountDashboard() {
         return (
           <div className="space-y-4">
             <div className="py-6">
-              <h3 className="font-medium mb-3">
-                {t("details.upcomingClasses")}
-              </h3>
+              <h3 className="font-bold mb-3">{t("details.upcomingClasses")}</h3>
 
               {/* container with single top & bottom borders and single divider between rows */}
               <div className="border-t border-b border-[#000000] divide-y divide-[#000000] overflow-hidden">
@@ -154,7 +153,7 @@ export default function AccountDashboard() {
                     <p className="mt-2 text-sm">{t("loading")}</p>
                   </div>
                 ) : bookedClasses.length === 0 ? (
-                  <div className="py-6 text-center text-gray-500">
+                  <div className="py-6 text-center capitalize text-gray-500">
                     {t("noBookedClasses")}
                   </div>
                 ) : (
@@ -176,22 +175,22 @@ export default function AccountDashboard() {
                         className="py-3 px-4 grid grid-cols-2 md:grid-cols-6 gap-3 items-center"
                       >
                         {/* Date */}
-                        <div className="text-xs md:text-sm text-dark-gray font-medium">
+                        <div className="text-xs md:text-sm text-dark-gray font-bold">
                           {formattedDate}
                         </div>
 
                         {/* Time */}
-                        <div className="text-xs md:text-sm text-dark-gray font-medium">
+                        <div className="text-xs md:text-sm text-dark-gray font-bold">
                           {classItem.time}
                         </div>
 
                         {/* Class name */}
-                        <div className="text-xs md:text-sm text-dark-gray font-medium">
+                        <div className="text-xs md:text-sm text-dark-gray font-bold">
                           {classItem.title || classItem.type}
                         </div>
 
                         {/* Instructor */}
-                        <div className="text-xs md:text-sm text-dark-gray font-medium">
+                        <div className="text-xs md:text-sm text-dark-gray font-bold">
                           {classItem.instructor}
                         </div>
 
@@ -206,11 +205,11 @@ export default function AccountDashboard() {
                             <LoadingButton
                               text={t("buttons.modify")}
                               loadingText={t("loading")}
-                              className="text-xs px-6 py-1 rounded-md font-medium"
+                              className="text-xs px-6 py-2 rounded-md font-medium"
                               variant="primary"
                             />
                           ) : (
-                            <button className="text-xs px-6 py-1 rounded-md bg-custome-gray font-medium transition">
+                            <button className="text-xs px-6 py-2 rounded-md bg-custome-gray font-medium transition">
                               {t("status.waitingList")}
                             </button>
                           )}
@@ -219,6 +218,19 @@ export default function AccountDashboard() {
                     );
                   })
                 )}
+                <p className="uppercase text-[10px] py-3 text-[#686867] font-arial font-semibold">
+                  {t.rich("bookingInfo", {
+                    a: (chunks) => (
+                      <a href="mailto: starlette.tlv@gmail.com">{chunks}</a>
+                    ),
+                    b: (chunks) => (
+                      <span className="font-extrabold text-black">
+                        {chunks}
+                      </span>
+                    ),
+                    br: () => <br />,
+                  })}
+                </p>
               </div>
             </div>
           </div>
@@ -245,7 +257,7 @@ export default function AccountDashboard() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-t border-[#000000] font-medium">
+                    <tr className="border-t border-[#000000] font-semibold">
                       <td className="py-2">10 {t("table.classes")}</td>
                       <td>10/05/2025</td>
                       <td>10/06/2025</td>
@@ -256,13 +268,13 @@ export default function AccountDashboard() {
                         </span>
                       </td>
                     </tr>
-                    <tr className="border-y border-[#000000] font-medium ">
+                    <tr className="border-y border-[#000000] font-semibold">
                       <td className="py-2">{t("details.welcomePack")}</td>
                       <td>10/03/2024</td>
                       <td>10/05/2025</td>
                       <td>0</td>
                       <td>
-                        <span className="text-[#FABDCE] font-medium px-2 py-1  text-xs">
+                        <span className="text-[#FABDCE] italic font-medium px-2 py-1  text-xs">
                           {t("status.expired")}
                         </span>
                       </td>
@@ -271,10 +283,22 @@ export default function AccountDashboard() {
                 </table>
               </div>
 
-              <div className="text-xs text-gray-600 mt-4 space-y-1">
-                <p className="font-medium">{t("details.happyJune")}</p>
-                <p>{t("details.classPackNote")}</p>
-              </div>
+              <p className="uppercase text-[10px] py-3 text-[#686867] font-arial font-semibold">
+                {t.rich("classpackInfo", {
+                  a: (chunks) => (
+                    <a
+                      href="/pricing"
+                      className="text-primary font-bold underline"
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                  b: (chunks) => (
+                    <span className="font-extrabold text-black">{chunks}</span>
+                  ),
+                  br: () => <br />,
+                })}
+              </p>
             </div>
           </div>
         );
@@ -283,7 +307,7 @@ export default function AccountDashboard() {
         return (
           <div className="space-y-4">
             <div className="py-6">
-              <h3 className="font-medium mb-3">{t("details.pastClasses")}</h3>
+              <h3 className="font-semibold mb-3">{t("details.pastClasses")}</h3>
 
               {/* single top & bottom border with single dividers between rows */}
               <div className="border-t border-b border-[#000000] divide-y divide-[#000000]  overflow-hidden">
@@ -295,13 +319,13 @@ export default function AccountDashboard() {
                   const statusKey = r[4]; // "present" | "missed"
                   const badgeClass =
                     statusKey === "missed"
-                      ? " text-[#FABDCE]"
+                      ? " text-[#FABDCE] italic font-semibold"
                       : " text-dark-gray";
 
                   return (
                     <div
                       key={i}
-                      className="py-3 px-4 grid grid-cols-2 text-[#000] font-medium md:grid-cols-6 gap-3 items-center hover:bg-gray-50 transition"
+                      className="py-3 px-4 grid grid-cols-2 text-black font-semibold md:grid-cols-6 gap-3 items-center hover:bg-gray-50 transition"
                     >
                       {/* Date */}
                       <div className="text-xs md:text-sm ">{r[0]}</div>
@@ -339,26 +363,32 @@ export default function AccountDashboard() {
         return (
           <div className="space-y-4 font-arial">
             <div className="py-6">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex  gap-2">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex justify-center items-center gap-2">
                   <div>
                     <Image
                       src="/star.jpg"
                       alt="starlette"
-                      width={30}
-                      height={30}
+                      width={40}
+                      height={40}
                       className="relative z-10"
                     />
                   </div>
                   <div>
-                    <h2 className="text-base  text-[#FABDCE] font-extrabold">
-                      "A SUPERSTAR-LETTE"
+                    <h2 className="mb-1 text-lg font-extrabold text-[#FABDCE] [text-stroke:0.2px_#545454] [-webkit-text-stroke:0.2px_#545454]">
+                      "A SUPERSTAR—LETTE"
                     </h2>
+
                     <div className="divide-y divide-[#000000] ">
-                      <div className="text-sm font-medium mb-2">
-                        {t("details.subscriptionInfo")}
+                      <div className="flex items-center gap-2 pb-2">
+                        <div className="text-sm   font-bold  ">
+                          {t("details.subscriptionInfo")}
+                        </div>
+                        <div className="text-[10px] font-semibold italic text-[#787C7C]">
+                          {t("details.remaining")}
+                        </div>
                       </div>
-                      <div className="text-sm font-semibold text-gray-800 pt-2">
+                      <div className="text-[10px] font-semibold pt-2 italic text-[#787C7C]">
                         {t("details.classesPerWeek")}
                       </div>
                     </div>
@@ -368,25 +398,27 @@ export default function AccountDashboard() {
                   <LoadingButton
                     text={t("buttons.modify")}
                     loadingText={t("loading")}
-                    className="text-xs px-10 py-3 rounded-md font-medium"
+                    className="text-black text-xs px-10 py-1 rounded-md font-medium sm:w-40 w-auto"
                     variant="primary"
                   />
                   <LoadingButton
                     text={t("buttons.cancellation")}
                     loadingText={t("processing")}
-                    className="text-xs px-10 py-3 rounded-md font-medium"
+                    className="text-black text-xs px-10 py-1 rounded-md font-medium sm:w-40 w-auto"
                     variant="primary"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="text-sm text-dark-gray">
-              <p className="font-medium">
-                {t("details.subscriptionModification")}
-              </p>
-              <p>{t("details.subscriptionText")}</p>
-            </div>
+            <p className="uppercase text-[10px] text-[#686867] font-arial font-semibold">
+              {t.rich("details.subscriptionPolicy", {
+                b: (chunks) => (
+                  <span className="font-extrabold text-black">{chunks}</span>
+                ),
+                br: () => <br />,
+              })}
+            </p>
           </div>
         );
 
@@ -397,7 +429,9 @@ export default function AccountDashboard() {
 
   return (
     <div>
-      <h1 className="text-xl font-bold tracking-wider mb-4 text-dark-gray">
+      <h1
+        className="text-xl font-bold tracking-wider mb-4 text-dark-gray"
+      >
         {user ? `${t("welcome")} ${user.name?.toUpperCase()}` : t("title")}
       </h1>
 

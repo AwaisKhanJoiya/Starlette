@@ -55,7 +55,10 @@ const PricingPage = () => {
       id: "p-s3-1",
       slug: tPackages("pricingPage.section3.cards.c1.slug"),
       price: tPackages("pricingPage.section3.cards.c1.price"),
-      headline: tPackages("pricingPage.section3.cards.c1.headline"),
+      // headline: tPackages("pricingPage.section3.cards.c1.headline"),
+      headline: tPackages.rich("pricingPage.section3.cards.c1.headline", {
+        br: () => <br />,
+      }),
       gift: tPackages("pricingPage.section3.cards.c1.gift"),
       buttonLabel: tPackages("pricingPage.section3.cards.c1.button"),
     },
@@ -63,7 +66,10 @@ const PricingPage = () => {
       id: "p-s3-2",
       slug: tPackages("pricingPage.section3.cards.c2.slug"),
       price: tPackages("pricingPage.section3.cards.c2.price"),
-      headline: tPackages("pricingPage.section3.cards.c2.headline"),
+      // headline: tPackages("pricingPage.section3.cards.c2.headline"),
+      headline: tPackages.rich("pricingPage.section3.cards.c2.headline", {
+        br: () => <br />,
+      }),
       gift: tPackages("pricingPage.section3.cards.c2.gift"),
       buttonLabel: tPackages("pricingPage.section3.cards.c2.button"),
     },
@@ -71,7 +77,10 @@ const PricingPage = () => {
       id: "p-s3-3",
       slug: tPackages("pricingPage.section3.cards.c3.slug"),
       price: tPackages("pricingPage.section3.cards.c3.price"),
-      headline: tPackages("pricingPage.section3.cards.c3.headline"),
+      // headline: tPackages("pricingPage.section3.cards.c3.headline"),
+      headline: tPackages.rich("pricingPage.section3.cards.c3.headline", {
+        br: () => <br />,
+      }),
       gift: tPackages("pricingPage.section3.cards.c3.gift"),
       buttonLabel: tPackages("pricingPage.section3.cards.c3.button"),
     },
@@ -79,7 +88,10 @@ const PricingPage = () => {
       id: "p-s3-4",
       slug: tPackages("pricingPage.section3.cards.c4.slug"),
       price: tPackages("pricingPage.section3.cards.c4.price"),
-      headline: tPackages("pricingPage.section3.cards.c4.headline"),
+      // headline: tPackages("pricingPage.section3.cards.c4.headline"),
+      headline: tPackages.rich("pricingPage.section3.cards.c4.headline", {
+        br: () => <br />,
+      }),
       gift: tPackages("pricingPage.section3.cards.c4.gift"),
       buttonLabel: tPackages("pricingPage.section3.cards.c4.button"),
     },
@@ -93,7 +105,7 @@ const PricingPage = () => {
         <div className="w-full md:w-1/2  relative z-10 flex flex-col justify-center p-6 md:p-12">
           <div className="mt-10 md:mt-0">
             <h1 className="text-xl md:text-2xl font-bold mb-10 md:mb-20 tracking-[0.5rem] text-center">
-              PACKS & MEMBERSHIPS
+              PACKS & ABONNEMENTS
             </h1>
 
             {/* Pricing cards: horizontally scroll on mobile, grid on md+ */}

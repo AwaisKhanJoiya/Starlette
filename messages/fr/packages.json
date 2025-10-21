@@ -76,28 +76,28 @@
         "c1": {
           "slug": "UNE STARLETTE EST NÉE",
           "price": "500₪",
-          "headline": "1 cours par semaine",
+          "headline": "1 cours <br></br> par semaine",
           "gift": "",
           "button": "RÉSERVER"
         },
         "c2": {
           "slug": "UNE ÉTOILE CHANCEUSE",
           "price": "920₪",
-          "headline": "2 cours par semaine",
+          "headline": "2 cours <br></br> par semaine",
           "gift": "",
           "button": "RÉSERVER"
         },
         "c3": {
           "slug": "UNE SUPER STARLETTE",
           "price": "1200₪",
-          "headline": "3 cours par semaine",
+          "headline": "3 cours <br></br> par semaine",
           "gift": "",
           "button": "RÉSERVER"
         },
         "c4": {
           "slug": "UNE STARLETTE ACCRO",
           "price": "1600₪",
-          "headline": "cours illimités",
+          "headline": "COURS ILLIMITÉS",
           "gift": "",
           "button": "RÉSERVER"
         }

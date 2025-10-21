@@ -11,18 +11,16 @@
   },
   "buttons": {
     "modify": "MODIFY",
-    "cancellation": "CANCELLATION"
+    "cancellation": "REQUEST CANCELLATION"
   },
   "details": {
-    "subscriptionInfo": "4 CLASSES PER WEEK - (17 remaining)",
-    "classesPerWeek": "4 CLASSES / WEEK",
-    "subscriptionModification": "SUBSCRIPTION MODIFICATION",
-    "subscriptionText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "subscriptionInfo": "4 CLASSES PER WEEK ",
+    "remaining": "(12 per month)",
+    "classesPerWeek": "Active since 01/08/2025",
+    "subscriptionPolicy": "<b>SUBSCRIPTION MODIFICATION</b> <br></br> subscribers may upgrade their plan at any time, even from the first month. <br></br> To switch to a lower plan, the request can only be made after minimum 3-month commitment, with effect from the following month. <br></br> <br></br> <b>subscription cancellation</b> <br></br> subscription require a minimum commitment of 6 months. <br></br> Cancellation can be requested at any time after that period, with 1 month's notice. <br></br> the subscription will remain active until the end of the month following the request.",
     "upcomingClasses": "UPCOMING CLASSES",
     "pastClasses": "PAST CLASSES",
-    "welcomePack": "WELCOME PACK",
-    "happyJune": "HAPPY JUNE!",
-    "classPackNote": "Class packs are valid for 3 months. The grace days on your sessions become your cancellation pass."
+    "welcomePack": "WELCOME PACK"
   },
   "table": {
     "pack": "PACK",
@@ -34,12 +32,14 @@
   },
   "status": {
     "present": "PRESENT",
-    "missed": "MISSED",
+    "missed": "ABSENT",
     "active": "ACTIVE",
     "expired": "EXPIRED",
     "waitingList": "WAITING LIST"
   },
   "noBookedClasses": "You have no upcoming classes booked",
+  "bookingInfo": "<b>useful info</b> <br></br> you can cancel a class up to 24 hours before the session starts, and up to 12 hours for members. <br></br> if you're on the waitlist, you'll be notified by email as soon as a spot becomes available. <br></br> for any questions, contact us at: <a>starlette.tlv@gmail.com</a>",
+  "classpackInfo": "<b>useful info</b> <br></br> class pack are valid for limited time. make sure to use your sessions before the expiration date. <br></br> unused classes after expiration date will be lost. <br></br> to purchase a new pack, visit the the <a>pricing</a> page",
   "loading": "Loading...",
   "noPhoneProvided": "No phone number provided",
   "noBirthdayProvided": "No birthday provided",

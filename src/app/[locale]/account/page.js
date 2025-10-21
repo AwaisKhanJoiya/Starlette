@@ -11,13 +11,13 @@ const AccountPage = () => {
           <Image
             src="/schedule-logo.jpg"
             alt="Account"
-            width={400}
-            height={400}
-            className="w-40"
+            width={600}
+            height={600}
+            className="w-40 object-contain"
           />
         </div>
 
-        <div>
+        <div >
           <AccountDashboard />
         </div>
       </div>

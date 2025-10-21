@@ -1,27 +1,26 @@
 {
   "title": "BIENVENUE DANA",
+  "welcome": "BIENVENUE",
   "subtitle": "Votre profil & réservations",
   "sections": {
     "myInformation": "MES INFORMATIONS",
     "myBookings": "MES RÉSERVATIONS",
-    "myClassPack": "MON PACK DE COURS",
+    "myClassPack": "MON CARNET DE COURS",
     "classHistory": "HISTORIQUE DES COURS",
     "mySubscription": "MON ABONNEMENT"
   },
   "buttons": {
     "modify": "MODIFIER",
-    "cancellation": "ANNULATION"
+    "cancellation": "DEMANDER DE RÉSILIATION"
   },
   "details": {
-    "subscriptionInfo": "4 COURS PAR SEMAINE - (17 restants)",
-    "classesPerWeek": "4 COURS / SEMAINE",
-    "subscriptionModification": "MODIFICATION D'ABONNEMENT",
-    "subscriptionText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "subscriptionInfo": "4 COURS PAR SEMAINE",
+    "remaining": "(12 par mois)",
+    "classesPerWeek": "Actif depuis le 01/05/2025",
+    "subscriptionPolicy": "<b>MODIFICATION DE L’ABONNEMENT</b> <br></br> Les abonnés peuvent mettre à niveau leur plan à tout moment, même dès le premier mois. <br></br> Pour passer à un plan inférieur, la demande ne peut être effectuée qu’après un engagement minimum de 3 mois, avec effet le mois suivant. <br></br> <br></br> <b>ANNULATION DE L’ABONNEMENT</b> <br></br> L’abonnement nécessite un engagement minimum de 6 mois. <br></br> L’annulation peut être demandée à tout moment après cette période, avec un préavis d’un mois. <br></br> L’abonnement restera actif jusqu’à la fin du mois suivant la demande.",
     "upcomingClasses": "COURS À VENIR",
     "pastClasses": "COURS PASSÉS",
-    "welcomePack": "PACK DE BIENVENUE",
-    "happyJune": "BON MOIS DE JUIN!",
-    "classPackNote": "Les packs de cours sont valables pendant 3 mois. Les jours de grâce deviennent votre passe d'annulation."
+    "welcomePack": "PACK DE BIENVENUE"
   },
   "table": {
     "pack": "PACK",
@@ -32,11 +31,18 @@
     "classes": "COURS"
   },
   "status": {
-    "present": "PRÉSENT",
-    "missed": "MANQUÉ",
+    "present": "PRÉSENTE",
+    "missed": "ABSENTE",
     "active": "ACTIF",
     "expired": "EXPIRÉ",
     "waitingList": "LISTE D'ATTENTE"
   },
+  "noBookedClasses": "Vous n'avez aucun cours à venir réservé",
+  "classpackInfo": "<b>Infos utiles</b> <br></br> Les packs de cours sont valables pour une durée limitée. Assurez-vous d’utiliser vos séances avant la date d’expiration. <br></br> Les cours non utilisés après la date d’expiration seront perdus. <br></br> Pour acheter un nouveau pack, visitez la page <a>tarifs</a>.",
+  "bookingInfo": "<b>Infos utiles</b> <br></br> Vous pouvez annuler un cours jusqu’à 24 heures avant le début de la séance, et jusqu’à 12 heures pour les membres. <br></br> Si vous êtes sur la liste d’attente, vous serez averti par e-mail dès qu’une place se libère. <br></br> Pour toute question, contactez-nous à : <a>starlette.tlv@gmail.com</a>",
+  "loading": "Chargement...",
+  "noPhoneProvided": "Aucun numérique fourni",
+  "noBirthdayProvided": "Aucune anniversaire fourni",
+  "editProfile": "Modifier le profil",
   "lastUpdated": "Mis à jour récemment"
 }

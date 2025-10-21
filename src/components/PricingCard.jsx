@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "next-intl";
+import Image from "next/image";
 
 const PricingCard = React.memo(function PricingCard({ data = {} }) {
   const locale = useLocale();
@@ -14,7 +15,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
     headline = "",
     gift = "",
     buttonLabel = "BOOK",
-    star = "★",
+    star = "/star-icon.png",
     onClick = null,
   } = data;
 
@@ -39,8 +40,14 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
         <div className="text-4xl md:text-5xl font-bold mb-2 text-black">
           {price}
         </div>
-        <div className="text-2xl md:text-3xl font-bold mb-2 text-light-gray">
-          {star}
+        <div>
+          <Image
+            src={star}
+            alt="star icon"
+            width={24}
+            height={24}
+            className="mx-auto mb-4"
+          />
         </div>
         {headline && (
           <div
