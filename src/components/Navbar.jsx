@@ -71,7 +71,7 @@ export default function Navbar() {
         {/* {!isLanding && ( */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <Link href="/">
-            <img src="/logo.png" alt="Logo" className="h-16 w-auto" />
+            <img src="/hd-logo.png" alt="Logo" className="h-8 w-auto" />
           </Link>
         </div>
         {/* )} */}

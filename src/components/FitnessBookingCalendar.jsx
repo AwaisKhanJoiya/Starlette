@@ -13,6 +13,9 @@ import {
 } from "lucide-react";
 import { useUserAuthContext } from "@/context/UserAuthContext";
 import axios from "axios";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { formatDate } from "date-fns/format";
+import { Calendar as CalendarUI } from "./ui/calendar";
 
 const FitnessBookingCalendar = () => {
   const t = useTranslations("fitness");
@@ -33,6 +36,7 @@ const FitnessBookingCalendar = () => {
   const [bookingSuccess, setBookingSuccess] = useState(null);
   const [bookedClasses, setBookedClasses] = useState(new Map()); // Map classId to enrollment status
   const [expandedClassId, setExpandedClassId] = useState(null);
+  const [open, setOpen] = useState(false);
 
   // Use auth context
   const { getAuthToken } = useUserAuthContext();
@@ -178,13 +182,10 @@ const FitnessBookingCalendar = () => {
     setSelectedDate(newDate);
   };
 
-  const handleCalendarClick = () => {
-    setShowDatePicker(!showDatePicker);
-  };
-
-  const handleDatePickerChange = (e) => {
+  const handleDatePickerChange = (date) => {
+    console.log(date);
     // Get the date from input and ensure it's treated as a local date
-    const dateStr = e.target.value; // Format: YYYY-MM-DD
+    const dateStr = formatDate(date, "yyyy-MM-dd");
     const [year, month, day] = dateStr
       .split("-")
       .map((num) => parseInt(num, 10));
@@ -315,17 +316,6 @@ const FitnessBookingCalendar = () => {
     .toLocaleDateString(locale || "en-US", { month: "long" })
     .toUpperCase();
 
-  // Close date picker when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (showDatePicker && !event.target.closest(".date-picker-container")) {
-        setShowDatePicker(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [showDatePicker]);
-
   return (
     <div>
       <div className="flex items-center justify-between py-3 sm:py-4 border-gray-100 ">
@@ -334,28 +324,25 @@ const FitnessBookingCalendar = () => {
         </h1>
 
         {/* Datepicker container: on small screens it expands full width below icon */}
-        <div className="relative date-picker-container">
-          <Calendar
-            className="w-6 h-6 cursor-pointer hover:text-gray-800 transition-colors"
-            onClick={handleCalendarClick}
-            aria-label="Open date picker"
-          />
-
-          {showDatePicker && (
-            <div className="absolute z-10 top-10 inset-x-4 sm:inset-auto sm:right-0  sm:left-auto w-auto sm:w-44 max-w-xs sm:max-w-none  border border-gray-200 rounded-lg shadow-lg p-3 sm:p-4">
-              <input
-                type="date"
-                value={`${selectedDate.getFullYear()}-${String(
-                  selectedDate.getMonth() + 1
-                ).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(
-                  2,
-                  "0"
-                )}`}
-                onChange={handleDatePickerChange}
-                className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+        <div className="relative">
+          <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
+            <PopoverTrigger asChild>
+              <Calendar
+                className="w-6 h-6 cursor-pointer hover:text-gray-800 transition-colors"
+                aria-label="Open date picker"
               />
-            </div>
-          )}
+            </PopoverTrigger>
+            <PopoverContent className="w-auto overflow-hidden p-0" align="end">
+              <CalendarUI
+                mode="single"
+                selected={selectedDate}
+                captionLayout="dropdown"
+                // month={month}
+                // onMonthChange={setMonth}
+                onSelect={handleDatePickerChange}
+              />
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
 

@@ -21,23 +21,26 @@ const Footer = () => {
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
         {/* Navigation Links */}
         <ul className="flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm text-dark-gray font-bold text-center">
-          <Link href="/">
+          <Link href="/" className="hover:underline">
             <li>{t("links.home")}</li>
           </Link>
-          <Link href="/studio">
+          <Link href="/studio" className="hover:underline underline-offset-2">
             <li>{t("links.studio")}</li>
           </Link>
-          <Link href="/method">
+          <Link href="/method" className="hover:underline underline-offset-2">
             <li>{t("links.method")}</li>
           </Link>
-          <Link href="/pricing">
+          <Link href="/pricing" className="hover:underline underline-offset-2">
             <li>{t("links.pricing")}</li>
           </Link>
-          <Link href="/schedule">
+          <Link href="/schedule" className="hover:underline underline-offset-2">
             <li>{t("links.schedule")}</li>
           </Link>
           {user && (
-            <Link href="/account">
+            <Link
+              href="/account"
+              className="hover:underline underline-offset-2"
+            >
               <li>{t("links.account")}</li>
             </Link>
           )}

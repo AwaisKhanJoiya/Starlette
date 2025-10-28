@@ -2,12 +2,13 @@
 
 import React from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import PricingGrid from "@/components/PricingGrid";
 import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
 import DownloadApp from "@/components/DownloadApp";
 
 const PricingPage = () => {
+  const locale = useLocale();
   const tPackages = useTranslations("packages");
   const section1Cards = [
     {
@@ -97,8 +98,6 @@ const PricingPage = () => {
     },
   ];
 
-  let spaces = 0;
-
   return (
     <div className="bg-background">
       <div className="px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-stretch md:h-screen border-b border-dashed border-black">
@@ -113,43 +112,15 @@ const PricingPage = () => {
               {/* Card 1 */}
               <div className="flex-shrink-0 w-12 md:w-32">
                 <div className="relative flex justify-center items-center">
-                  {/* <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase"> */}
-                  <div className="circular-text-container">
-                    <div className="circular-text">
-                      {tPackages("packCats.welcome")
-                        .split("")
-                        .map((char, i) => {
-                          if (char === " ") spaces += 1;
-                          return (
-                            <span
-                              key={i}
-                              className="text-secondary font-bold text-sm md:text-base origin-[0_80px]"
-                              style={{
-                                transform: `rotate(${
-                                  i *
-                                    (360 /
-                                      tPackages("packCats.welcome").length -
-                                      (16 + spaces)) -
-                                  50
-                                }deg)`,
-                              }}
-                            >
-                              {char}
-                            </span>
-                          );
-                        })}
-                    </div>
-                    {/* </h2> */}
-                    <div className="circular-image">
-                      <Image
-                        src="/welcome-pack.jpg"
-                        alt="welcome pack"
-                        width={150}
-                        height={150}
-                        className="object-contain rounded-full"
-                      />
-                    </div>
-                  </div>
+                  <Image
+                    src={`/packs/${
+                      locale === "en" ? locale + "n" : locale
+                    }/welcome-pack.png`}
+                    alt="globe"
+                    width={150}
+                    height={150}
+                    className="object-contain"
+                  />
                 </div>
               </div>
 
@@ -157,43 +128,15 @@ const PricingPage = () => {
 
               <div className="flex-shrink-0 w-12 md:w-32">
                 <div className="relative flex justify-center items-center">
-                  {/* <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase"> */}
-                  <div className="circular-text-container">
-                    <div className="circular-text">
-                      {tPackages("packCats.classPacks")
-                        .split("")
-                        .map((char, i) => {
-                          if (char === " ") spaces += 1;
-                          return (
-                            <span
-                              key={i}
-                              className="text-dark-gray  font-bold text-sm md:text-base origin-[0_80px]"
-                              style={{
-                                transform: `rotate(${
-                                  i *
-                                    (360 /
-                                      tPackages("packCats.classPacks").length -
-                                      (16 + spaces)) -
-                                  50
-                                }deg)`,
-                              }}
-                            >
-                              {char}
-                            </span>
-                          );
-                        })}
-                    </div>
-                    {/* </h2> */}
-                    <div className="circular-image">
-                      <Image
-                        src="/welcome-pack.jpg"
-                        alt="welcome pack"
-                        width={150}
-                        height={150}
-                        className="object-contain rounded-full"
-                      />
-                    </div>
-                  </div>
+                  <Image
+                    src={`/packs/${
+                      locale === "en" ? locale + "n" : locale
+                    }/class-packs.png`}
+                    alt="globe"
+                    width={150}
+                    height={150}
+                    className="object-contain"
+                  />
                 </div>
               </div>
 
@@ -201,43 +144,15 @@ const PricingPage = () => {
 
               <div className="flex-shrink-0 w-12 md:w-32">
                 <div className="relative flex justify-center items-center">
-                  {/* <h2 className="text-sm md:text-lg font-bold text-[#FABDCE] text-center uppercase"> */}
-                  <div className="circular-text-container">
-                    <div className="circular-text">
-                      {tPackages("packCats.memberships")
-                        .split("")
-                        .map((char, i) => {
-                          if (char === " ") spaces += 1;
-                          return (
-                            <span
-                              key={i}
-                              className="text-secondary font-bold text-sm md:text-base origin-[0_80px]"
-                              style={{
-                                transform: `rotate(${
-                                  i *
-                                    (360 /
-                                      tPackages("packCats.memberships").length -
-                                      (16 + spaces)) -
-                                  50
-                                }deg)`,
-                              }}
-                            >
-                              {char}
-                            </span>
-                          );
-                        })}
-                    </div>
-                    {/* </h2> */}
-                    <div className="circular-image">
-                      <Image
-                        src="/welcome-pack.jpg"
-                        alt="welcome pack"
-                        width={150}
-                        height={150}
-                        className="object-contain rounded-full"
-                      />
-                    </div>
-                  </div>
+                  <Image
+                    src={`/packs/${
+                      locale === "en" ? locale + "n" : locale
+                    }/memberships.png`}
+                    alt="globe"
+                    width={150}
+                    height={150}
+                    className="object-contain"
+                  />
                 </div>
               </div>
             </div>
@@ -262,6 +177,7 @@ const PricingPage = () => {
           columns={2}
           bullets={section1Bullets}
           packageName={tPackages("packCats.welcome")}
+          packImage="/welcome-pack.png"
         />
 
         {/* 2) second set of 2 cards */}
@@ -270,6 +186,7 @@ const PricingPage = () => {
           columns={2}
           bullets={section1Bullets}
           packageName={tPackages("packCats.classPacks")}
+          packImage="/class-packs.png"
         />
 
         {/* 3) 4 cards */}
@@ -278,6 +195,7 @@ const PricingPage = () => {
           columns={4}
           bullets={section1Bullets}
           packageName={tPackages("packCats.memberships")}
+          packImage="/memberships.png"
         />
         <div className="mb-20"></div>
       </div>

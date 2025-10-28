@@ -14,7 +14,7 @@ const MethodPage = () => {
       <div className="bg-background min-h-screen text-dark-gray relative  px-4 sm:px-6 lg:px-8 y-12">
         {/* Section 1 */}
         <section>
-          <div className="flex flex-col-reverse md:flex-row items-center md:gap-10 gap-6 pt-12 pb-12">
+          <div className="flex flex-col-reverse md:flex-row items-top md:gap-10 gap-6 pt-12 pb-12">
             <div className="flex-1">
               <h1 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 uppercase">
                 {t("section1.title")}
@@ -31,16 +31,16 @@ const MethodPage = () => {
               </div>
             </div>
 
-            <div className="mx-auto w-full sm:w-64 md:w-96">
+            <div className="mx-auto w-full sm:w-64 md:w-1/3">
               <div className="aspect-[4/3] overflow-hidden">
                 <video
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   autoPlay
                   muted
                   loop
                   playsInline
                 >
-                  <source src="/banner-video.mp4" type="video/mp4" />
+                  <source src="/method-video.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>
@@ -86,20 +86,20 @@ const MethodPage = () => {
 
         {/* Section 3 */}
         <section className="pb-6">
-          <div className="flex flex-col-reverse md:flex-row items-center md:gap-10 gap-6">
+          <div className="flex flex-col-reverse md:flex-row md:gap-10 gap-6">
             <div className="flex-1">
-              <h1 className="text-xl md:text-4xl font-bold tracking-[0.8rem] mb-6">
+              <h1 className="text-xl md:text-3xl font-bold tracking-[0.6rem] mb-6">
                 {t("section3.title")}
               </h1>
               <FitnessBenefits />
             </div>
             <div className="hidden md:block">
               <Image
-                src="/choose-lagree.jpg"
+                src="/choose-lagree.png"
                 alt="starlette"
                 width={500}
                 height={100}
-                className="w-96 h-auto object-cover rounded"
+                className="w-[28rem] h-full object-cover rounded"
               />
             </div>
           </div>

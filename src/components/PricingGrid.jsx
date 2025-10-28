@@ -12,22 +12,19 @@ export default function PricingGrid({
   columns = 3,
   // backgroundImage = "/light-logo.jpg",
   backgroundImage = "/hd-logo.png",
-  headerImage = "/welcome-pack.jpg",
+  packImage = "/welcome-pack.png",
   bullets = [],
-  packageName,
 }) {
   const t = useTranslations("home");
 
   const locale = useLocale();
   const gridClass = useMemo(() => {
     if (columns === 2)
-      return "flex flex-col md:flex-row justify-center items-center gap-8";
+      return "flex flex-col md:flex-row justify-center items-center gap-32";
     if (columns === 4)
       return "grid grid-cols-1 md:grid-cols-4 gap-8 justify-items-center";
-    return "flex flex-col md:flex-row justify-center items-center gap-8";
+    return "flex flex-col md:flex-row justify-center items-center gap-32";
   }, [columns]);
-
-  let spaces = 0;
 
   return (
     <section>
@@ -40,35 +37,15 @@ export default function PricingGrid({
         </div>
 
         <div className="relative flex justify-center items-center">
-          <div className="circular-text-container">
-            <div className="circular-text">
-              {packageName.split("").map((char, i) => {
-                if (char === " ") spaces += 1;
-                return (
-                  <span
-                    key={i}
-                    className="text-dark-gray  font-bold text-sm md:text-base origin-[0_80px]"
-                    style={{
-                      transform: `rotate(${
-                        i * (360 / packageName.length - (16 + spaces)) - 50
-                      }deg)`,
-                    }}
-                  >
-                    {char}
-                  </span>
-                );
-              })}
-            </div>
-            <div className="circular-image w-28 h-28">
-              <Image
-                src={headerImage}
-                alt="globe"
-                width={150}
-                height={150}
-                className="object-contain rounded-full"
-              />
-            </div>
-          </div>
+          <Image
+            src={`/packs/${
+              locale === "en" ? locale + "n" : locale
+            }${packImage}`}
+            alt="globe"
+            width={150}
+            height={150}
+            className="object-contain"
+          />
         </div>
       </div>
 
@@ -82,32 +59,15 @@ export default function PricingGrid({
         </div>
 
         <div className="relative flex justify-center items-center">
-          <div className="circular-text-container">
-            <div className="circular-text">
-              {packageName.split("").map((char, i) => (
-                <span
-                  key={i}
-                  className="text-dark-gray font-bold text-sm origin-[0_70px]"
-                  style={{
-                    transform: `rotate(${
-                      i * (360 / packageName.length - (15 + spaces)) - 50
-                    }deg)`,
-                  }}
-                >
-                  {char}
-                </span>
-              ))}
-            </div>
-            <div className="circular-image w-24 h-24">
-              <Image
-                src={headerImage}
-                alt="globe"
-                width={90}
-                height={90}
-                className="object-contain rounded-full w-full h-full"
-              />
-            </div>
-          </div>
+          <Image
+            src={`/packs/${
+              locale === "en" ? locale + "n" : locale
+            }${packImage}`}
+            alt="globe"
+            width={150}
+            height={150}
+            className="object-contain"
+          />
         </div>
       </div>
 
@@ -118,6 +78,7 @@ export default function PricingGrid({
             backgroundImage: `url("${backgroundImage}")`,
             backgroundRepeat: "repeat",
             backgroundSize: "60px 60px",
+            backgroundPosition: "center",
           }}
         />
 
@@ -132,11 +93,19 @@ export default function PricingGrid({
         <div
           className={`${
             locale === "he" ? "rtl" : ""
-          } relative z-10 mt-6 text-xs md:text-sm  px-4 sm:ps-6 lg:ps-8 `}
+          } relative z-10 mt-6 text-xs md:text-xs  px-4 sm:ps-6 lg:ps-8 `}
         >
           {bullets.map((b, i) => (
-            <div key={i} className="mb-1 flex items-start">
-              <span className="text-dark-gray font-bold mr-2">★</span>
+            <div key={i} className="mb-1 flex items-center">
+              <span className="text-dark-gray font-bold mr-2">
+                <Image
+                  src={"/star-icon.png"}
+                  alt="star icon"
+                  width={12}
+                  height={12}
+                  className="mx-auto "
+                />
+              </span>
               <span className="text-light-gray">{b}</span>
             </div>
           ))}

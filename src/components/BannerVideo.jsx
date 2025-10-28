@@ -54,8 +54,8 @@ const BannerVideo = () => {
               is born
             </span>
           </h1>
-          <p className="text-primary uppercase text-sm md:text-md letter-spacing-2 tracking-widest m-0">
-            Where elegance meets strength – the Lagree experience in Tel Aviv
+          <p className="flex items-center justify-center text-primary uppercase text-sm md:text-md letter-spacing-2 tracking-widest m-0">
+            Where elegance meets strength — the Lagree experience in Tel Aviv
           </p>
         </div>
 

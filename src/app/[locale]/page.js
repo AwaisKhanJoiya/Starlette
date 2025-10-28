@@ -190,6 +190,7 @@ export default function StarletteStudio() {
           columns={2}
           bullets={bullets}
           packageName={t("pricing.globeText")}
+          packImage="/welcome-pack.png"
         />
         <div className="px-4 sm:px-6 lg:px-8 pt-12">
           <FitnessBookingCalendar />

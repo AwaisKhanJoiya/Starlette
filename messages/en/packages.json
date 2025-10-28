@@ -16,7 +16,7 @@
     },
     "bullets": {
       "one": "Our welcome offer is valid only once, you may choose one of the two available options.",
-      "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted. (for class packs).",
+      "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
       "three": "For your comfort and safety, grip socks are required during all sessions."
     }
   },
@@ -43,7 +43,7 @@
       },
       "bullets": {
         "one": "Our welcome offer is valid only once, you may choose one of the two available options.",
-        "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted. (for class packs).",
+        "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
         "three": "For your comfort and safety, grip socks are required during all sessions."
       }
     },
@@ -65,7 +65,7 @@
       },
       "bullets": {
         "one": "Class packs are valid for a limited time. Make sure to use your sessions before the expiration date.",
-        "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted. (for class packs).",
+        "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
         "three": "For your comfort and safety, grip socks are required during all sessions."
       }
     },
@@ -103,7 +103,7 @@
       },
       "bullets": {
         "one": "Class packs are valid for a limited time. Make sure to use your sessions before the expiration date.",
-        "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted. (for class packs).",
+        "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
         "three": "For your comfort and safety, grip socks are required during all sessions."
       }
     }

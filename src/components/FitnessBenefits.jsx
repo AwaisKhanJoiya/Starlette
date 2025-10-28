@@ -1,32 +1,20 @@
 "use client";
 
 import React from "react";
-import {
-  Flame,
-  User,
-  Dumbbell,
-  Star,
-  Zap,
-  Users,
-  Clock,
-  Activity,
-  Target,
-  RotateCcw,
-} from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 const icons = [
-  "/icons/fire.png",
-  "/icons/posture.png",
-  "/icons/diet.png",
-  "/icons/star.png",
-  "/icons/sun.png",
-  "/icons/yoga-pose.png",
-  "/icons/stopwatch.png",
-  "/icons/foot.png",
-  "/icons/tornado.png",
-  "/icons/recycle.png",
+  "/icons/flamme.png",
+  "/icons/dos.png",
+  "/icons/ventre.png",
+  "/icons/etoiles.png",
+  "/icons/soleil.png",
+  "/icons/fille.png",
+  "/icons/timer.png",
+  "/icons/pied.png",
+  "/icons/tornade.png",
+  "/icons/roue.png",
 ];
 
 const FitnessBenefits = () => {
@@ -40,16 +28,21 @@ const FitnessBenefits = () => {
         return (
           <div
             key={index}
-            className="group relative p-2 text-dark-gray rounded-3xl border-4 border-dashed border-[#000] flex flex-col justify-center"
+            className="group relative p-2 text-dark-gray rounded-3xl border-4 border-dashed border-[#464646] flex flex-col"
           >
-            <div className="flex items-start gap-2">
+            <div className="flex items-center gap-2">
               {/* <Icon className="w-8 h-8" /> */}
-              <Image src={Icon} width={40} height={40} />
+              <Image
+                src={Icon}
+                width={45}
+                height={45}
+                className="object-cover"
+              />
               <div className="flex-1">
-                <p className="text-sm font-bold tracking-wider border-b-2 border-dashed border-light-gray w-full mb-1">
+                <p className="text-sm font-bold tracking-widest border-b-2 border-dashed border-light-gray w-full mb-1">
                   {benefit.title}
                 </p>
-                <p className="text-xs mb-0 whitespace-pre-line">
+                <p className="text-xs mb-0 whitespace-pre-line flex items-center h-full">
                   {benefit.subtitle}
                 </p>
               </div>
