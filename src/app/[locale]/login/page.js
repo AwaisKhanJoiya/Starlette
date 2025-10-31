@@ -29,13 +29,13 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.email || !formData.password) {
       setFormError(t("loginRequiredFields"));
       return;
     }
-    
+
     try {
       await login(formData);
       // Redirect happens in the useAuth hook after successful login
@@ -53,9 +53,9 @@ export default function LoginPage() {
             <h2 className="text-xs font-medium text-dark-gray mb-2">
               {t("loginStep")}
             </h2>
-            <div className="flex items-center justify-center mb-2">
+            <div className="flex items-center justify-center my-2">
               <Image
-                src="/schedule-logo.jpg"
+                src="/starlette-logo.png"
                 alt="starlette"
                 width={200}
                 height={130}
@@ -92,7 +92,7 @@ export default function LoginPage() {
               {authError && (
                 <div className="text-red-500 text-sm mb-4">{authError}</div>
               )}
-              
+
               <LoadingButton
                 type="submit"
                 text={t("login")}

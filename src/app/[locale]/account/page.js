@@ -9,11 +9,11 @@ const AccountPage = () => {
         {/* Header */}
         <div className="mb-10 flex justify-center items-center">
           <Image
-            src="/schedule-logo.jpg"
+            src="/starlette-logo.png"
             alt="Account"
-            width={600}
-            height={600}
-            className="w-40 object-contain"
+            width={300}
+            height={300}
+            className="object-contain"
           />
         </div>
 

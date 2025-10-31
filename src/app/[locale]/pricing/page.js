@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import PricingGrid from "@/components/PricingGrid";
 import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
 import DownloadApp from "@/components/DownloadApp";
+import Link from "next/link";
 
 const PricingPage = () => {
   const locale = useLocale();
@@ -30,6 +31,18 @@ const PricingPage = () => {
     tPackages("pricingPage.section1.bullets.one"),
     tPackages("pricingPage.section1.bullets.two"),
     tPackages("pricingPage.section1.bullets.three"),
+  ];
+
+  const section2Bullets = [
+    tPackages("pricingPage.section2.bullets.one"),
+    tPackages("pricingPage.section2.bullets.two"),
+    tPackages("pricingPage.section2.bullets.three"),
+  ];
+
+  const section3Bullets = [
+    tPackages("pricingPage.section3.bullets.one"),
+    tPackages("pricingPage.section3.bullets.two"),
+    tPackages("pricingPage.section3.bullets.three"),
   ];
 
   // Section 2 (another 2 cards)
@@ -104,56 +117,62 @@ const PricingPage = () => {
         <div className="w-full md:w-1/2  relative z-10 flex flex-col justify-center p-6 md:p-12">
           <div className="mt-10 md:mt-0">
             <h1 className="text-xl md:text-2xl font-bold mb-10 md:mb-20 tracking-[0.5rem] text-center">
-              PACKS & ABONNEMENTS
+              {tPackages("title").toUpperCase()}
             </h1>
 
             {/* Pricing cards: horizontally scroll on mobile, grid on md+ */}
             <div className="hidden md:grid md:grid-cols-3 gap-2 overflow-x-auto md:overflow-visible pb-2">
               {/* Card 1 */}
-              <div className="flex-shrink-0 w-12 md:w-32">
-                <div className="relative flex justify-center items-center">
-                  <Image
-                    src={`/packs/${
-                      locale === "en" ? locale + "n" : locale
-                    }/welcome-pack.png`}
-                    alt="globe"
-                    width={150}
-                    height={150}
-                    className="object-contain"
-                  />
-                </div>
+              <div className="flex-shrink flex justify-center items-center">
+                <Link href={"#welcome-pack"}>
+                  <div className="relative w-12 md:w-32">
+                    <Image
+                      src={`/packs/${
+                        locale === "en" ? locale + "n" : locale
+                      }/welcome-pack.png`}
+                      alt="globe"
+                      width={150}
+                      height={150}
+                      className="object-contain"
+                    />
+                  </div>
+                </Link>
               </div>
 
               {/* Card 2 */}
 
-              <div className="flex-shrink-0 w-12 md:w-32">
-                <div className="relative flex justify-center items-center">
-                  <Image
-                    src={`/packs/${
-                      locale === "en" ? locale + "n" : locale
-                    }/class-packs.png`}
-                    alt="globe"
-                    width={150}
-                    height={150}
-                    className="object-contain"
-                  />
-                </div>
+              <div className="flex-shrink flex justify-center items-center">
+                <Link href={"#class-packs"}>
+                  <div className="relative w-12 md:w-32">
+                    <Image
+                      src={`/packs/${
+                        locale === "en" ? locale + "n" : locale
+                      }/class-packs.png`}
+                      alt="globe"
+                      width={150}
+                      height={150}
+                      className="object-contain"
+                    />
+                  </div>
+                </Link>
               </div>
 
               {/* Card 3 */}
 
-              <div className="flex-shrink-0 w-12 md:w-32">
-                <div className="relative flex justify-center items-center">
-                  <Image
-                    src={`/packs/${
-                      locale === "en" ? locale + "n" : locale
-                    }/memberships.png`}
-                    alt="globe"
-                    width={150}
-                    height={150}
-                    className="object-contain"
-                  />
-                </div>
+              <div className="flex-shrink flex justify-center items-center">
+                <Link href={"#memberships"}>
+                  <div className="relative w-12 md:w-32">
+                    <Image
+                      src={`/packs/${
+                        locale === "en" ? locale + "n" : locale
+                      }/memberships.png`}
+                      alt="globe"
+                      width={150}
+                      height={150}
+                      className="object-contain"
+                    />
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -171,32 +190,39 @@ const PricingPage = () => {
           </div>
         </div>
       </div>
-      <div className="px-4 sm:px-6 lg:px-8 mb-8 border-b border-dashed border-black">
-        <PricingGrid
-          cards={section1Cards}
-          columns={2}
-          bullets={section1Bullets}
-          packageName={tPackages("packCats.welcome")}
-          packImage="/welcome-pack.png"
-        />
+      <div className="mb-8 border-b border-dashed border-black">
+        <div id="welcome-pack">
+          <PricingGrid
+            cards={section1Cards}
+            columns={2}
+            bullets={section1Bullets}
+            packageName={tPackages("packCats.welcome")}
+            packImage="/welcome-pack.png"
+          />
+        </div>
 
         {/* 2) second set of 2 cards */}
-        <PricingGrid
-          cards={section2Cards}
-          columns={2}
-          bullets={section1Bullets}
-          packageName={tPackages("packCats.classPacks")}
-          packImage="/class-packs.png"
-        />
+        <div id="class-packs">
+          <PricingGrid
+            cards={section2Cards}
+            columns={2}
+            bullets={section2Bullets}
+            packageName={tPackages("packCats.classPacks")}
+            packImage="/class-packs.png"
+          />
+        </div>
 
         {/* 3) 4 cards */}
-        <PricingGrid
-          cards={section3Cards}
-          columns={4}
-          bullets={section1Bullets}
-          packageName={tPackages("packCats.memberships")}
-          packImage="/memberships.png"
-        />
+        <div id="memberships">
+          <PricingGrid
+            cards={section3Cards}
+            columns={4}
+            bullets={section3Bullets}
+            packageName={tPackages("packCats.memberships")}
+            packImage="/memberships.png"
+          />
+        </div>
+
         <div className="mb-20"></div>
       </div>
       <div className="bg-background text-dark-gray px-4 sm:px-6 lg:px-8">

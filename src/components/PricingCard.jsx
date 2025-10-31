@@ -30,10 +30,16 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
 
   return (
     <div className="relative">
-      <div className=" border-2 text-dark-gray border-black bg-background rounded-3xl py-8 w-72 md:w-52 text-center shadow-sm">
+      <div
+        className={`border-2 text-dark-gray border-black bg-background rounded-3xl py-8 px-5 text-center shadow-sm ${
+          slug
+            ? "min-w-72 md:min-w-60 max-w-72 md:max-w-64"
+            : "max-w-72 md:max-w-64"
+        }`}
+      >
         {slug && (
-          <div className="text-xs md:text-sm mb-2 font-bold text-primary">
-            {slug}
+          <div className="text-xs md:text-sm mb-2 font-bold text-secondary">
+            “{slug}”
           </div>
         )}
 

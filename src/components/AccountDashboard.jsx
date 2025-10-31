@@ -218,7 +218,7 @@ export default function AccountDashboard() {
                     );
                   })
                 )}
-                <p className="uppercase text-[10px] py-3 text-[#686867] font-arial font-semibold">
+                <p className="uppercase text-[10px] py-3 text-[#686867] font-arial">
                   {t.rich("bookingInfo", {
                     a: (chunks) => (
                       <a href="mailto: starlette.tlv@gmail.com">{chunks}</a>
@@ -283,7 +283,7 @@ export default function AccountDashboard() {
                 </table>
               </div>
 
-              <p className="uppercase text-[10px] py-3 text-[#686867] font-arial font-semibold">
+              <p className="uppercase text-[10px] py-3 text-[#686867] font-arial">
                 {t.rich("classpackInfo", {
                   a: (chunks) => (
                     <a
@@ -367,7 +367,7 @@ export default function AccountDashboard() {
                 <div className="flex justify-center items-center gap-2">
                   <div>
                     <Image
-                      src="/star.jpg"
+                      src="/star.png"
                       alt="starlette"
                       width={40}
                       height={40}
@@ -411,7 +411,7 @@ export default function AccountDashboard() {
               </div>
             </div>
 
-            <p className="uppercase text-[10px] text-[#686867] font-arial font-semibold">
+            <p className="uppercase text-[10px] text-[#686867] font-arial">
               {t.rich("details.subscriptionPolicy", {
                 b: (chunks) => (
                   <span className="font-extrabold text-black">{chunks}</span>
@@ -429,9 +429,7 @@ export default function AccountDashboard() {
 
   return (
     <div>
-      <h1
-        className="text-xl font-bold tracking-wider mb-4 text-dark-gray"
-      >
+      <h1 className="text-xl font-bold tracking-wider mb-4 text-dark-gray">
         {user ? `${t("welcome")} ${user.name?.toUpperCase()}` : t("title")}
       </h1>
 

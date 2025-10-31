@@ -126,9 +126,9 @@ export default function RegisterPage() {
             <h2 className="text-xs font-medium text-dark-gray mb-2">
               {t("registrationStep")} {currentStep}/2
             </h2>
-            <div className="flex items-center justify-center mb-2">
+            <div className="flex items-center justify-center my-2">
               <Image
-                src="/schedule-logo.jpg"
+                src="/starlette-logo.png"
                 alt="starlette"
                 width={200}
                 height={130}

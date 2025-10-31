@@ -38,6 +38,8 @@ const UserProfileDropdown = () => {
     setIsOpen(false);
   };
 
+  console.log(user);
+
   return (
     <div className="relative" ref={dropdownRef}>
       {/* User icon button */}
@@ -57,11 +59,11 @@ const UserProfileDropdown = () => {
 
       {/* Dropdown menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 py-1 bg-background border border-gray-200 rounded-md shadow-lg z-50">
+        <div className="absolute right-0 mt-2 w-52 py-1 bg-background border border-gray-200 rounded-md shadow-lg z-50">
           {/* User info */}
           <div className="px-4 py-2 border-b border-gray-100">
             <p className="text-sm font-medium text-gray-900">
-              {user?.name || "User"}
+              Welcome {user?.user?.name || "User"}!
             </p>
             <p className="text-xs text-gray-500 truncate">{user?.email}</p>
           </div>

@@ -93,7 +93,7 @@ export default function PricingGrid({
         <div
           className={`${
             locale === "he" ? "rtl" : ""
-          } relative z-10 mt-6 text-xs md:text-xs  px-4 sm:ps-6 lg:ps-8 `}
+          } relative z-10 mt-6 text-[10px] md:text-[10px] px-4 sm:ps-6 lg:ps-8 `}
         >
           {bullets.map((b, i) => (
             <div key={i} className="mb-1 flex items-center">
@@ -101,8 +101,8 @@ export default function PricingGrid({
                 <Image
                   src={"/star-icon.png"}
                   alt="star icon"
-                  width={12}
-                  height={12}
+                  width={10}
+                  height={10}
                   className="mx-auto "
                 />
               </span>
