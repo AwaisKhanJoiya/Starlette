@@ -31,7 +31,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
   return (
     <div className="relative">
       <div
-        className={`border-2 text-dark-gray border-black bg-background rounded-3xl py-8 px-5 text-center shadow-sm ${
+        className={`border-2 text-dark-gray border-black bg-background rounded-3xl py-8 px-5 text-center shadow-sm min-h-72 ${
           slug
             ? "min-w-72 md:min-w-60 max-w-72 md:max-w-64"
             : "max-w-72 md:max-w-64"

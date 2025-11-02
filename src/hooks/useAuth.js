@@ -18,6 +18,23 @@ export function useAuth() {
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
 
+  // Update user profile
+  const updateUser = async (userData) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const updatedUser = await authService.updateProfile(userData);
+      setUser({ ...user, user: updatedUser });
+      return updatedUser;
+    } catch (err) {
+      setError(err.message || "Failed to update profile");
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Login handler
   const login = async (credentials) => {
     setIsLoading(true);
@@ -145,5 +162,6 @@ export function useAuth() {
     logout,
     checkAuth,
     setError,
+    updateUser,
   };
 }

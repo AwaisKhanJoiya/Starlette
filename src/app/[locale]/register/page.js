@@ -3,6 +3,22 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import "@/app/phoneInput.css";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar as CalendarUI } from "@/components/ui/calendar";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { useMultiStepForm } from "@/hooks/useMultiStepForm";
@@ -14,6 +30,7 @@ export default function RegisterPage() {
   const { register, error: authError, isLoading } = useAuth();
   const [formError, setFormError] = useState(null);
   const [termsDialogOpen, setTermsDialogOpen] = useState(false);
+  const [showDobPicker, setShowDobPicker] = useState(false);
 
   const initialFormData = {
     firstName: "",
@@ -21,11 +38,15 @@ export default function RegisterPage() {
     email: "",
     password: "",
     confirmPassword: "",
+    phoneCountryCode: "+1",
     phoneNumber: "",
     address: "",
     city: "",
     zipCode: "",
     country: "",
+    dob: "",
+    language: "",
+    gender: "",
     agreedToTerms: false,
   };
 
@@ -170,8 +191,151 @@ export default function RegisterPage() {
                 placeholder={t("email")}
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
+                className="w-full px-4 py-2.5 border border-dark-gray border-dashed  rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
               />
+
+              {/* Date of birth (Shadecn Calendar) */}
+              <div>
+                <Popover open={showDobPicker} onOpenChange={setShowDobPicker}>
+                  <PopoverTrigger asChild>
+                    <button
+                      type="button"
+                      className={`w-full text-left px-4 py-2.5 bg-white border border-dark-gray border-dashed rounded-xl text-sm font-medium tracking-wider focus:outline-none ${
+                        formData.dob ? "text-black" : "text-dark-gray italic"
+                      }`}
+                    >
+                      {formData.dob
+                        ? new Date(formData.dob).toLocaleDateString()
+                        : t("dob")}
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <CalendarUI
+                      mode="single"
+                      selected={
+                        formData.dob ? new Date(formData.dob) : undefined
+                      }
+                      captionLayout="dropdown"
+                      onSelect={(date) => {
+                        if (!date) return;
+                        const yyyy = date.getFullYear();
+                        const mm = String(date.getMonth() + 1).padStart(2, "0");
+                        const dd = String(date.getDate()).padStart(2, "0");
+                        const dateStr = `${yyyy}-${mm}-${dd}`;
+                        handleChange({
+                          target: { name: "dob", value: dateStr },
+                        });
+                        setShowDobPicker(false);
+                      }}
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+
+              {/* Language and Gender selectors using Shadecn-style DropdownMenu */}
+              <div className="flex space-x-4">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      type="button"
+                      className={`w-1/2 text-left px-4 py-2.5 border border-dark-gray bg-white border-dashed rounded-xl text-sm font-medium tracking-wider focus:outline-none ${
+                        formData.language
+                          ? "text-black"
+                          : "text-dark-gray italic"
+                      }`}
+                    >
+                      {formData.language
+                        ? formData.language === "en"
+                          ? "English"
+                          : formData.language === "fr"
+                          ? "Français"
+                          : formData.language === "he"
+                          ? "עברית"
+                          : formData.language
+                        : t("selectLanguage") || "Select language"}
+                    </button>
+                  </DropdownMenuTrigger>
+
+                  <DropdownMenuContent>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        handleChange({
+                          target: { name: "language", value: "en" },
+                        })
+                      }
+                    >
+                      English
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        handleChange({
+                          target: { name: "language", value: "fr" },
+                        })
+                      }
+                    >
+                      Français
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        handleChange({
+                          target: { name: "language", value: "he" },
+                        })
+                      }
+                    >
+                      עברית
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      type="button"
+                      className={`w-1/2 text-left px-4 py-2.5 border border-dark-gray bg-white border-dashed rounded-xl text-sm font-medium tracking-wider focus:outline-none ${
+                        formData.gender ? "text-black" : "text-dark-gray italic"
+                      }`}
+                    >
+                      {formData.gender
+                        ? formData.gender === "male"
+                          ? t("male") || "Male"
+                          : formData.gender === "female"
+                          ? t("female") || "Female"
+                          : t("other") || "Other"
+                        : t("selectGender") || "Select gender"}
+                    </button>
+                  </DropdownMenuTrigger>
+
+                  <DropdownMenuContent>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        handleChange({
+                          target: { name: "gender", value: "male" },
+                        })
+                      }
+                    >
+                      {t("male") || "Male"}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        handleChange({
+                          target: { name: "gender", value: "female" },
+                        })
+                      }
+                    >
+                      {t("female") || "Female"}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        handleChange({
+                          target: { name: "gender", value: "other" },
+                        })
+                      }
+                    >
+                      {t("other") || "Other"}
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
 
               <input
                 type="password"
@@ -215,13 +379,29 @@ export default function RegisterPage() {
 
           {currentStep === 2 && (
             <form onSubmit={handleSubmit} className="space-y-6">
-              <input
-                type="tel"
-                name="phoneNumber"
-                placeholder={t("phoneNumber")}
+              <PhoneInput
+                country={"us"}
                 value={formData.phoneNumber}
-                onChange={handleChange}
-                className="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
+                onChange={(phone, data) => {
+                  handleChange({
+                    target: {
+                      name: "phoneNumber",
+                      value: phone,
+                    },
+                  });
+                  handleChange({
+                    target: {
+                      name: "phoneCountryCode",
+                      value: `+${data.dialCode}`,
+                    },
+                  });
+                }}
+                containerClass="w-full"
+                inputClass="w-full px-4 py-2.5 border border-dark-gray border-dashed rounded-xl text-sm placeholder-dark-gray italic font-medium tracking-wider focus:outline-none focus:border-primary"
+                buttonClass="border border-dark-gray border-dashed rounded-l-xl"
+                placeholder={t("phoneNumber")}
+                enableSearch
+                searchPlaceholder={t("searchCountry")}
               />
 
               <input

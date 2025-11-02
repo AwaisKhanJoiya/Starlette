@@ -7,12 +7,14 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import LoadingButton from "@/components/ui/LoadingButton";
 import { useUserAuthContext } from "@/context/UserAuthContext";
+import EditUserModal from "@/components/EditUserModal";
 import { locales } from "@/i18n/navigation";
 
 export default function AccountDashboard() {
   const {
     user: { user },
     getAuthToken,
+    updateUser,
   } = useUserAuthContext();
   const t = useTranslations("account");
   const sections = [
@@ -26,6 +28,9 @@ export default function AccountDashboard() {
   const [loading, setLoading] = useState(false); // Loading state
   const [userLoading, setUserLoading] = useState(false); // User profile loading state
   const [open, setOpen] = useState(1); // Default open to "myBookings" section (index 1)
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [fieldToEdit, setFieldToEdit] = useState(null);
 
   // Fetch user's enrolled classes
   const fetchEnrolledClasses = useCallback(async () => {
@@ -110,13 +115,25 @@ export default function AccountDashboard() {
                 {/* Full name */}
                 <div className="flex justify-between items-center">
                   <span className="uppercase tracking-wider">{user.name}</span>
-                  <Edit className="w-4 h-4 text-gray-600 cursor-pointer" />
+                  <Edit
+                    className="w-4 h-4 text-gray-600 cursor-pointer"
+                    onClick={() => {
+                      setFieldToEdit("name");
+                      setIsEditModalOpen(true);
+                    }}
+                  />
                 </div>
 
                 {/* Phone number */}
                 <div className="flex justify-between items-center">
                   <span>{user.phoneNumber || t("noPhoneProvided")}</span>
-                  <Edit className="w-4 h-4 text-gray-600 cursor-pointer" />
+                  <Edit
+                    className="w-4 h-4 text-gray-600 cursor-pointer"
+                    onClick={() => {
+                      setFieldToEdit("phoneNumber");
+                      setIsEditModalOpen(true);
+                    }}
+                  />
                 </div>
 
                 {/* Birthday */}
@@ -126,14 +143,43 @@ export default function AccountDashboard() {
                       ? new Date(user.dateOfBirth).toLocaleDateString()
                       : t("noBirthdayProvided")}
                   </span>
-                  <Edit className="w-4 h-4 text-gray-600 cursor-pointer" />
+                  <Edit
+                    className="w-4 h-4 text-gray-600 cursor-pointer"
+                    onClick={() => {
+                      setFieldToEdit("dateOfBirth");
+                      setIsEditModalOpen(true);
+                    }}
+                  />
                 </div>
 
                 {/* Email */}
                 <div className="flex justify-between items-center">
                   <span className="uppercase tracking-wider">{user.email}</span>
-                  <Edit className="w-4 h-4 text-gray-600 cursor-pointer" />
+                  <Edit
+                    className="w-4 h-4 text-gray-600 cursor-pointer"
+                    onClick={() => {
+                      setFieldToEdit("email");
+                      setIsEditModalOpen(true);
+                    }}
+                  />
                 </div>
+
+                {/* Edit Modal */}
+                {isEditModalOpen && (
+                  <EditUserModal
+                    user={user}
+                    fieldToEdit={fieldToEdit}
+                    onClose={() => {
+                      setIsEditModalOpen(false);
+                      setFieldToEdit(null);
+                    }}
+                    onUpdate={(updatedUser) => {
+                      if (updateUser) {
+                        updateUser(updatedUser);
+                      }
+                    }}
+                  />
+                )}
               </div>
             )}
           </div>
@@ -242,7 +288,7 @@ export default function AccountDashboard() {
           <div className="space-y-4">
             <div className=" py-4 ">
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                {/* <table className="w-full text-sm">
                   <thead>
                     <tr className="text-gray-600  text-xs">
                       <th className="text-left py-2">{t("table.pack")}</th>
@@ -280,7 +326,7 @@ export default function AccountDashboard() {
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                </table> */}
               </div>
 
               <p className="uppercase text-[10px] py-3 text-[#686867] font-arial">
@@ -310,13 +356,13 @@ export default function AccountDashboard() {
               <h3 className="font-semibold mb-3">{t("details.pastClasses")}</h3>
 
               {/* single top & bottom border with single dividers between rows */}
-              <div className="border-t border-b border-[#000000] divide-y divide-[#000000]  overflow-hidden">
+              {/* <div className="border-t border-b border-[#000000] divide-y divide-[#000000]  overflow-hidden">
                 {[
                   ["31/05/2025", "08:00", "FULL BODY", "Dana", "present"],
                   ["06/05/2025", "10:00", "FULL BODY", "Dana", "present"],
                   ["22/05/2025", "08:00", "FULL BODY", "Dana", "missed"],
                 ].map((r, i) => {
-                  const statusKey = r[4]; // "present" | "missed"
+                  const statusKey = r[4]; 
                   const badgeClass =
                     statusKey === "missed"
                       ? " text-[#FABDCE] italic font-semibold"
@@ -327,24 +373,17 @@ export default function AccountDashboard() {
                       key={i}
                       className="py-3 px-4 grid grid-cols-2 text-black font-semibold md:grid-cols-6 gap-3 items-center hover:bg-gray-50 transition"
                     >
-                      {/* Date */}
                       <div className="text-xs md:text-sm ">{r[0]}</div>
 
-                      {/* Time */}
                       <div className="text-xs md:text-sm ">{r[1]}</div>
 
-                      {/* Class name */}
                       <div className="text-xs md:text-sm ">{r[2]}</div>
 
-                      {/* Instructor */}
                       <div className="text-xs md:text-sm ">{r[3]}</div>
 
-                      {/* (optional) other column if needed */}
                       <div className="text-xs md:text-sm ">
-                        {/* reserved */}
                       </div>
 
-                      {/* Status badge (right aligned) */}
                       <div className="flex justify-end">
                         <span className={`text-xs px-2 py-1  ${badgeClass}`}>
                           {t(`status.${statusKey}`)}
@@ -353,7 +392,7 @@ export default function AccountDashboard() {
                     </div>
                   );
                 })}
-              </div>
+              </div> */}
             </div>
           </div>
         );
