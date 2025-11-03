@@ -27,7 +27,7 @@ export default function AccountDashboard() {
   const [bookedClasses, setBookedClasses] = useState([]); // Array of enrolled classes
   const [loading, setLoading] = useState(false); // Loading state
   const [userLoading, setUserLoading] = useState(false); // User profile loading state
-  const [open, setOpen] = useState(1); // Default open to "myBookings" section (index 1)
+  const [open, setOpen] = useState(null); // Default open to "myBookings" section (index 1)
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [fieldToEdit, setFieldToEdit] = useState(null);
@@ -60,14 +60,14 @@ export default function AccountDashboard() {
   }, [getAuthToken]);
 
   useEffect(() => {
-    // Fetch enrolled classes on component mount
     fetchEnrolledClasses();
   }, [fetchEnrolledClasses]);
-  const toggle = (index) => setOpen(open === index ? null : index);
+  // const toggle = (index) => setOpen(open === index ? null : index);
+  const toggle = useCallback((index) => {
+    setOpen((prev) => (prev === index ? null : index));
+  }, []);
 
-  // Header component — no bg by default; selected gets bg-primary + text-white
   const Header = ({ label, index, isOpen, isLast }) => {
-    // base classes: full width, top border; last item also gets bottom border (applied where rendering)
     const base = `w-full flex items-center hover:bg-primary hover:text-white justify-between gap-4 px-4 py-2 text-left border-t border-[#000000] transition focus:outline-none focus:ring-2 focus:ring-pink-300`;
     const selected = isOpen
       ? "bg-primary text-white"

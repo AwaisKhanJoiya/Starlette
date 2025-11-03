@@ -4,13 +4,10 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import PricingCard from "./PricingCard";
 import { useLocale, useTranslations } from "next-intl";
-// import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
-// import DownloadApp from "@/components/DownloadApp";
 
 export default function PricingGrid({
   cards = [],
   columns = 3,
-  // backgroundImage = "/light-logo.jpg",
   backgroundImage = "/hd-logo.png",
   packImage = "/welcome-pack.png",
   bullets = [],

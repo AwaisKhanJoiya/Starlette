@@ -7,7 +7,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import PricingGrid from "@/components/PricingGrid";
 import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
-import DownloadApp from "@/components/DownloadApp";
 
 export default function StarletteStudio() {
   const locale = useLocale();
@@ -196,9 +195,7 @@ export default function StarletteStudio() {
           <FitnessBookingCalendar />
         </div>
 
-        {/* <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-10">
-          <DownloadApp />
-        </div> */}
+      
       </main>
     </div>
   );

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import PricingGrid from "@/components/PricingGrid";
 import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
-import DownloadApp from "@/components/DownloadApp";
+// import DownloadApp from "@/components/DownloadApp";
 import Link from "next/link";
 
 const PricingPage = () => {
@@ -239,9 +239,9 @@ const PricingPage = () => {
         </div>
       </div>
 
-      <div className="px-4 sm:px-6 lg:px-8 pb-10 pt-4">
+      {/* <div className="px-4 sm:px-6 lg:px-8 pb-10 pt-4">
         <DownloadApp />
-      </div>
+      </div> */}
     </div>
   );
 };
