@@ -58,7 +58,7 @@ const MethodPage = () => {
           <div className="flex flex-col-reverse md:flex-row items-center md:gap-10 gap-6 pt-12 md:pt-0 pb-8">
             <div className="w-full md:w-1/2">
               <Image
-                src="/micro-delux.jpg"
+                src="/micro1.png"
                 alt="starlette"
                 width={700}
                 height={500}
@@ -95,7 +95,7 @@ const MethodPage = () => {
             </div>
             <div className="hidden md:block">
               <Image
-                src="/choose-lagree.png"
+                src="/choose-lagree.jpg"
                 alt="starlette"
                 width={500}
                 height={100}
