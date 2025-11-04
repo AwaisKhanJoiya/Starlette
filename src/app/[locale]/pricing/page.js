@@ -16,8 +16,9 @@ const PricingPage = () => {
       id: "p-s1-a",
       price: tPackages("pricingPage.section1.cards.a.price"),
       headline: tPackages("pricingPage.section1.cards.a.headline"),
-      gift: tPackages("pricingPage.section1.cards.a.gift"),
+      // gift: tPackages("pricingPage.section1.cards.a.gift"),
       buttonLabel: tPackages("pricingPage.section1.cards.a.button"),
+      validity: tPackages("pricingPage.section1.cards.a.validity"),
     },
     {
       id: "p-s1-b",
@@ -25,6 +26,7 @@ const PricingPage = () => {
       headline: tPackages("pricingPage.section1.cards.b.headline"),
       gift: tPackages("pricingPage.section1.cards.b.gift"),
       buttonLabel: tPackages("pricingPage.section1.cards.b.button"),
+      validity: tPackages("pricingPage.section1.cards.b.validity"),
     },
   ];
   const section1Bullets = [
@@ -53,6 +55,7 @@ const PricingPage = () => {
       headline: tPackages("pricingPage.section2.cards.a.headline"),
       gift: tPackages("pricingPage.section2.cards.a.gift"),
       buttonLabel: tPackages("pricingPage.section2.cards.a.button"),
+      validity: tPackages("pricingPage.section2.cards.a.validity"),
     },
     {
       id: "p-s2-b",
@@ -60,6 +63,7 @@ const PricingPage = () => {
       headline: tPackages("pricingPage.section2.cards.b.headline"),
       gift: tPackages("pricingPage.section2.cards.b.gift"),
       buttonLabel: tPackages("pricingPage.section2.cards.b.button"),
+      validity: tPackages("pricingPage.section2.cards.b.validity"),
     },
   ];
 
@@ -75,6 +79,7 @@ const PricingPage = () => {
       }),
       gift: tPackages("pricingPage.section3.cards.c1.gift"),
       buttonLabel: tPackages("pricingPage.section3.cards.c1.button"),
+      validity: tPackages("pricingPage.section3.cards.c1.validity"),
     },
     {
       id: "p-s3-2",
@@ -86,6 +91,7 @@ const PricingPage = () => {
       }),
       gift: tPackages("pricingPage.section3.cards.c2.gift"),
       buttonLabel: tPackages("pricingPage.section3.cards.c2.button"),
+      validity: tPackages("pricingPage.section3.cards.c2.validity"),
     },
     {
       id: "p-s3-3",
@@ -97,6 +103,7 @@ const PricingPage = () => {
       }),
       gift: tPackages("pricingPage.section3.cards.c3.gift"),
       buttonLabel: tPackages("pricingPage.section3.cards.c3.button"),
+      validity: tPackages("pricingPage.section3.cards.c3.validity"),
     },
     {
       id: "p-s3-4",
@@ -108,6 +115,7 @@ const PricingPage = () => {
       }),
       gift: tPackages("pricingPage.section3.cards.c4.gift"),
       buttonLabel: tPackages("pricingPage.section3.cards.c4.button"),
+      validity: tPackages("pricingPage.section3.cards.c4.validity"),
     },
   ];
 
@@ -181,7 +189,7 @@ const PricingPage = () => {
         <div className="w-full md:w-1/2 relative flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 ">
             <Image
-              src="/pricing.jpg"
+              src="/pricing.png"
               alt="pricing background"
               fill
               className="object-contain "

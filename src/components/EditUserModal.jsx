@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import LoadingButton from "@/components/ui/LoadingButton";
@@ -25,8 +25,8 @@ export default function EditUserModal({
         ? new Date(user[fieldToEdit]).toISOString().split("T")[0]
         : user[fieldToEdit] || "",
   });
+
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   // state to control the shadecn Popover for date picker
   const [showDobPicker, setShowDobPicker] = useState(false);
@@ -42,26 +42,9 @@ export default function EditUserModal({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
 
     try {
-      const token = localStorage.getItem("authToken");
-      const response = await fetch("/api/auth/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to update profile");
-      }
-
-      const updatedUser = await response.json();
-      onUpdate(updatedUser);
+      await onUpdate(formData);
       onClose();
       toast.success("Profile updated successfully!");
     } catch (err) {

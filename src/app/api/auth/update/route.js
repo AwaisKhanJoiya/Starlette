@@ -22,17 +22,13 @@ export async function PUT(request) {
     if (data.name) updateFields.name = data.name;
     if (data.phoneNumber) updateFields.phoneNumber = data.phoneNumber;
     if (data.dateOfBirth) updateFields.dateOfBirth = data.dateOfBirth;
-
+    console.log(updateFields);
     // Update user
     const updatedUser = await User.findByIdAndUpdate(
-      user._id,
+      user?.user?._id,
       { $set: updateFields },
       { new: true, runValidators: true }
     ).select("-password");
-
-    if (!updatedUser) {
-      return NextResponse.json({ message: "User not found" }, { status: 404 });
-    }
 
     return NextResponse.json(updatedUser);
   } catch (error) {

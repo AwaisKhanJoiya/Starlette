@@ -95,7 +95,7 @@ const MethodPage = () => {
             </div>
             <div className="hidden md:block">
               <Image
-                src="/choose-lagree.jpg"
+                src="/choose-lagree.png"
                 alt="starlette"
                 width={500}
                 height={100}

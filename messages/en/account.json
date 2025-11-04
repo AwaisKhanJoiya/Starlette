@@ -35,7 +35,8 @@
     "missed": "ABSENT",
     "active": "ACTIVE",
     "expired": "EXPIRED",
-    "waitingList": "WAITING LIST"
+    "waitingList": "WAITING LIST",
+    "confirmed": "CONFIRMED"
   },
   "noBookedClasses": "You have no upcoming classes booked",
   "bookingInfo": "<b>useful info</b> <br></br> you can cancel a class up to 24 hours before the session starts, and up to 12 hours for members. <br></br> if you're on the waitlist, you'll be notified by email as soon as a spot becomes available. <br></br> for any questions, contact us at: <a>starlette.tlv@gmail.com</a>",

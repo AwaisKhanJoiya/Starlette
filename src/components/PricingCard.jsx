@@ -13,6 +13,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
     slug = "",
     price = "",
     headline = "",
+    validity = "",
     gift = "",
     buttonLabel = "BOOK",
     star = "/star-icon.png",
@@ -31,19 +32,25 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
   return (
     <div className="relative">
       <div
-        className={`border-2 h-full flex flex-col justify-between text-dark-gray border-black bg-background rounded-3xl py-8 px-5 text-center shadow-sm ${
+        className={`border-2 flex flex-col justify-center gap-y-4 text-dark-gray border-black bg-background rounded-3xl py-8 w-64 h-64 ${
+          gift ? "px-2" : "px-5"
+        } text-center shadow-sm ${
           slug
             ? "min-w-72 md:min-w-60 max-w-72 md:max-w-64"
             : "max-w-72 md:max-w-64"
         }`}
       >
         {slug && (
-          <div className="text-xs md:text-sm mb-2 font-bold text-secondary">
+          <div className="text-xs md:text-sm font-bold text-secondary absolute top-3 left-1/2 transform -translate-x-1/2 w-full">
             “{slug}”
           </div>
         )}
 
-        <div className="text-4xl md:text-5xl font-bold mb-2 text-black">
+        <div
+          className={`text-4xl md:text-5xl font-bold mb-2 text-black ${
+            slug ? "mt-6" : ""
+          }`}
+        >
           {price}
         </div>
         <div>
@@ -55,25 +62,27 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
             className="mx-auto mb-4"
           />
         </div>
-        {headline && (
-          <div
-            dir={locale === "he" ? "rtl" : undefined}
-            className="text-lg md:text-2xl trea font-bold mb-1 tracking-widest text-[#787C7C]"
-          >
-            {headline}
-          </div>
-        )}
-        {gift && (
-          <p
-            dir={locale === "he" ? "rtl" : undefined}
-            className="text-[9px] font-bold mb-2 text-[#787C7C] mt-1"
-          >
-            {gift}
-          </p>
-        )}
+        <div>
+          {headline && (
+            <div
+              dir={locale === "he" ? "rtl" : undefined}
+              className="text-lg md:text-2xl trea font-bold mb-1 tracking-widest text-[#787C7C]"
+            >
+              {headline}
+            </div>
+          )}
+          {gift && (
+            <p
+              dir={locale === "he" ? "rtl" : undefined}
+              className="text-[9px] font-bold mb-2 text-[#787C7C] mt-1"
+            >
+              {gift}
+            </p>
+          )}
+        </div>
       </div>
-      <p className="absolute right-3 top-6 -rotate-90 origin-right text-[11px] font-normal mb-6 text-[#b8b6b3]">
-        valid for 1 month
+      <p className="absolute right-4 translate-x-1/2 top-1/2 text-center -translate-y-1/2 -rotate-90 text-[11px] font-normal text-[#b8b6b3] whitespace-nowrap">
+        {validity}
       </p>
 
       <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2">

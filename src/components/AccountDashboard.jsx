@@ -8,14 +8,10 @@ import Image from "next/image";
 import LoadingButton from "@/components/ui/LoadingButton";
 import { useUserAuthContext } from "@/context/UserAuthContext";
 import EditUserModal from "@/components/EditUserModal";
-import { locales } from "@/i18n/navigation";
+import ClassHistory from "./ClassHistory";
 
 export default function AccountDashboard() {
-  const {
-    user: { user },
-    getAuthToken,
-    updateUser,
-  } = useUserAuthContext();
+  const { user, getAuthToken, updateUser } = useUserAuthContext();
   const t = useTranslations("account");
   const sections = [
     "myInformation",
@@ -26,7 +22,6 @@ export default function AccountDashboard() {
   ];
   const [bookedClasses, setBookedClasses] = useState([]); // Array of enrolled classes
   const [loading, setLoading] = useState(false); // Loading state
-  const [userLoading, setUserLoading] = useState(false); // User profile loading state
   const [open, setOpen] = useState(null); // Default open to "myBookings" section (index 1)
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -114,7 +109,9 @@ export default function AccountDashboard() {
               <div className="space-y-2 font-arial">
                 {/* Full name */}
                 <div className="flex justify-between items-center">
-                  <span className="uppercase tracking-wider">{user.name}</span>
+                  <span className="uppercase tracking-wider">
+                    {user?.user?.name}
+                  </span>
                   <Edit
                     className="w-4 h-4 text-gray-600 cursor-pointer"
                     onClick={() => {
@@ -126,7 +123,7 @@ export default function AccountDashboard() {
 
                 {/* Phone number */}
                 <div className="flex justify-between items-center">
-                  <span>{user.phoneNumber || t("noPhoneProvided")}</span>
+                  <span>{user?.user?.phoneNumber || t("noPhoneProvided")}</span>
                   <Edit
                     className="w-4 h-4 text-gray-600 cursor-pointer"
                     onClick={() => {
@@ -139,8 +136,8 @@ export default function AccountDashboard() {
                 {/* Birthday */}
                 <div className="flex justify-between items-center">
                   <span className="tracking-wider">
-                    {user.dateOfBirth
-                      ? new Date(user.dateOfBirth).toLocaleDateString()
+                    {user?.user?.dateOfBirth
+                      ? new Date(user?.user?.dateOfBirth).toLocaleDateString()
                       : t("noBirthdayProvided")}
                   </span>
                   <Edit
@@ -154,7 +151,9 @@ export default function AccountDashboard() {
 
                 {/* Email */}
                 <div className="flex justify-between items-center">
-                  <span className="uppercase tracking-wider">{user.email}</span>
+                  <span className="uppercase tracking-wider">
+                    {user?.user?.email}
+                  </span>
                   <Edit
                     className="w-4 h-4 text-gray-600 cursor-pointer"
                     onClick={() => {
@@ -167,7 +166,7 @@ export default function AccountDashboard() {
                 {/* Edit Modal */}
                 {isEditModalOpen && (
                   <EditUserModal
-                    user={user}
+                    user={user?.user}
                     fieldToEdit={fieldToEdit}
                     onClose={() => {
                       setIsEditModalOpen(false);
@@ -350,58 +349,13 @@ export default function AccountDashboard() {
         );
 
       case "classHistory":
-        return (
-          <div className="space-y-4">
-            <div className="py-6">
-              <h3 className="font-semibold mb-3">{t("details.pastClasses")}</h3>
-
-              {/* single top & bottom border with single dividers between rows */}
-              {/* <div className="border-t border-b border-[#000000] divide-y divide-[#000000]  overflow-hidden">
-                {[
-                  ["31/05/2025", "08:00", "FULL BODY", "Dana", "present"],
-                  ["06/05/2025", "10:00", "FULL BODY", "Dana", "present"],
-                  ["22/05/2025", "08:00", "FULL BODY", "Dana", "missed"],
-                ].map((r, i) => {
-                  const statusKey = r[4]; 
-                  const badgeClass =
-                    statusKey === "missed"
-                      ? " text-[#FABDCE] italic font-semibold"
-                      : " text-dark-gray";
-
-                  return (
-                    <div
-                      key={i}
-                      className="py-3 px-4 grid grid-cols-2 text-black font-semibold md:grid-cols-6 gap-3 items-center hover:bg-gray-50 transition"
-                    >
-                      <div className="text-xs md:text-sm ">{r[0]}</div>
-
-                      <div className="text-xs md:text-sm ">{r[1]}</div>
-
-                      <div className="text-xs md:text-sm ">{r[2]}</div>
-
-                      <div className="text-xs md:text-sm ">{r[3]}</div>
-
-                      <div className="text-xs md:text-sm ">
-                      </div>
-
-                      <div className="flex justify-end">
-                        <span className={`text-xs px-2 py-1  ${badgeClass}`}>
-                          {t(`status.${statusKey}`)}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div> */}
-            </div>
-          </div>
-        );
+        return <ClassHistory />;
 
       case "mySubscription":
         // subscription summary (was originally myInformation)
         return (
           <div className="space-y-4 font-arial">
-            <div className="py-6">
+            {/* <div className="py-6">
               <div className="flex items-center justify-between gap-4">
                 <div className="flex justify-center items-center gap-2">
                   <div>
@@ -450,6 +404,7 @@ export default function AccountDashboard() {
               </div>
             </div>
 
+            */}
             <p className="uppercase text-[10px] text-[#686867] font-arial">
               {t.rich("details.subscriptionPolicy", {
                 b: (chunks) => (
@@ -469,7 +424,9 @@ export default function AccountDashboard() {
   return (
     <div>
       <h1 className="text-xl font-bold tracking-wider mb-4 text-dark-gray">
-        {user ? `${t("welcome")} ${user.name?.toUpperCase()}` : t("title")}
+        {user
+          ? `${t("welcome")} ${user?.user?.name?.toUpperCase()}`
+          : t("title")}
       </h1>
 
       <div className="space-y-0">
