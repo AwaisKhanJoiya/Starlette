@@ -3,7 +3,7 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 import PricingCard from "./PricingCard";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 export default function PricingGrid({
   cards = [],
@@ -12,12 +12,9 @@ export default function PricingGrid({
   packImage = "/welcome-pack.png",
   bullets = [],
 }) {
-  const t = useTranslations("home");
-
   const locale = useLocale();
   const gridClass = useMemo(() => {
-    if (columns === 2)
-      return "flex flex-col md:flex-row justify-center items-center gap-32";
+    if (columns === 2) return "flex flex-col md:flex-row justify-center gap-32";
     if (columns === 4)
       return "grid grid-cols-1 md:grid-cols-4 gap-8 justify-items-center";
     return "flex flex-col md:flex-row justify-center items-center gap-32";

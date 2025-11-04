@@ -33,10 +33,8 @@ export async function authMiddleware(request) {
         ),
       };
     }
-
     // Find user by id
     const user = await User.findById(decoded.id).select("-password");
-
     if (!user) {
       return {
         success: false,

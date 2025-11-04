@@ -33,13 +33,15 @@
           "price": "110₪",
           "headline": "1 class",
           "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
-          "button": "BOOK"
+          "button": "BOOK",
+          "validity": "valid for 1 month"
         },
         "b": {
           "price": "300₪",
           "headline": "3 classes",
           "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
-          "button": "BOOK"
+          "button": "BOOK",
+          "validity": "valid for 1 month"
         }
       },
       "bullets": {
@@ -55,13 +57,15 @@
           "price": "160₪",
           "headline": "1 class",
           "gift": "",
-          "button": "BOOK"
+          "button": "BOOK",
+          "validity": "valid for 1 month"
         },
         "b": {
           "price": "700₪",
           "headline": "5 classes",
           "gift": "",
-          "button": "BOOK"
+          "button": "BOOK",
+          "validity": "valid for 2 months"
         }
       },
       "bullets": {
@@ -78,28 +82,32 @@
           "price": "500₪",
           "headline": "1 class <br></br> per week",
           "gift": "",
-          "button": "BOOK"
+          "button": "BOOK",
+          "validity": "4 classes per month"
         },
         "c2": {
           "slug": "A LUCKY STAR",
           "price": "920₪",
           "headline": "2 classes <br></br> per week",
           "gift": "",
-          "button": "BOOK"
+          "button": "BOOK",
+          "validity": "8 classes per month"
         },
         "c3": {
           "slug": "A SUPERSTAR-LETTE",
           "price": "1200₪",
           "headline": "3 classes <br></br> per week",
           "gift": "",
-          "button": "BOOK"
+          "button": "BOOK",
+          "validity": "12 classes per month"
         },
         "c4": {
           "slug": "A STARLETTE ADDICT",
           "price": "1600₪",
           "headline": "UNLIMITED CLASSES",
           "gift": "",
-          "button": "BOOK"
+          "button": "BOOK",
+          "validity": "up to 24 classes per month"
         }
       },
       "bullets": {
