@@ -5,11 +5,14 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "next-intl";
 import Image from "next/image";
+import usePayment from "@/hooks/usePayment";
+import { PRICES } from "@/lib/pricing";
 
 const PricingCard = React.memo(function PricingCard({ data = {} }) {
+  const { processPayment } = usePayment();
   const locale = useLocale();
-  const router = useRouter();
   const {
+    id = "",
     slug = "",
     price = "",
     headline = "",
@@ -17,16 +20,11 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
     gift = "",
     buttonLabel = "BOOK",
     star = "/star-icon.png",
-    onClick = null,
   } = data;
 
   const handleClick = () => {
-    if (typeof onClick === "function") {
-      onClick();
-      return;
-    }
-    // default behaviour: navigate to '/'
-    router.push("/");
+    const pricingCard = PRICES.find((card) => card.id === id);
+    processPayment({ id }, pricingCard.type);
   };
 
   return (

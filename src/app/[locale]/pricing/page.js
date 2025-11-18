@@ -35,18 +35,6 @@ const PricingPage = () => {
     tPackages("pricingPage.section1.bullets.three"),
   ];
 
-  const section2Bullets = [
-    tPackages("pricingPage.section2.bullets.one"),
-    tPackages("pricingPage.section2.bullets.two"),
-    tPackages("pricingPage.section2.bullets.three"),
-  ];
-
-  const section3Bullets = [
-    tPackages("pricingPage.section3.bullets.one"),
-    tPackages("pricingPage.section3.bullets.two"),
-    tPackages("pricingPage.section3.bullets.three"),
-  ];
-
   // Section 2 (another 2 cards)
   const section2Cards = [
     {
@@ -65,6 +53,12 @@ const PricingPage = () => {
       buttonLabel: tPackages("pricingPage.section2.cards.b.button"),
       validity: tPackages("pricingPage.section2.cards.b.validity"),
     },
+  ];
+
+  const section2Bullets = [
+    tPackages("pricingPage.section2.bullets.one"),
+    tPackages("pricingPage.section2.bullets.two"),
+    tPackages("pricingPage.section2.bullets.three"),
   ];
 
   // Section 3 (4 cards)
@@ -117,6 +111,12 @@ const PricingPage = () => {
       buttonLabel: tPackages("pricingPage.section3.cards.c4.button"),
       validity: tPackages("pricingPage.section3.cards.c4.validity"),
     },
+  ];
+
+  const section3Bullets = [
+    tPackages("pricingPage.section3.bullets.one"),
+    tPackages("pricingPage.section3.bullets.two"),
+    tPackages("pricingPage.section3.bullets.three"),
   ];
 
   return (
