@@ -69,7 +69,7 @@ export function usePayment() {
 
       return data;
     } catch (err) {
-      const errorMessage = "Subscription creation failed";
+      const errorMessage = err?.message || "Subscription creation failed";
       toast.error(errorMessage);
 
       throw err;

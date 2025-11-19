@@ -1,0 +1,14 @@
+{
+  "title": "Payment Successful!",
+  "subtitle": "Thank you for your purchase",
+  "message": "Your payment has been processed successfully. You can now access your classes and start your journey with Starlette.",
+  "transactionId": "Transaction ID",
+  "viewProfile": "Go to Profile",
+  "backHome": "Back to Home",
+  "whatNext": "What's Next?",
+  "steps": {
+    "one": "Check your email for payment confirmation",
+    "two": "Book your classes in the schedule",
+    "three": "Prepare for an amazing experience"
+  }
+}

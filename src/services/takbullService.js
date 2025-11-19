@@ -46,33 +46,23 @@ class TakbullService {
    * Process one-time payment for class packs
    */
   async processOneTimePayment(paymentData) {
-    const { amount } = paymentData;
+    const { amount, order_reference } = paymentData;
 
-    const params = {
-      ...this.buildBaseParams(),
-      tranmode: this.config.tranModes.VERIFY_AND_CHARGE,
-      sum: amount.toFixed(2),
-      ccno: cardNumber.replace(/\s/g, ""),
-      mycvv: cvv,
-      expmonth: expiryMonth.padStart(2, "0"),
-      expyear: expiryYear,
-      myid: cardHolderId,
-      contact: cardHolderName,
-      email: email,
-      remarks: description || "Class Pack Purchase",
-      fprefnum: invoiceNumber || "",
+    const body = {
+      order_reference: order_reference,
+      OrderTotalSum: 1,
+      DealType: this.config.dealTypes.REGULAR,
+      RedirectAddress: `${process.env.FRONTEND_URL}/success`,
+      CancelReturnAddress: `${process.env.FRONTEND_URL}/pricing`,
+      Language: "en",
     };
 
-    const result = await this.makeRequest(params);
+    const result = await this.makeRequest(
+      "/GetTakbullPaymentPageRedirectUrl",
+      body
+    );
 
-    return {
-      success: result.Response === this.config.responseCodes.SUCCESS,
-      transactionId: result.index || "",
-      confirmationCode: result.ConfirmationCode || "",
-      responseCode: result.Response || "",
-      responseMessage: getTranzilaResponseMessage(result.Response),
-      rawResponse: result,
-    };
+    return result;
   }
 
   /**
@@ -86,6 +76,7 @@ class TakbullService {
     const body = {
       order_reference: order_reference,
       OrderTotalSum: amount.toFixed(2),
+      InitialAmount: amount.toFixed(2),
       DealType: this.config.dealTypes.RECURRING,
       RedirectAddress: "http://localhost:3000/success",
       CancelReturnAddress: "http://localhost:3000/cancel",
@@ -100,68 +91,6 @@ class TakbullService {
 
     return result;
   }
-
-  /**
-   * Cancel recurring subscription
-   */
-  // async cancelRecurringPayment(subscriptionToken) {
-  //   const params = {
-  //     ...this.buildBaseParams(),
-  //     tranmode: this.config.tranModes.CANCEL_RECURRING,
-  //     TranzilaToken: subscriptionToken,
-  //   };
-
-  //   const result = await this.makeRequest(params);
-
-  //   return {
-  //     success: result.Response === this.config.responseCodes.SUCCESS,
-  //     responseCode: result.Response || "",
-  //     responseMessage: getTranzilaResponseMessage(result.Response),
-  //     rawResponse: result,
-  //   };
-  // }
-
-  /**
-   * Query transaction status
-   */
-  // async queryTransaction(transactionId) {
-  //   const params = {
-  //     ...this.buildBaseParams(),
-  //     tranmode: this.config.tranModes.QUERY,
-  //     index: transactionId,
-  //   };
-
-  //   const result = await this.makeRequest(params);
-
-  //   return {
-  //     success: result.Response === this.config.responseCodes.SUCCESS,
-  //     transaction: result,
-  //     responseMessage: getTranzilaResponseMessage(result.Response),
-  //   };
-  // }
-
-  /**
-   * Process refund
-   */
-  // async processRefund(transactionId, amount) {
-  //   const params = {
-  //     ...this.buildBaseParams(),
-  //     tranmode: this.config.tranModes.CREDIT_REFUND,
-  //     index: transactionId,
-  //     sum: amount.toFixed(2),
-  //   };
-
-  //   const result = await this.makeRequest(params);
-
-  //   return {
-  //     success: result.Response === this.config.responseCodes.SUCCESS,
-  //     refundTransactionId: result.index || "",
-  //     confirmationCode: result.ConfirmationCode || "",
-  //     responseCode: result.Response || "",
-  //     responseMessage: getTranzilaResponseMessage(result.Response),
-  //     rawResponse: result,
-  //   };
-  // }
 }
 
 const takbullService = new TakbullService();

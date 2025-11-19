@@ -3,6 +3,7 @@ import dbConnect from "@/lib/mongodb";
 import Payment from "@/models/Payment";
 import Subscription from "@/models/Subscription";
 import takbullConfig from "@/lib/takbull";
+import ClassPack from "@/models/ClassPack";
 
 /**
  * Takbull Webhook Handler
@@ -49,9 +50,7 @@ export async function POST(request) {
     // StatusCode 0 = Success, others are failures
     const isSuccessful =
       webhookData.StatusCode === 0 || webhookData.OrderStatus === 0;
-    const subscription = await Subscription.findOne({
-      _id: webhookData.order_reference,
-    });
+
     const paymentStatus = isSuccessful ? "completed" : "failed";
     const subscriptionId =
       webhookData.DealType === 4 ? webhookData.order_reference : null;
@@ -60,15 +59,36 @@ export async function POST(request) {
     // Handle subscription payment
     if (webhookData.DealType === takbullConfig.dealTypes.RECURRING) {
       await handleSubscriptionWebhook(webhookData, paymentStatus);
+      const subscription = await Subscription.findOne({
+        _id: subscriptionId,
+      });
+      await createPaymentRecord(
+        {
+          ...webhookData,
+          subscriptionId,
+          classPackId,
+          userId: subscription.userId,
+        },
+        paymentStatus,
+        subscription.planId
+      );
     } else {
       // Handle one-time payment (class pack)
       await handleOneTimePaymentWebhook(webhookData, paymentStatus);
+      const classPack = await ClassPack.findOne({
+        _id: classPackId,
+      });
+      await createPaymentRecord(
+        {
+          ...webhookData,
+          subscriptionId,
+          classPackId,
+          userId: classPack.userId,
+        },
+        paymentStatus,
+        classPack.planId
+      );
     }
-    await createPaymentRecord(
-      { ...webhookData, subscriptionId, classPackId },
-      paymentStatus,
-      subscription.planId
-    );
 
     return NextResponse.json(
       {
@@ -204,60 +224,25 @@ async function handleSubscriptionWebhook(webhookData, paymentStatus) {
  */
 async function handleOneTimePaymentWebhook(webhookData, paymentStatus) {
   try {
-    // Find payment by Takbull ID or unique ID
-    const payment = await Payment.findOne({
-      $or: [
-        { takbullUniqueId: webhookData.uniqId },
-        { metadata: { takbullId: webhookData.Id } },
-        { metadata: { takbullTransactionId: webhookData.TransactionId } },
-      ],
-    });
-
-    if (!payment) {
-      console.warn(
-        "Payment not found for one-time webhook:",
-        webhookData.TransactionId
-      );
-      return;
-    }
-
-    // Update payment status
-    payment.status = paymentStatus;
-    payment.takbullUniqueId = webhookData.uniqId;
-    payment.takbullResponse = {
-      ...payment.takbullResponse,
-      webhook: webhookData,
-      webhookReceivedAt: new Date(),
-    };
-
-    // Store additional webhook data
-    payment.metadata = {
-      ...payment.metadata,
-      takbullId: webhookData.Id,
-      takbullTransactionId: webhookData.TransactionId,
-      webhookOrderNumber: webhookData.OrderNumber,
-      cardType: webhookData.Cardtype,
-      last4Digits: webhookData.Last4Digs,
-      customerName: webhookData.CustomerFullName,
-      customerIdentity: webhookData.CustomerIdentity,
-    };
-
-    await payment.save();
-
-    console.log(
-      `One-time payment ${payment._id} updated to status: ${paymentStatus}`
-    );
-
     // If payment failed, you might want to update the associated class pack
-    if (paymentStatus === "failed" && payment.classPackId) {
-      const ClassPack = (await import("@/models/ClassPack")).default;
-      const classPack = await ClassPack.findById(payment.classPackId);
+    if (paymentStatus === "failed" && webhookData.order_reference) {
+      const classPack = await ClassPack.findById(webhookData.order_reference);
 
       if (classPack && classPack.status === "pending") {
         classPack.status = "expired";
         await classPack.save();
         console.log(
           `Class pack ${classPack._id} marked as expired due to payment failure`
+        );
+      }
+    } else if (paymentStatus === "completed" && webhookData.order_reference) {
+      const classPack = await ClassPack.findById(webhookData.order_reference);
+
+      if (classPack && classPack.status === "pending") {
+        classPack.status = "active";
+        await classPack.save();
+        console.log(
+          `Class pack ${classPack._id} marked as active due to payment success`
         );
       }
     }

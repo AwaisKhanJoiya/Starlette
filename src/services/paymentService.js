@@ -40,8 +40,8 @@ export async function purchaseClassPack(paymentData, authToken) {
     throw new Error(data.message || "Failed to process class pack purchase");
   }
 
-  if (!data.success) {
-    throw new Error(data.message || "Payment failed");
+  if (data.responseCode !== 0) {
+    throw new Error(data.message || "Subscription creation failed");
   }
 
   return data;

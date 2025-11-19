@@ -1,77 +1,62 @@
 import mongoose from "mongoose";
 
-const ClassPackSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-    index: true,
-  },
-  packName: {
-    type: String,
-    required: true,
-  },
-  packType: {
-    type: String,
-    required: true, // e.g., "10_classes", "20_classes", etc.
-  },
-  totalClasses: {
-    type: Number,
-    required: true,
-  },
-  remainingClasses: {
-    type: Number,
-    required: true,
-  },
-  amount: {
-    type: Number,
-    required: true,
-  },
-  purchaseDate: {
-    type: Date,
-    default: Date.now,
-  },
-  validUntil: {
-    type: Date,
-    required: true,
-  },
-  status: {
-    type: String,
-    enum: ["active", "expired", "depleted"],
-    default: "active",
-    index: true,
-  },
-  paymentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Payment",
-  },
-  usageHistory: [
-    {
-      classId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Class",
-      },
-      usedAt: {
-        type: Date,
-        default: Date.now,
-      },
-      classDate: Date,
+const ClassPackSchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+      index: true,
     },
-  ],
-  createdAt: {
-    type: Date,
-    default: Date.now,
+    planId: {
+      type: String,
+      required: true,
+    },
+    totalClasses: {
+      type: Number,
+      required: true,
+    },
+    remainingClasses: {
+      type: Number,
+      required: true,
+    },
+    amount: {
+      type: Number,
+      required: true,
+    },
+    purchaseDate: {
+      type: Date,
+      default: Date.now,
+    },
+    validUntil: {
+      type: Date,
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "active", "expired", "depleted"],
+      default: "pending",
+      index: true,
+    },
+    usageHistory: [
+      {
+        classId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Class",
+        },
+        usedAt: {
+          type: Date,
+          default: Date.now,
+        },
+        classDate: Date,
+      },
+    ],
   },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
 // Update timestamp on save
 ClassPackSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-
   // Auto-update status based on conditions
   if (this.remainingClasses <= 0) {
     this.status = "depleted";

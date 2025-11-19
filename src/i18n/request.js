@@ -26,6 +26,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   let localeTerms = {};
   let localeAccount = {};
   let localeAuth = {};
+  let localeSuccess = {};
 
   try {
     localeHome = await import(`../../messages/${locale}/home.json`).then(
@@ -126,6 +127,14 @@ export default getRequestConfig(async ({ requestLocale }) => {
   }
 
   try {
+    localeSuccess = await import(`../../messages/${locale}/success.json`).then(
+      (m) => m.default
+    );
+  } catch (error) {
+    /* missing -> fallback to en */
+  }
+
+  try {
     localeAuth = await import(`../../messages/${locale}/auth.json`).then(
       (m) => m.default
     );
@@ -158,6 +167,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       terms: localeTerms,
       account: localeAccount,
       auth: localeAuth,
+      success: localeSuccess,
     },
   };
 });
