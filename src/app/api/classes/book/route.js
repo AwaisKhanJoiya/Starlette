@@ -3,6 +3,7 @@ import dbConnect from "@/lib/mongodb";
 import Class from "@/models/Class";
 import User from "@/models/User";
 import jwt from "jsonwebtoken";
+import { validateUserCanBook, processBooking } from "@/services/bookingService";
 
 // POST endpoint for booking a class
 export async function POST(request) {
@@ -47,6 +48,19 @@ export async function POST(request) {
     const user = await User.findById(userId);
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
+    }
+
+    // VALIDATION: Check if user has valid subscription or ClassPack
+    const bookingValidation = await validateUserCanBook(userId);
+
+    if (!bookingValidation.canBook) {
+      return NextResponse.json(
+        {
+          message: bookingValidation.message,
+          details: bookingValidation.details,
+        },
+        { status: 403 }
+      );
     }
 
     // Find the class by original ID
@@ -184,12 +198,23 @@ export async function POST(request) {
     // Save changes if successful
     await classToBook.save();
 
+    // Process the booking (deduct from ClassPack if applicable)
+    const bookingProcessResult = await processBooking(
+      userId,
+      classId,
+      effectiveDate,
+      bookingValidation.bookingMethod,
+      bookingValidation.classPack
+    );
+
     // Return appropriate response with instance information for recurring classes
     return NextResponse.json({
       message: enrollmentResult.message,
       status: enrollmentResult.message.includes("waitlist")
         ? "waitlisted"
         : "confirmed",
+      bookingMethod: bookingValidation.bookingMethod,
+      bookingDetails: bookingProcessResult,
       // Include instance info if this was a recurring class
       instanceId: instanceId || classId,
       date: date || new Date(classToBook.startDate).toISOString().split("T")[0],

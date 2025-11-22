@@ -134,7 +134,10 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-background rounded-lg shadow-md p-6">
+        <Link
+          href="/admin/users"
+          className="bg-background rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500 font-medium">Total Users</p>
@@ -145,12 +148,11 @@ export default function AdminDashboard() {
             </div>
           </div>
           <div className="mt-4">
-            <p className="text-xs text-gray-500">
-              <span className="text-green-500 font-medium">+12%</span> from last
-              month
+            <p className="text-xs text-primary font-medium hover:underline">
+              View all users →
             </p>
           </div>
-        </div>
+        </Link>
 
         <div className="bg-background rounded-lg shadow-md p-6">
           <div className="flex items-center justify-between">

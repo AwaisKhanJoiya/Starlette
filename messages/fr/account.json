@@ -35,9 +35,22 @@
     "missed": "ABSENTE",
     "active": "ACTIF",
     "expired": "EXPIRÉ",
+    "depleted": "ÉPUISÉ",
+    "pending": "EN ATTENTE",
     "waitingList": "LISTE D'ATTENTE"
   },
   "noBookedClasses": "Vous n'avez aucun cours à venir réservé",
+  "noClassPacks": "Vous n'avez aucun pack de cours",
+  "noSubscriptions": "Vous n'avez aucun abonnement",
+  "subscription": {
+    "classesPerWeek": "COURS PAR SEMAINE",
+    "classesPerMonth": "COURS PAR MOIS",
+    "amount": "MONTANT",
+    "startDate": "DATE DE DÉBUT",
+    "nextBilling": "PROCHAINE FACTURATION",
+    "endDate": "DATE DE FIN",
+    "cancelledAt": "ANNULÉ LE"
+  },
   "classpackInfo": "<b>Infos utiles</b> <br></br> Les packs de cours sont valables pour une durée limitée. Assurez-vous d’utiliser vos séances avant la date d’expiration. <br></br> Les cours non utilisés après la date d’expiration seront perdus. <br></br> Pour acheter un nouveau pack, visitez la page <a>tarifs</a>.",
   "bookingInfo": "<b>Infos utiles</b> <br></br> Vous pouvez annuler un cours jusqu’à 24 heures avant le début de la séance, et jusqu’à 12 heures pour les membres. <br></br> Si vous êtes sur la liste d’attente, vous serez averti par e-mail dès qu’une place se libère. <br></br> Pour toute question, contactez-nous à : <a>starlette.tlv@gmail.com</a>",
   "loading": "Chargement...",

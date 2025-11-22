@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Class from "@/models/Class";
 import jwt from "jsonwebtoken";
+import {
+  processCancellation,
+  getCancellationDeadline,
+} from "@/services/bookingService";
 
 // POST endpoint for cancelling a class booking
 export async function POST(request) {
@@ -73,7 +77,11 @@ export async function POST(request) {
       );
     }
 
-    // Check if the class is starting in less than 24 hours
+    // Get the cancellation deadline based on user's membership type
+    const cancellationPolicy = await getCancellationDeadline(userId);
+    const requiredHours = cancellationPolicy.requiredHours;
+
+    // Check if the class is starting within the cancellation deadline
     // Get date from enrollment.instanceDate and time from classToCancel.startTime
     const classDateStr = enrollment.instanceDate
       ? new Date(enrollment.instanceDate).toISOString().split("T")[0]
@@ -88,10 +96,19 @@ export async function POST(request) {
     const now = new Date();
     const hoursDifference = (classDateTime - now) / (1000 * 60 * 60);
 
-    if (hoursDifference < 24) {
+    if (hoursDifference < requiredHours) {
+      const membershipMessage = cancellationPolicy.hasSubscription
+        ? "Subscribed members must cancel at least 12 hours before the class"
+        : "Members must cancel at least 24 hours before the class";
+
       return NextResponse.json(
         {
-          message: "Cannot cancel a class less than 24 hours before start time",
+          message: `Cannot cancel: ${membershipMessage}. You have ${hoursDifference.toFixed(
+            1
+          )} hours remaining.`,
+          requiredHours,
+          remainingHours: hoursDifference,
+          membershipType: cancellationPolicy.membershipType,
         },
         { status: 400 }
       );
@@ -100,6 +117,9 @@ export async function POST(request) {
     // Update the enrollment status to cancelled
     enrollment.status = "cancelled";
     await classToCancel.save();
+
+    // Process cancellation (refund ClassPack if applicable)
+    const cancellationResult = await processCancellation(userId, classId);
 
     // If a spot opened up and there are waitlisted students, move the first waitlisted student to confirmed
     if (enrollment.status === "confirmed") {
@@ -125,6 +145,7 @@ export async function POST(request) {
 
     return NextResponse.json({
       message: "Class booking cancelled successfully",
+      cancellationDetails: cancellationResult,
     });
   } catch (error) {
     console.error("Cancel class error:", error);

@@ -27,6 +27,12 @@ export default function AccountDashboard() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [fieldToEdit, setFieldToEdit] = useState(null);
 
+  // State for subscriptions and class packs
+  const [subscriptions, setSubscriptions] = useState([]);
+  const [classPacks, setClassPacks] = useState([]);
+  const [loadingSubscriptions, setLoadingSubscriptions] = useState(false);
+  const [loadingClassPacks, setLoadingClassPacks] = useState(false);
+
   // Fetch user's enrolled classes
   const fetchEnrolledClasses = useCallback(async () => {
     const token = getAuthToken();
@@ -57,6 +63,63 @@ export default function AccountDashboard() {
   useEffect(() => {
     fetchEnrolledClasses();
   }, [fetchEnrolledClasses]);
+
+  // Fetch user's subscriptions
+  const fetchSubscriptions = useCallback(async () => {
+    const token = getAuthToken();
+    if (!token) return;
+
+    setLoadingSubscriptions(true);
+    try {
+      const response = await fetch("/api/user/subscriptions", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setSubscriptions(data.subscriptions || []);
+      } else {
+        console.error("Failed to fetch subscriptions:", response.status);
+      }
+    } catch (error) {
+      console.error("Error fetching subscriptions:", error);
+    } finally {
+      setLoadingSubscriptions(false);
+    }
+  }, [getAuthToken]);
+
+  // Fetch user's class packs
+  const fetchClassPacks = useCallback(async () => {
+    const token = getAuthToken();
+    if (!token) return;
+
+    setLoadingClassPacks(true);
+    try {
+      const response = await fetch("/api/user/classpacks", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setClassPacks(data.classPacks || []);
+      } else {
+        console.error("Failed to fetch class packs:", response.status);
+      }
+    } catch (error) {
+      console.error("Error fetching class packs:", error);
+    } finally {
+      setLoadingClassPacks(false);
+    }
+  }, [getAuthToken]);
+
+  useEffect(() => {
+    fetchSubscriptions();
+    fetchClassPacks();
+  }, [fetchSubscriptions, fetchClassPacks]);
   // const toggle = (index) => setOpen(open === index ? null : index);
   const toggle = useCallback((index) => {
     setOpen((prev) => (prev === index ? null : index));
@@ -282,50 +345,87 @@ export default function AccountDashboard() {
         );
 
       case "myClassPack":
-        // Now shows subscription table + notes (originally under mySubscription)
+        // Now shows class pack table with actual data
         return (
           <div className="space-y-4">
-            <div className=" py-4 ">
+            <div className="py-4">
               <div className="overflow-x-auto">
-                {/* <table className="w-full text-sm">
-                  <thead>
-                    <tr className="text-gray-600  text-xs">
-                      <th className="text-left py-2">{t("table.pack")}</th>
-                      <th className="text-left py-2">
-                        {t("table.purchaseDate")}
-                      </th>
-                      <th className="text-left py-2">
-                        {t("table.validUntil")}
-                      </th>
-                      <th className="text-left py-2">{t("table.remaining")}</th>
-                      <th className="text-left py-2">{t("table.status")}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-t border-[#000000] font-semibold">
-                      <td className="py-2">10 {t("table.classes")}</td>
-                      <td>10/05/2025</td>
-                      <td>10/06/2025</td>
-                      <td>8</td>
-                      <td>
-                        <span className=" px-2 py-1 text-dark-gray  text-xs">
-                          {t("status.active")}
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="border-y border-[#000000] font-semibold">
-                      <td className="py-2">{t("details.welcomePack")}</td>
-                      <td>10/03/2024</td>
-                      <td>10/05/2025</td>
-                      <td>0</td>
-                      <td>
-                        <span className="text-[#FABDCE] italic font-medium px-2 py-1  text-xs">
-                          {t("status.expired")}
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table> */}
+                {loadingClassPacks ? (
+                  <div className="py-8 text-center">
+                    <div className="inline-block animate-spin rounded-full h-6 w-6 border-2 border-solid border-primary border-r-transparent"></div>
+                    <p className="mt-2 text-sm">{t("loading")}</p>
+                  </div>
+                ) : classPacks.length === 0 ? (
+                  <div className="py-6 text-center capitalize text-gray-500">
+                    {t("noClassPacks") || "No class packs found"}
+                  </div>
+                ) : (
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="text-gray-600 text-xs">
+                        <th className="text-left py-2">{t("table.pack")}</th>
+                        <th className="text-left py-2">
+                          {t("table.purchaseDate")}
+                        </th>
+                        <th className="text-left py-2">
+                          {t("table.validUntil")}
+                        </th>
+                        <th className="text-left py-2">
+                          {t("table.remaining")}
+                        </th>
+                        <th className="text-left py-2">{t("table.status")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {classPacks.map((pack, index) => {
+                        const purchaseDate = new Date(
+                          pack.purchaseDate
+                        ).toLocaleDateString();
+                        const validUntil = new Date(
+                          pack.validUntil
+                        ).toLocaleDateString();
+                        const isExpired =
+                          pack.status === "expired" ||
+                          pack.status === "depleted";
+
+                        return (
+                          <tr
+                            key={pack._id}
+                            className={`border-t ${
+                              index === classPacks.length - 1 ? "border-b" : ""
+                            } border-[#000000] font-semibold`}
+                          >
+                            <td className="py-2">
+                              {pack.totalClasses} {t("table.classes")}
+                            </td>
+                            <td>{purchaseDate}</td>
+                            <td>{validUntil}</td>
+                            <td>{pack.remainingClasses}</td>
+                            <td>
+                              <span
+                                className={`px-2 py-1 text-xs ${
+                                  isExpired
+                                    ? "text-[#FABDCE] italic font-medium"
+                                    : "text-dark-gray"
+                                }`}
+                              >
+                                {pack.status === "active"
+                                  ? t("status.active")
+                                  : pack.status === "expired"
+                                  ? t("status.expired")
+                                  : pack.status === "depleted"
+                                  ? t("status.depleted") || "Depleted"
+                                  : pack.status === "pending"
+                                  ? t("status.pending") || "Pending"
+                                  : pack.status}
+                              </span>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                )}
               </div>
 
               <p className="uppercase text-[10px] py-3 text-[#686867] font-arial">
@@ -352,59 +452,175 @@ export default function AccountDashboard() {
         return <ClassHistory />;
 
       case "mySubscription":
-        // subscription summary (was originally myInformation)
+        // subscription summary with actual data
         return (
           <div className="space-y-4 font-arial">
-            {/* <div className="py-6">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex justify-center items-center gap-2">
-                  <div>
-                    <Image
-                      src="/star.png"
-                      alt="starlette"
-                      width={40}
-                      height={40}
-                      className="relative z-10"
-                    />
-                  </div>
-                  <div>
-                    <h2 className="mb-1 text-lg font-extrabold text-[#FABDCE] [text-stroke:0.2px_#545454] [-webkit-text-stroke:0.2px_#545454]">
-                      "A SUPERSTAR—LETTE"
-                    </h2>
+            <div className="py-6">
+              {loadingSubscriptions ? (
+                <div className="flex items-center justify-center py-8">
+                  <div className="animate-spin h-6 w-6 border-2 border-solid border-primary border-r-transparent rounded-full mr-2"></div>
+                  <p>{t("loading")}</p>
+                </div>
+              ) : subscriptions.length === 0 ? (
+                <div className="py-6 text-center capitalize text-gray-500">
+                  {t("noSubscriptions") || "No subscriptions found"}
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {subscriptions.map((subscription) => {
+                    const isActive = subscription.status === "active";
+                    const startDate = subscription.startDate
+                      ? new Date(subscription.startDate).toLocaleDateString()
+                      : "N/A";
+                    const nextBillingDate = subscription.nextBillingDate
+                      ? new Date(
+                          subscription.nextBillingDate
+                        ).toLocaleDateString()
+                      : "N/A";
+                    const endDate = subscription.endDate
+                      ? new Date(subscription.endDate).toLocaleDateString()
+                      : "Ongoing";
 
-                    <div className="divide-y divide-[#000000] ">
-                      <div className="flex items-center gap-2 pb-2">
-                        <div className="text-sm   font-bold  ">
-                          {t("details.subscriptionInfo")}
+                    return (
+                      <div
+                        key={subscription._id}
+                        className={`border ${
+                          isActive ? "border-primary" : "border-gray-300"
+                        } rounded-lg p-4`}
+                      >
+                        <div className="flex items-center justify-between gap-4 mb-4">
+                          <div className="flex justify-center items-center gap-2">
+                            <div>
+                              <Image
+                                src="/star.png"
+                                alt="starlette"
+                                width={40}
+                                height={40}
+                                className="relative z-10"
+                              />
+                            </div>
+                            <div>
+                              <h2
+                                className={`mb-1 text-lg font-extrabold ${
+                                  isActive ? "text-[#FABDCE]" : "text-gray-400"
+                                } [text-stroke:0.2px_#545454] [-webkit-text-stroke:0.2px_#545454]`}
+                              >
+                                {subscription.planId || "Subscription Plan"}
+                              </h2>
+                              <div className="text-xs font-semibold">
+                                <span
+                                  className={`px-2 py-1 rounded ${
+                                    isActive
+                                      ? "bg-green-100 text-green-800"
+                                      : subscription.status === "cancelled"
+                                      ? "bg-red-100 text-red-800"
+                                      : subscription.status === "expired"
+                                      ? "bg-gray-100 text-gray-800"
+                                      : "bg-yellow-100 text-yellow-800"
+                                  }`}
+                                >
+                                  {subscription.status.charAt(0).toUpperCase() +
+                                    subscription.status.slice(1)}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {isActive && (
+                            <div className="flex gap-2">
+                              <LoadingButton
+                                text={t("buttons.modify")}
+                                loadingText={t("loading")}
+                                className="text-black text-xs px-10 py-1 rounded-md font-medium sm:w-40 w-auto"
+                                variant="primary"
+                              />
+                              <LoadingButton
+                                text={t("buttons.cancellation")}
+                                loadingText={t("processing")}
+                                className="text-black text-xs px-10 py-1 rounded-md font-medium sm:w-40 w-auto"
+                                variant="primary"
+                              />
+                            </div>
+                          )}
                         </div>
-                        <div className="text-[10px] font-semibold italic text-[#787C7C]">
-                          {t("details.remaining")}
+
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <p className="text-gray-600 text-xs">
+                              {t("subscription.classesPerWeek") ||
+                                "Classes Per Week"}
+                            </p>
+                            <p className="font-bold">
+                              {subscription.classesPerWeek}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-gray-600 text-xs">
+                              {t("subscription.classesPerMonth") ||
+                                "Classes Per Month"}
+                            </p>
+                            <p className="font-bold">
+                              {subscription.classesPerMonth}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-gray-600 text-xs">
+                              {t("subscription.amount") || "Amount"}
+                            </p>
+                            <p className="font-bold">
+                              ₪{subscription.amount.toFixed(2)}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-gray-600 text-xs">
+                              {t("subscription.startDate") || "Start Date"}
+                            </p>
+                            <p className="font-bold">{startDate}</p>
+                          </div>
+                          {isActive && (
+                            <>
+                              <div>
+                                <p className="text-gray-600 text-xs">
+                                  {t("subscription.nextBilling") ||
+                                    "Next Billing"}
+                                </p>
+                                <p className="font-bold">{nextBillingDate}</p>
+                              </div>
+                              <div>
+                                <p className="text-gray-600 text-xs">
+                                  {t("subscription.endDate") || "End Date"}
+                                </p>
+                                <p className="font-bold">{endDate}</p>
+                              </div>
+                            </>
+                          )}
+                          {subscription.status === "cancelled" &&
+                            subscription.cancelledAt && (
+                              <div className="col-span-2">
+                                <p className="text-gray-600 text-xs">
+                                  {t("subscription.cancelledAt") ||
+                                    "Cancelled On"}
+                                </p>
+                                <p className="font-bold">
+                                  {new Date(
+                                    subscription.cancelledAt
+                                  ).toLocaleDateString()}
+                                </p>
+                                {subscription.cancellationReason && (
+                                  <p className="text-xs italic text-gray-600 mt-1">
+                                    {subscription.cancellationReason}
+                                  </p>
+                                )}
+                              </div>
+                            )}
                         </div>
                       </div>
-                      <div className="text-[10px] font-semibold pt-2 italic text-[#787C7C]">
-                        {t("details.classesPerWeek")}
-                      </div>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
-                <div className="flex gap-2">
-                  <LoadingButton
-                    text={t("buttons.modify")}
-                    loadingText={t("loading")}
-                    className="text-black text-xs px-10 py-1 rounded-md font-medium sm:w-40 w-auto"
-                    variant="primary"
-                  />
-                  <LoadingButton
-                    text={t("buttons.cancellation")}
-                    loadingText={t("processing")}
-                    className="text-black text-xs px-10 py-1 rounded-md font-medium sm:w-40 w-auto"
-                    variant="primary"
-                  />
-                </div>
-              </div>
+              )}
             </div>
 
-            */}
             <p className="uppercase text-[10px] text-[#686867] font-arial">
               {t.rich("details.subscriptionPolicy", {
                 b: (chunks) => (

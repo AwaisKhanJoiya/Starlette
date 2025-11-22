@@ -73,11 +73,6 @@ export default function AdminLayout({ children }) {
       href: "/admin/users",
       icon: <Users size={20} />,
     },
-    {
-      name: "Settings",
-      href: "/admin/settings",
-      icon: <Settings size={20} />,
-    },
   ];
 
   return (

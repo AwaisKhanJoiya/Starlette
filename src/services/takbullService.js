@@ -50,7 +50,7 @@ class TakbullService {
 
     const body = {
       order_reference: order_reference,
-      OrderTotalSum: 1,
+      OrderTotalSum: amount.toFixed(2),
       DealType: this.config.dealTypes.REGULAR,
       RedirectAddress: `${process.env.FRONTEND_URL}/success`,
       CancelReturnAddress: `${process.env.FRONTEND_URL}/pricing`,

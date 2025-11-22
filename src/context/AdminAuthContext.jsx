@@ -56,6 +56,11 @@ export function AdminAuthProvider({ children }) {
         throw new Error(data.message || "Admin login failed");
       }
 
+      // Store JWT token in localStorage
+      if (data.token) {
+        localStorage.setItem("adminToken", data.token);
+      }
+
       setUser({
         email: data.user.email,
         name: data.user.name,
@@ -78,6 +83,10 @@ export function AdminAuthProvider({ children }) {
       await fetch("/api/admin/auth/logout", {
         method: "POST",
       });
+
+      // Remove token from localStorage
+      localStorage.removeItem("adminToken");
+
       setUser(null);
       router.push("/admin/login");
     } catch (error) {
@@ -87,12 +96,18 @@ export function AdminAuthProvider({ children }) {
     }
   };
 
+  // Get auth token
+  const getAuthToken = () => {
+    return localStorage.getItem("adminToken");
+  };
+
   // Context value
   const value = {
     user,
     loading,
     login,
     logout,
+    getAuthToken,
     isAuthenticated: !!user,
   };
 

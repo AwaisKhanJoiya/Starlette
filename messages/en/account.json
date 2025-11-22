@@ -35,10 +35,23 @@
     "missed": "ABSENT",
     "active": "ACTIVE",
     "expired": "EXPIRED",
+    "depleted": "DEPLETED",
+    "pending": "PENDING",
     "waitingList": "WAITING LIST",
     "confirmed": "CONFIRMED"
   },
   "noBookedClasses": "You have no upcoming classes booked",
+  "noClassPacks": "You have no class packs",
+  "noSubscriptions": "You have no subscriptions",
+  "subscription": {
+    "classesPerWeek": "CLASSES PER WEEK",
+    "classesPerMonth": "CLASSES PER MONTH",
+    "amount": "AMOUNT",
+    "startDate": "START DATE",
+    "nextBilling": "NEXT BILLING",
+    "endDate": "END DATE",
+    "cancelledAt": "CANCELLED ON"
+  },
   "bookingInfo": "<b>useful info</b> <br></br> you can cancel a class up to 24 hours before the session starts, and up to 12 hours for members. <br></br> if you're on the waitlist, you'll be notified by email as soon as a spot becomes available. <br></br> for any questions, contact us at: <a>starlette.tlv@gmail.com</a>",
   "classpackInfo": "<b>useful info</b> <br></br> class pack are valid for limited time. make sure to use your sessions before the expiration date. <br></br> unused classes after expiration date will be lost. <br></br> to purchase a new pack, visit the the <a>pricing</a> page",
   "loading": "Loading...",

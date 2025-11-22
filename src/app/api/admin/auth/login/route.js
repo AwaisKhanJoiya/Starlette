@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
 // In a real application, you would have a database of admin users
 // and proper password hashing and authentication
@@ -34,7 +35,18 @@ export async function POST(request) {
       );
     }
 
-    // Create session token (in a real app, use JWT or similar)
+    // Create JWT token for admin
+    const jwtToken = jwt.sign(
+      {
+        email: user.email,
+        name: user.name,
+        role: "admin",
+      },
+      process.env.JWT_SECRET || "your-secret-key",
+      { expiresIn: "24h" }
+    );
+
+    // Create session token (for cookie)
     const token = Buffer.from(`${email}:${Date.now()}`).toString("base64");
 
     // Set cookie with token
@@ -48,6 +60,7 @@ export async function POST(request) {
 
     return NextResponse.json({
       message: "Login successful",
+      token: jwtToken, // Include JWT token in response
       user: {
         email: user.email,
         name: user.name,
