@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/mongodb";
 import Coach from "@/models/Coach";
+import Class from "@/models/Class";
 import { NextResponse } from "next/server";
 import { adminMiddleware } from "@/middleware/admin";
 
@@ -91,14 +92,33 @@ export async function DELETE(request, { params }) {
     }
 
     const coachId = params.id;
-    const deletedCoach = await Coach.findByIdAndDelete(coachId);
 
-    if (!deletedCoach) {
+    // First, check if the coach exists
+    const coach = await Coach.findById(coachId);
+    if (!coach) {
       return NextResponse.json({ message: "Coach not found" }, { status: 404 });
     }
 
+    // Find all classes assigned to this coach
+    const classesAssignedToCoach = await Class.find({ coach: coachId });
+    const classIds = classesAssignedToCoach.map((cls) => cls._id);
+
+    // Delete all classes assigned to this coach
+    // This will also remove all enrollment links as they are embedded in the class documents
+    const deleteResult = await Class.deleteMany({ coach: coachId });
+
+    // Delete the coach
+    const deletedCoach = await Coach.findByIdAndDelete(coachId);
+
     return NextResponse.json({
       message: "Coach deleted successfully",
+      deletedClasses: deleteResult.deletedCount,
+      classIds: classIds,
+      coach: {
+        id: deletedCoach._id,
+        name: deletedCoach.name,
+        email: deletedCoach.email,
+      },
     });
   } catch (error) {
     console.error("Delete coach error:", error);

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import PricingGrid from "@/components/PricingGrid";
 import FitnessBookingCalendar from "@/components/FitnessBookingCalendar";
+import Link from "next/link";
 
 export default function StarletteStudio() {
   const locale = useLocale();
@@ -14,14 +15,14 @@ export default function StarletteStudio() {
   const tPackages = useTranslations("packages");
   const cards = [
     {
-      id: "home-one",
+      id: "p-s1-a",
       price: tPackages("home.cards.one.price"),
       headline: tPackages("home.cards.one.headline"),
       gift: tPackages("home.cards.one.gift"),
       buttonLabel: tPackages("home.cards.one.button"),
     },
     {
-      id: "home-three",
+      id: "p-s1-b",
       price: tPackages("home.cards.three.price"),
       headline: tPackages("home.cards.three.headline"),
       gift: tPackages("home.cards.three.gift"),
@@ -91,9 +92,11 @@ export default function StarletteStudio() {
                 </div>
 
                 {/* CTA - using shadcn Button to keep consistent UI */}
-                <Button className="rounded-full uppercase px-6 md:px-8 py-3 text-sm w-full md:w-auto">
-                  {t("hero.cta")}
-                </Button>
+                <Link href="#experience">
+                  <Button className="rounded-full uppercase px-6 md:px-8 py-3 text-sm w-full md:w-auto">
+                    {t("hero.cta")}
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -102,7 +105,7 @@ export default function StarletteStudio() {
         </section>
 
         {/* Experience section - responsive */}
-        <section className="px-4 sm:px-6 lg:px-8">
+        <section className="px-4 sm:px-6 lg:px-8" id="experience">
           <div className="flex flex-col-reverse md:flex-row md:items-start items-center pt-12 border-b border-dashed border-black overflow-hidden">
             <div className="w-full md:w-1/2 pt-20">
               <Image
@@ -163,21 +166,27 @@ export default function StarletteStudio() {
             </div>
             <div className="w-full md:w-1/2 flex flex-col items-center  md:items-end space-y-8">
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className="md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
-                  {t("buttons.theStudio")}
-                </Button>
+                <Link href={"/studio"}>
+                  <Button className="md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
+                    {t("buttons.theStudio")}
+                  </Button>
+                </Link>
               </div>
 
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className="md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
-                  {t("buttons.theMethod")}
-                </Button>
+                <Link href={"/method"}>
+                  <Button className="md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
+                    {t("buttons.theMethod")}
+                  </Button>
+                </Link>
               </div>
 
               <div className="w-full md:w-2/3 flex justify-end items-stretch">
-                <Button className=" md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
-                  {t("buttons.memberships")}
-                </Button>
+                <Link href={"/pricing"}>
+                  <Button className=" md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
+                    {t("buttons.memberships")}
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -194,8 +203,6 @@ export default function StarletteStudio() {
         <div className="px-4 sm:px-6 lg:px-8 pt-12">
           <FitnessBookingCalendar />
         </div>
-
-      
       </main>
     </div>
   );
