@@ -31,10 +31,10 @@ const MethodPage = () => {
               </div>
             </div>
 
-            <div className="mx-auto w-full sm:w-64 md:w-1/3">
+            <div className="mx-auto w-full md:w-1/3">
               <div className="aspect-[4/3] overflow-hidden">
                 <video
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover rounded-lg"
                   autoPlay
                   muted
                   loop

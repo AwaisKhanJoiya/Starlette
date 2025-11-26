@@ -14,7 +14,8 @@ export default function PricingGrid({
 }) {
   const locale = useLocale();
   const gridClass = useMemo(() => {
-    if (columns === 2) return "flex flex-col md:flex-row justify-center gap-32";
+    if (columns === 2)
+      return "flex flex-col md:flex-row justify-center items-center gap-32";
     if (columns === 4)
       return "grid grid-cols-1 md:grid-cols-4 gap-8 justify-items-center";
     return "flex flex-col md:flex-row justify-center items-center gap-32";

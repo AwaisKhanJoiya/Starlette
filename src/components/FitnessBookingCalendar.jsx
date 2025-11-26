@@ -356,7 +356,7 @@ const FitnessBookingCalendar = () => {
           />
 
           {/* Scrollable week days for small devices */}
-          <div className="overflow-x-auto -mx-4 px-4 sm:overflow-visible sm:mx-0 sm:px-0 sm:flex sm:justify-center">
+          <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex sm:justify-center">
             <div className="flex gap-4 sm:gap-12 min-w-max">
               {weekDates.map((date, index) => {
                 const todayIs = isToday(date);

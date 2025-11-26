@@ -27,7 +27,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative w-fit">
       <div
         className={`border-2 flex flex-col justify-center gap-y-4 text-dark-gray border-black bg-background rounded-3xl py-8 w-64 h-64 ${
           gift ? "px-2" : "px-5"
