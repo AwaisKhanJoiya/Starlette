@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import UserProfileDropdown from "@/components/ui/UserProfileDropdown";
 import { useUserAuthContext } from "@/context/UserAuthContext";
+import Image from "next/image";
 
 export default function Navbar() {
   const locale = useLocale();
@@ -137,7 +138,13 @@ export default function Navbar() {
 
           {isAccount && !user && (
             <div className="flex items-center">
-              <User size={28} className={iconColorClass} />
+              {/* <User size={28} className={iconColorClass} /> */}
+              <Image
+                src="/profile-icon.png"
+                alt="starlette"
+                width={62}
+                height={62}
+              />
             </div>
           )}
         </div>

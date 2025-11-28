@@ -15,10 +15,12 @@ export default function PricingGrid({
   const locale = useLocale();
   const gridClass = useMemo(() => {
     if (columns === 2)
-      return "flex flex-col md:flex-row justify-center items-center gap-32";
+      // Use smaller vertical gap on mobile and keep larger spacing on md+
+      return "flex flex-col md:flex-row justify-center items-center gap-8 md:gap-32";
     if (columns === 4)
       return "grid grid-cols-1 md:grid-cols-4 gap-8 justify-items-center";
-    return "flex flex-col md:flex-row justify-center items-center gap-32";
+    // default (3 columns) — smaller mobile gap and larger gap on md+
+    return "flex flex-col md:flex-row justify-center items-center gap-8 md:gap-32";
   }, [columns]);
 
   return (
@@ -91,14 +93,15 @@ export default function PricingGrid({
           } relative z-10 mt-6 text-[10px] md:text-[10px] px-4 sm:ps-6 lg:ps-8 `}
         >
           {bullets.map((b, i) => (
-            <div key={i} className="mb-1 flex items-center">
-              <span className="text-dark-gray font-bold mr-2">
+            <div key={i} className="mb-1 flex md:items-center items-start">
+              {/* prevent the star icon from shrinking on small screens */}
+              <span className="text-dark-gray font-bold mr-2 flex-shrink-0">
                 <Image
                   src={"/star-icon.png"}
                   alt="star icon"
-                  width={10}
-                  height={10}
-                  className="mx-auto "
+                  width={12}
+                  height={12}
+                  className="mx-auto w-3 h-3 object-contain flex-shrink-0"
                 />
               </span>
               <span className="text-light-gray">{b}</span>

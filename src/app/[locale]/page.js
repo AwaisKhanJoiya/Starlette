@@ -105,7 +105,10 @@ export default function StarletteStudio() {
         </section>
 
         {/* Experience section - responsive */}
-        <section className="px-4 sm:px-6 lg:px-8" id="experience">
+        <section
+          className="px-4 sm:px-6 lg:px-8 scroll-mt-16 sm:scroll-mt-20 md:scroll-mt-24"
+          id="experience"
+        >
           <div className="flex flex-col-reverse md:flex-row md:items-start items-center pt-12 border-b border-dashed border-black overflow-hidden">
             <div className="w-full md:w-1/2 pt-20">
               <Image
@@ -164,26 +167,28 @@ export default function StarletteStudio() {
                 </p>
               </div>
             </div>
-            <div className="w-full md:w-1/2 flex flex-col items-center  md:items-end space-y-8">
-              <div className="w-full md:w-2/3 flex justify-end items-stretch">
+            <div className="w-full md:w-1/2 flex flex-col items-center md:items-end space-y-8">
+              {/* center buttons on small screens and keep right aligned on md+ */}
+              <div className="w-full md:w-2/3 flex justify-center md:justify-end items-stretch">
                 <Link href={"/studio"}>
-                  <Button className="md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
+                  {/* fixed width (w-64) on all screens so all 3 buttons are same size on mobile */}
+                  <Button className="w-64 rounded-full uppercase px-6 py-3 text-sm">
                     {t("buttons.theStudio")}
                   </Button>
                 </Link>
               </div>
 
-              <div className="w-full md:w-2/3 flex justify-end items-stretch">
+              <div className="w-full md:w-2/3 flex justify-center md:justify-end items-stretch">
                 <Link href={"/method"}>
-                  <Button className="md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
+                  <Button className="w-64 rounded-full uppercase px-6 py-3 text-sm">
                     {t("buttons.theMethod")}
                   </Button>
                 </Link>
               </div>
 
-              <div className="w-full md:w-2/3 flex justify-end items-stretch">
+              <div className="w-full md:w-2/3 flex justify-center md:justify-end items-stretch">
                 <Link href={"/pricing"}>
-                  <Button className=" md:w-64 w-full rounded-full uppercase px-6 py-3 text-sm">
+                  <Button className="w-64 rounded-full uppercase px-6 py-3 text-sm">
                     {t("buttons.memberships")}
                   </Button>
                 </Link>

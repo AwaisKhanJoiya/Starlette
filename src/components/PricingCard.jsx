@@ -17,7 +17,7 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
     headline = "",
     validity = "",
     gift = "",
-    buttonLabel = "BOOK",
+    buttonLabel = "SELECT",
     star = "/star-icon.png",
   } = data;
 
@@ -68,7 +68,8 @@ const PricingCard = React.memo(function PricingCard({ data = {} }) {
               {headline}
             </div>
           )}
-          {gift && (
+          {/* Do not show gift for the 1-class welcome pack (id: p-s1-a) */}
+          {gift && id !== "p-s1-a" && (
             <p
               dir={locale === "he" ? "rtl" : undefined}
               className="text-[9px] font-bold mb-2 text-[#787C7C] mt-1"

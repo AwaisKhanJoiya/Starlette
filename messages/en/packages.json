@@ -6,18 +6,18 @@
         "price": "110₪",
         "headline": "1 class",
         "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
-        "button": "BOOK"
+        "button": "SELECT"
       },
       "three": {
         "price": "300₪",
         "headline": "3 classes",
         "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
-        "button": "BOOK"
+        "button": "SELECT"
       }
     },
     "bullets": {
       "one": "Our welcome offer is valid only once; you may choose one of the two available options.",
-      "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
+      "two": "You may cancel your SELECTing up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
       "three": "For your comfort and safety, grip socks are required during all sessions."
     }
   },
@@ -33,20 +33,20 @@
           "price": "110₪",
           "headline": "1 class",
           "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
-          "button": "BOOK",
+          "button": "SELECT",
           "validity": "valid for 1 month"
         },
         "b": {
           "price": "300₪",
           "headline": "3 classes",
           "gift": "+ GIFT: 1 PAIR OF GRIP SOCKS",
-          "button": "BOOK",
+          "button": "SELECT",
           "validity": "valid for 1 month"
         }
       },
       "bullets": {
         "one": "Our welcome offer is valid only once, you may choose one of the two available options.",
-        "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
+        "two": "You may cancel your SELECTing up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
         "three": "For your comfort and safety, grip socks are required during all sessions."
       }
     },
@@ -57,20 +57,20 @@
           "price": "160₪",
           "headline": "1 class",
           "gift": "",
-          "button": "BOOK",
+          "button": "SELECT",
           "validity": "valid for 1 month"
         },
         "b": {
           "price": "700₪",
           "headline": "5 classes",
           "gift": "",
-          "button": "BOOK",
+          "button": "SELECT",
           "validity": "valid for 2 months"
         }
       },
       "bullets": {
         "one": "Class packs are valid for a limited time. Make sure to use your sessions before the expiration date.",
-        "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
+        "two": "You may cancel your SELECTing up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
         "three": "For your comfort and safety, grip socks are required during all sessions."
       }
     },
@@ -82,7 +82,7 @@
           "price": "500₪",
           "headline": "1 class <br></br> per week",
           "gift": "",
-          "button": "BOOK",
+          "button": "SELECT",
           "validity": "4 classes per month"
         },
         "c2": {
@@ -90,7 +90,7 @@
           "price": "920₪",
           "headline": "2 classes <br></br> per week",
           "gift": "",
-          "button": "BOOK",
+          "button": "SELECT",
           "validity": "8 classes per month"
         },
         "c3": {
@@ -98,7 +98,7 @@
           "price": "1200₪",
           "headline": "3 classes <br></br> per week",
           "gift": "",
-          "button": "BOOK",
+          "button": "SELECT",
           "validity": "12 classes per month"
         },
         "c4": {
@@ -106,13 +106,13 @@
           "price": "1600₪",
           "headline": "UNLIMITED CLASSES",
           "gift": "",
-          "button": "BOOK",
+          "button": "SELECT",
           "validity": "up to 24 classes per month"
         }
       },
       "bullets": {
         "one": "All memberships require a minimum 3 month commitment.",
-        "two": "You may cancel your booking up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
+        "two": "You may cancel your SELECTing up to 24 hours before the class start. After that, the credits will be deducted (for class packs).",
         "three": "For your comfort and safety, grip socks are required during all sessions."
       }
     }

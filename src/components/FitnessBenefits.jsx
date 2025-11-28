@@ -28,7 +28,7 @@ const FitnessBenefits = () => {
         return (
           <div
             key={index}
-            className="group relative p-2 text-dark-gray rounded-3xl border-4 border-dashed border-[#464646] flex flex-col"
+            className="group relative p-2 text-dark-gray rounded-3xl md:border-4 border-2 md:border-dashed border-solid border-[#464646] flex flex-col"
           >
             <div className="flex items-center gap-2">
               {/* <Icon className="w-8 h-8" /> */}

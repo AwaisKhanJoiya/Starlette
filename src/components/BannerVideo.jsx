@@ -41,7 +41,7 @@ const BannerVideo = () => {
         />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
           <h1 className="flex flex-col justify-center items-center md:gap-2 md:flex-row font-shrikhand text-2xl md:text-3xl text-primary m-0">
-            <span className="outlined-text text-3xl md:text-[55px]">a </span>
+            <span className="outlined-text text-3xl md:text-[55px] uppercase">a </span>
             {/* <span className="text-6xl md:text-8xl">Starlette</span>{" "} */}
             <Image
               src="/starlette-title.png"
@@ -50,7 +50,7 @@ const BannerVideo = () => {
               height={50}
               className="object-cover mb-3"
             />
-            <span className="outlined-text text-xl md:text-[55px]">
+            <span className="outlined-text text-xl uppercase md:text-[55px]">
               is born
             </span>
           </h1>

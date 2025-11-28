@@ -2,6 +2,7 @@
 import React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const StudioPage = () => {
   const locale = useLocale();
@@ -35,9 +36,11 @@ const StudioPage = () => {
                 })}
               </p>
             </div>
-            <Button className="mt-8 bg-primary text-dark-gray uppercase px-10 rounded-full">
-              Book a Class
-            </Button>
+            <Link href="/pricing">
+              <Button className="mt-8 bg-primary text-dark-gray uppercase px-10 rounded-full">
+                Book a Class 
+              </Button>
+            </Link>
           </div>
 
           {/* Location Section */}

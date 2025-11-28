@@ -47,9 +47,9 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="min-h-screen  text-dark-gray flex flex-col items-center justify-center py-12 px-4">
-        <div className="w-full max-w-md  p-6">
-          <div className="mb-8 flex flex-col items-center">
+      <div className="md:min-h-screen  text-dark-gray flex flex-col items-center justify-center  md:py-12 py-8 px-4">
+        <div className="w-full max-w-md  p-6 ">
+          <div className="mb-8 flex flex-col items-center ">
             <h2 className="text-xs font-medium text-dark-gray mb-2">
               {t("loginStep")}
             </h2>

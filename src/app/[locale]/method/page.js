@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 const MethodPage = () => {
   const t = useTranslations("method");
@@ -47,9 +48,11 @@ const MethodPage = () => {
           </div>
 
           <div className="w-full flex justify-center items-center">
-            <Button className="md:w-auto w-full rounded-full px-16 py-3 text-sm tracking-wide">
-              {t("bookButton")}
-            </Button>
+            <Link href="/pricing">
+              <Button className="md:w-auto w-full rounded-full px-16 py-3 text-sm tracking-wide">
+                {t("bookButton")}
+              </Button>
+            </Link>
           </div>
         </section>
 

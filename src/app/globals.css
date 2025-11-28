@@ -5,6 +5,8 @@
 
 @layer base {
   :root {
+    /* height of the site header - used to offset fragment scrolling */
+    --header-height: 4rem;
     --background: #fffbf9;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -62,7 +64,6 @@
 }
 
 .outlined-text {
-  
   font-weight: 600;
   color: transparent;
   -webkit-text-stroke: 0.1px var(--primary); /* Works in Chrome/Edge/Safari */
@@ -147,4 +148,11 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Ensure in-page fragment navigation (e.g. #experience) doesn't end up hidden
+   behind the fixed/sticky header. Also makes scroll behavior smoother. */
+html {
+  scroll-padding-top: var(--header-height);
+  scroll-behavior: smooth;
 }
